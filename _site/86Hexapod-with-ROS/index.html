@@ -1,0 +1,612 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>86hexapod With Ros - Follow in my Footsteps</title>
+<meta name="description" content="好久不見！最近忙著改版 86ME 和嘗試 86Duino + ESP8266 + Rosserial86 的組合，來達成控制多台 86Hexapod 的目標，今天也來和大家分享吧！">
+
+
+  <meta name="author" content="Chi-Ju Wu">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Follow in my Footsteps">
+<meta property="og:title" content="86hexapod With Ros">
+<meta property="og:url" content="http://localhost:4000/86Hexapod-with-ROS/">
+
+
+  <meta property="og:description" content="好久不見！最近忙著改版 86ME 和嘗試 86Duino + ESP8266 + Rosserial86 的組合，來達成控制多台 86Hexapod 的目標，今天也來和大家分享吧！">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2015-10-30T00:00:00-06:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/86Hexapod-with-ROS/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Chi-Ju Wu",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Follow in my Footsteps Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/manifest.json">
+<meta name="theme-color" content="#ffffff">
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Chi-Ju Wu
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/profile.jpg" alt="Chi-Ju Wu" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Chi-Ju Wu</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>I am from Taiwan.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Boulder, CO</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:sayter99@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://sayter99.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          
+        
+          
+            <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="86hexapod With Ros">
+    <meta itemprop="description" content="好久不見！最近忙著改版 86ME 和嘗試 86Duino + ESP8266 + Rosserial86 的組合，來達成控制多台 86Hexapod 的目標，今天也來和大家分享吧！">
+    <meta itemprop="datePublished" content="October 30, 2015">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">86hexapod With Ros
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#esp8266">ESP8266</a></li>
+  <li><a href="#rosserial86">Rosserial86</a></li>
+  <li><a href="#ros-side">ROS-side</a></li>
+  <li><a href="#connect-with-ros">Connect with ROS</a></li>
+  <li><a href="#robots-exercise">Robots Exercise</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>好久不見！最近忙著改版 86ME 和嘗試 86Duino + ESP8266 + <a href="http://www.86duino.com/?p=10818&amp;lang=TW">Rosserial86</a> 的組合，來達成控制多台 86Hexapod 的目標，今天也來和大家分享吧！</p>
+
+<h2 id="esp8266">ESP8266</h2>
+<p><img src="../assets/images/old/86hexapod.JPG" alt="" /></p>
+
+<p>ESP8266 是一塊小巧便宜的電路板，也因此成為 Arduino 社群製作 Wifi 相關專案時經常採用的選擇。除了能讓 Arduino 連上無線網路，ESP8266 本身也能作為 AP，功能可以說是非常強大。關於 ESP8266 的相關教學已經有許多大大寫了，所以這邊就不提了。要拿 ESP8266 與 86Duino 連接的話，我是用<a href="https://tw.bid.yahoo.com/item/blkbox-me%E5%8E%9F%E8%A3%9D%E3%8A%A3%E5%93%81-ESP8266-Wifi-%E6%A8%A1%E7%B5%84-UART%E4%BB%8B%E9%9D%A2-ardui-100042602874">這款 ESP8266</a>，將 TX/RX 與 Serial1 的 RX/TX 接上，並且接上地與電（我選擇 3.3V）就算完成硬體部分。軟體的話要注意的是這款 bb-8266 預設的 baudrate 為 115200，請記得要設定正確。86Duino Libraray 的部分我是使用 <a href="https://github.com/itead/ITEADLIB_Arduino_WeeESP8266">WeeESP8266</a>。在使用 Rosserial86 之前建議先用 AT Command 確認 ESP8266 有正確的運作。</p>
+
+<h2 id="rosserial86">Rosserial86</h2>
+<p><img src="../assets/images/old/rosserial_introduction.png" alt="" /></p>
+
+<p>Rosserial86 其實已經在之前的文章中出現過了！不過那時候沒有寫得很詳細，所以這一次會提得更深入一些。Rosserial86 是由 <a href="http://wiki.ros.org/rosserial">Rosserial Package</a> Porting 而來，讓 86Duino 能夠與 ROS 中的 Topic 溝通。那麼為何不讓直接跑 ROS 來溝通呢？雖然 L86duntu 有提供這樣的功能，但某些方面的應用並不需要使用像 Ubuntu 一樣那麼龐大的 OS，只需要一般 86Duino 的環境就可以解決了，這樣的情況下，選擇 Rosserial86 是更加簡潔有力的，Rosserial86 正好提供了簡單快速的方式來與 ROS 溝通，傳輸的介面包含 Serial Port、Ethernet、WiFi(ESP8266)。而當時製作的版本為 <strong>ROS Indigo</strong>，後面的版本雖然沒有實測過，但理論上應該都可以正常運作。
+<img src="../assets/images/old/rosserial_arch.png" alt="" /></p>
+
+<p>簡單介紹之後，就來談談 Rosserial86/rosserial 是如何運作的，首先，ROS 端（通常為 PC）上要開啟一個 node 來當作與嵌入式裝置溝通的伺服端，<strong>ROS Hydro</strong> 後可以選擇 rosserial_python 或 rosserial_server，這個 node 與嵌入式裝置（86Duino/Arduino）會透過自定義的 protocol 進行溝通。而 rosserial_arduino、rosserial_embeddedlinux、rosserial_86duino 則都隸屬於 rosserial_client，由上面的架構圖可見。</p>
+
+<h2 id="ros-side">ROS-side</h2>
+<p>總結上一段來說，ROS 端要先安裝 rosserial 這個 package，要建立連線時先開啟 roscore 和 <a href="http://wiki.ros.org/rosserial_python">rosserial_python</a> 或 <a href="http://wiki.ros.org/rosserial_server">rosserial_server</a>，視連線方式來決定指定如何下，舉 rosserial_python 為例，用 <em>serial port</em> 時為 <code class="highlighter-rouge">rosrun rosserial_python serial_node.py /dev/ttyXXX</code>，用 <em>ehternet/wifi</em> 時為 <code class="highlighter-rouge">rosrun rosserial_python serial_node.py tcp</code>，預設的 port 為 <code class="highlighter-rouge">11411</code>，有需要變更可在下參數調整。而 rosserial_server 則分為 serial_node 與 socket_node。這次進行多台連線我是採用 rosserial_server socket_node 走預設的 port。</p>
+
+<h2 id="connect-with-ros">Connect with ROS</h2>
+<p>搞定無線網路與 ROS 段設定之後，就可以利用新改好的 <a href="https://github.com/Sayter99/rosserial">Rosserial86</a> 與 ROS 連線囉！範例程式：</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;ros.h&gt;
+#include &lt;std_msgs/String.h&gt;
+#include &lt;geometry_msgs/Pose2D.h&gt;
+</span>
+<span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="n">messageCb</span><span class="p">(</span> <span class="k">const</span> <span class="n">std_msgs</span><span class="o">::</span><span class="n">String</span><span class="o">&amp;</span> <span class="n">cmsg</span><span class="p">){</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">cmsg</span><span class="p">.</span><span class="n">data</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">geometry_msgs</span><span class="o">::</span><span class="n">Pose2D</span> <span class="n">msg</span><span class="p">;</span>
+<span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span> <span class="n">chatter</span><span class="p">(</span><span class="s">"chatter2"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">msg</span><span class="p">);</span>
+
+<span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span><span class="o">&lt;</span><span class="n">std_msgs</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">sub</span><span class="p">(</span><span class="s">"chatter"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">messageCb</span> <span class="p">);</span>
+<span class="kt">double</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">nh</span><span class="p">.</span><span class="n">getHardware</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setESP8266</span><span class="p">(</span><span class="n">Serial1</span><span class="p">,</span> <span class="mi">115200</span><span class="p">);</span>
+  <span class="n">nh</span><span class="p">.</span><span class="n">getHardware</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setWiFi</span><span class="p">(</span><span class="s">"SSID"</span><span class="p">,</span> <span class="s">"PASSWORD"</span><span class="p">);</span>
+  <span class="n">nh</span><span class="p">.</span><span class="n">initNode</span><span class="p">(</span><span class="s">"IP OF ROSSERIAL SERVER"</span><span class="p">);</span>
+  <span class="n">nh</span><span class="p">.</span><span class="n">advertise</span><span class="p">(</span><span class="n">chatter</span><span class="p">);</span>
+  <span class="n">nh</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">sub</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span>
+<span class="p">{</span>  
+  <span class="n">msg</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+  <span class="n">msg</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+  <span class="n">msg</span><span class="p">.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+  <span class="n">chatter</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">msg</span> <span class="p">);</span>
+  <span class="n">nh</span><span class="p">.</span><span class="n">spinOnce</span><span class="p">();</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>上面的範例會讓 86Duino 發送模擬的位置訊息到 chatter2 這個 topic，並接收 chatter 這個 topic 送來的訊息，簡單測試完畢之後，就能把多台 86Hexapod 連上 ROS 並且一起控制了。除了一次控制多台小六足外，有興趣的玩家還能利用 ROS 上豐沛的資源來製作各種不同的功能唷！</p>
+
+<!-- Courtesy of embedresponsively.com //-->
+<div class="responsive-video-container">
+
+  <iframe src="https://www.youtube-nocookie.com/embed/yWgQdA1mVpQ" frameborder="0" allowfullscreen=""></iframe>
+
+</div>
+
+<h2 id="robots-exercise">Robots Exercise</h2>
+<p>基於上述的基礎，大家異想天開的要在公司尾牙表演機器人版的妖怪體操 XD</p>
+
+<!-- Courtesy of embedresponsively.com //-->
+<div class="responsive-video-container">
+
+  <iframe src="https://www.youtube-nocookie.com/embed/s26viFUi5i0" frameborder="0" allowfullscreen=""></iframe>
+
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-10-30T00:00:00-06:00">October 30, 2015</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=86hexapod+With+Ros%20http%3A%2F%2Flocalhost%3A4000%2F86Hexapod-with-ROS%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F86Hexapod-with-ROS%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F86Hexapod-with-ROS%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/ROS-with-RB8-6-SLaM/" class="pagination--pager" title="Ros With Rb8 6 Slam
+">Previous</a>
+    
+    
+      <a href="/Study-of-Edison-Ethernet-Library/" class="pagination--pager" title="Study Of Edison Ethernet Library
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86Humanoid-Rider/" rel="permalink">86humanoid Rider
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">繼 2015 發表 86Hexapod 之後，隔了一年多終於迎來了另外一隻 3D 列印的機器人！這次的主角是一隻小型的兩足機器人，身高大約 25cm，機構全由 3D 列印件完成。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/AIServo86-Library/" rel="permalink">Aiservo86 Library
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">86Duino IDE 在下次更新中預計新增一個 AIServo86 涵式庫，此涵式庫可以說是 Servo86 的 AI 伺服機版本。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86Duino-Remote-Control-Car/" rel="permalink">86duino Remote Control Car
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">之前寫了一篇有關 MRAA 的文章，不過裡頭只有簡單的範例，藉由這一次實作遠端遙控車，希望能讓大家更瞭解 MRAA 能夠做些甚麼事情，說不定有些應用剛好很合適用 MRAA 來實作也不一定。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86Hexapod-with-Speech-Recognition/" rel="permalink">86hexapod With Speech Recognition
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">之前看到 ASUS Zenbo 的語音操控，覺得是應該找時間來熟悉語音辨識這一塊，而很恰巧的，最近正好有人透過 github 來詢問我 rosserial86 的詳細用法，打算要做聲控方面的專案，正好是個機會讓我多了解語音辨識的工具 XD
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Chi-Ju Wu. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>

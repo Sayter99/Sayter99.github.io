@@ -1,0 +1,595 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>86me V1.9 - Follow in my Footsteps</title>
+<meta name="description" content="86ME v1.9 在馬不停蹄地趕工下接近尾聲了，這次的改版也加入了不少東西，第一點是支援以 Cubic Spline/Constrained Cubic Spline 方式來控制馬達的選項，讓使用者可以不只有走直線一種選擇，不過目前僅支援只含有 Frame 的動作，這點務必注意。第二點為支援兩個來源的 IMU 補償，例如可以利用 y 軸的旋轉角度與角速度來搭配服用，使用上可以說是頗具彈性，不過參數調整就會變得更加複雜就是了 O_Q">
+
+
+  <meta name="author" content="Chi-Ju Wu">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Follow in my Footsteps">
+<meta property="og:title" content="86me V1.9">
+<meta property="og:url" content="http://localhost:4000/86ME-v1.9/">
+
+
+  <meta property="og:description" content="86ME v1.9 在馬不停蹄地趕工下接近尾聲了，這次的改版也加入了不少東西，第一點是支援以 Cubic Spline/Constrained Cubic Spline 方式來控制馬達的選項，讓使用者可以不只有走直線一種選擇，不過目前僅支援只含有 Frame 的動作，這點務必注意。第二點為支援兩個來源的 IMU 補償，例如可以利用 y 軸的旋轉角度與角速度來搭配服用，使用上可以說是頗具彈性，不過參數調整就會變得更加複雜就是了 O_Q">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2016-07-14T00:00:00-06:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/86ME-v1.9/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Chi-Ju Wu",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Follow in my Footsteps Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/manifest.json">
+<meta name="theme-color" content="#ffffff">
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Chi-Ju Wu
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/profile.jpg" alt="Chi-Ju Wu" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Chi-Ju Wu</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>I am from Taiwan.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Boulder, CO</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:sayter99@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://sayter99.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          
+        
+          
+            <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="86me V1.9">
+    <meta itemprop="description" content="86ME v1.9 在馬不停蹄地趕工下接近尾聲了，這次的改版也加入了不少東西，第一點是支援以 Cubic Spline/Constrained Cubic Spline 方式來控制馬達的選項，讓使用者可以不只有走直線一種選擇，不過目前僅支援只含有 Frame 的動作，這點務必注意。第二點為支援兩個來源的 IMU 補償，例如可以利用 y 軸的旋轉角度與角速度來搭配服用，使用上可以說是頗具彈性，不過參數調整就會變得更加複雜就是了 O_Q">
+    <meta itemprop="datePublished" content="July 14, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">86me V1.9
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#cubic-spline">Cubic Spline</a></li>
+  <li><a href="#demo">DEMO</a></li>
+  <li><a href="#demo-1">DEMO</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p><a href="https://github.com/Sayter99/86ME">86ME</a> v1.9 在馬不停蹄地趕工下接近尾聲了，這次的改版也加入了不少東西，第一點是支援以 Cubic Spline/Constrained Cubic Spline 方式來控制馬達的選項，讓使用者可以不只有走直線一種選擇，不過<strong>目前僅支援只含有 Frame 的動作</strong>，這點務必注意。第二點為支援兩個來源的 IMU 補償，例如可以利用 y 軸的旋轉角度與角速度來搭配服用，使用上可以說是頗具彈性，不過參數調整就會變得更加複雜就是了 O_Q</p>
+
+<h2 id="cubic-spline">Cubic Spline</h2>
+<p>在馬達的控制上，以往 86ME 所產生的程式是在指定時間內以直直的路線走到目標點，這樣的作法會讓機器人動作看起來很僵硬，實際上也會造成比較多的震動，因為通常在 Frame 與 Frame 之間的轉折處會有速度上的轉變，此時會瞬間產生一個加速度（可以把加速度想做力 —&gt; F = ma），只要這個加速度較大，就會讓機器人震震的。為了解決這個問題，我們採用了 Cubic Spline 來作為控制馬達的軌跡，這個方法能讓馬達在通過每個 Frame 時的速度和加速度更為平順，詳細的作法可以參考<a href="http://www.hmwu.idv.tw/web/teaching/104-1/numerical-analysis/chapter-03.5.pdf">這篇教學</a>。然而事情總是不會這麼容易的 XD 在做出新功能後正興高采烈測試時，發現了 Cubic Spline 會因為某些 Frame 與 Frame 之間速度太大（位移/時間）而導致整個曲線出現劇烈的 overshooting。可以利用這個<a href="http://tools.timodenk.com/?p=cubic-spline-interpolation">網站</a>更深入了解這個問題。</p>
+
+<p><strong>平均速度變化較平坦的資料（x軸時間，y軸為目標位置）</strong></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 1310
+1000 1840
+1500 1840
+2000 1357
+2500 1840
+3000 1357
+3500 1840
+</code></pre></div></div>
+
+<p><strong>會產生問題的資料（x軸時間，y軸為目標位置）</strong></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 1310
+1000 1840
+1500 1840
+2000 1357
+2020 1840
+2520 1357
+3020 1840
+</code></pre></div></div>
+
+<p>小弟認為針對速度太大的兩點，把它們改為線性的方式，前後則拆為兩條 Cubic Spline，應該就能緩解這樣的症頭，有興趣的玩家可以試試看這樣的方法。那廢話不多說，我們就來看看 DEMO 吧！</p>
+
+<h2 id="demo">DEMO</h2>
+<p>可以從身體的震動來比較，使用 Cubic Spline 來規劃可以減輕加速度變化所帶來的振動。</p>
+
+<!-- Courtesy of embedresponsively.com //-->
+<div class="responsive-video-container">
+
+  <iframe src="https://www.youtube-nocookie.com/embed/GgaTg-OY0ag" frameborder="0" allowfullscreen=""></iframe>
+
+</div>
+
+<h1 id="constrained-cubic-spline">Constrained Cubic Spline</h1>
+<p>針對 Cubic Spline 的 Overshooting，如果要更徹底避免掉，則可以考慮使用 Constrained Cubic Spline，詳細作法可以參考<a href="http://www.korf.co.uk/spline.pdf">這篇論文</a>，若是採用此法，可以避免編輯好的動作太激動 XD 但因為 Constrained Cubic Spline 的加速度是不連續的，所以運動的平滑性也會稍打折扣，可以算是有得有失吧。以另一個角度來看，為了讓動作編輯盡量簡化，不要考慮與了解太多細節，Constrained 的方式不失為一個好選擇，而對於需要 Natural Cubic Spline 的玩家，小弟建議先對 Cubic Spline 有一定的了解，並且最好能知到所編輯動作轉為 Cubic Spline 之後的曲線，才能將 Cubic Spline 運用得恰到好處。</p>
+
+<h1 id="new-compensating-source-ωy--ωx">New Compensating Source (ωy &amp; ωx)</h1>
+<p>加入了角速度的補償來源，可以幫助機器人穩定所受的外力。也因為來源增加了，每個馬達現在支援兩個來源的補償，最後補償的結果會加總再進行補償。</p>
+
+<h2 id="demo-1">DEMO</h2>
+<p>加入了角速度的補償之後，機器人就變得可以快速回穩囉！</p>
+
+<!-- Courtesy of embedresponsively.com //-->
+<div class="responsive-video-container">
+
+  <iframe src="https://www.youtube-nocookie.com/embed/fM1U95CtDd0" frameborder="0" allowfullscreen=""></iframe>
+
+</div>
+
+<h1 id="improve-uis">Improve UIs</h1>
+<p>除了上述的功能，UI 部分也做了一些改進，因為以往無法對 Motion 管理，為了解決這樣的不便，86ME 1.9 在 Motion 名稱旁加入了一個新按鈕，可以讓使用者<strong>匯入/匯出/更名/刪除</strong> Motion。而 Action List 中的元件現在也可以藉由鍵盤上的 Delete 來刪除。</p>
+
+<p>最近加入的幾個新功能對我來說還蠻新鮮的，也學習到了不少東西，最大的收穫莫過於增加了機器人領域了解吧 XD 至於 86ME，可以說是慢慢走到尾聲了，從超級陽春的 1.0 到可以拿來辦活動的 1.5，再到加入了更多進階功能的 1.8、1.9，之後應該是不會有太大的改版了，Lab 決定要開始鑽研 ROS 的原始碼，而且 86ME 1.9 也算是一個完整的收尾，至於還會不會修改，就看我自己埋藏了多少 BUG 了 XDD</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-07-14T00:00:00-06:00">July 14, 2016</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=86me+V1.9%20http%3A%2F%2Flocalhost%3A4000%2F86ME-v1.9%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F86ME-v1.9%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F86ME-v1.9%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/86ME-v1.8/" class="pagination--pager" title="86me V1.8
+">Previous</a>
+    
+    
+      <a href="/86Hexapod-with-Speech-Recognition/" class="pagination--pager" title="86hexapod With Speech Recognition
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86Humanoid-Rider/" rel="permalink">86humanoid Rider
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">繼 2015 發表 86Hexapod 之後，隔了一年多終於迎來了另外一隻 3D 列印的機器人！這次的主角是一隻小型的兩足機器人，身高大約 25cm，機構全由 3D 列印件完成。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/AIServo86-Library/" rel="permalink">Aiservo86 Library
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">86Duino IDE 在下次更新中預計新增一個 AIServo86 涵式庫，此涵式庫可以說是 Servo86 的 AI 伺服機版本。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86Duino-Remote-Control-Car/" rel="permalink">86duino Remote Control Car
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">之前寫了一篇有關 MRAA 的文章，不過裡頭只有簡單的範例，藉由這一次實作遠端遙控車，希望能讓大家更瞭解 MRAA 能夠做些甚麼事情，說不定有些應用剛好很合適用 MRAA 來實作也不一定。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86Hexapod-with-Speech-Recognition/" rel="permalink">86hexapod With Speech Recognition
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">之前看到 ASUS Zenbo 的語音操控，覺得是應該找時間來熟悉語音辨識這一塊，而很恰巧的，最近正好有人透過 github 來詢問我 rosserial86 的詳細用法，打算要做聲控方面的專案，正好是個機會讓我多了解語音辨識的工具 XD
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Chi-Ju Wu. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>

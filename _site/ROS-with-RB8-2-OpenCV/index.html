@@ -1,0 +1,775 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Ros With Rb8 2 Opencv - Follow in my Footsteps</title>
+<meta name="description" content="OpenCV 是一個開源的電腦視覺函式庫，功能包山包海，現今在開發機器人上應該可以說是不可或缺的，要在 RoBoard/86Duino 上裝 OpenCV 不像是在一般電腦上一樣容易，應該可以算是個大工程XD，所以就寫一些小撇步跟大家分享囉！">
+
+
+  <meta name="author" content="Chi-Ju Wu">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Follow in my Footsteps">
+<meta property="og:title" content="Ros With Rb8 2 Opencv">
+<meta property="og:url" content="http://localhost:4000/ROS-with-RB8-2-OpenCV/">
+
+
+  <meta property="og:description" content="OpenCV 是一個開源的電腦視覺函式庫，功能包山包海，現今在開發機器人上應該可以說是不可或缺的，要在 RoBoard/86Duino 上裝 OpenCV 不像是在一般電腦上一樣容易，應該可以算是個大工程XD，所以就寫一些小撇步跟大家分享囉！">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2015-08-14T00:00:00-06:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/ROS-with-RB8-2-OpenCV/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Chi-Ju Wu",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Follow in my Footsteps Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/manifest.json">
+<meta name="theme-color" content="#ffffff">
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Chi-Ju Wu
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/profile.jpg" alt="Chi-Ju Wu" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Chi-Ju Wu</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>I am from Taiwan.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Boulder, CO</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:sayter99@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://sayter99.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          
+        
+          
+            <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Ros With Rb8 2 Opencv">
+    <meta itemprop="description" content="OpenCV 是一個開源的電腦視覺函式庫，功能包山包海，現今在開發機器人上應該可以說是不可或缺的，要在 RoBoard/86Duino 上裝 OpenCV 不像是在一般電腦上一樣容易，應該可以算是個大工程XD，所以就寫一些小撇步跟大家分享囉！">
+    <meta itemprop="datePublished" content="August 14, 2015">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Ros With Rb8 2 Opencv
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#下載-opencv">下載 OpenCV</a></li>
+  <li><a href="#編譯-opencv">編譯 OpenCV</a></li>
+  <li><a href="#opencv-和-ros-的糾葛">OpenCV 和 ROS 的糾葛</a>
+    <ul>
+      <li><a href="#bin">bin</a></li>
+      <li><a href="#lib">lib</a></li>
+      <li><a href="#python">python</a></li>
+      <li><a href="#修改設定檔">修改設定檔</a></li>
+    </ul>
+  </li>
+  <li><a href="#寫個傳輸影像-node-吧">寫個傳輸影像 node 吧！</a>
+    <ul>
+      <li><a href="#修改-cmakelisttxt">修改 CMakeList.txt</a></li>
+      <li><a href="#srcpubcpp">src/pub.cpp</a></li>
+      <li><a href="#srcpubcpp-1">src/pub.cpp</a></li>
+      <li><a href="#完成">完成</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>OpenCV 是一個開源的電腦視覺函式庫，功能包山包海，現今在開發機器人上應該可以說是不可或缺的，要在 RoBoard/86Duino 上裝 OpenCV 不像是在一般電腦上一樣容易，應該可以算是個大工程XD，所以就寫一些小撇步跟大家分享囉！</p>
+
+<h2 id="下載-opencv">下載 OpenCV</h2>
+<p>先到 <a href="http://opencv.org/downloads.html">OpenCV 官方網站</a>下載 <strong>OpenCV for Linux/Mac</strong>。建議下載 <strong>VERSION 2.X.X</strong>，第三代應該無法在 RoBoard/86Duino 上順利執行，我之前使用的是 <strong>2.4.9</strong>，確定沒問題。下載後解壓縮得到 <code class="highlighter-rouge">opencv-2.X.X</code>，接著開啟終端機並移動到此資料夾底下。</p>
+
+<h2 id="編譯-opencv">編譯 OpenCV</h2>
+<p>首先要創建一料夾 <code class="highlighter-rouge">build</code> 並進入其中，這裡是用來放待會 CMake 後所產生的檔案：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir build
+<span class="nb">cd </span>build
+</code></pre></div></div>
+
+<p>接著要先講講 RoBoard/86Duino CPU 的特殊性，可能有的人有嘗試過在 RoBoard 或 86Duino 上執行 OpenCV 程式，但卻發現無法正確執行，這是因為 CPU 並不支援 SSE 這項技術，所以說在 CMake 時要把 SSE 與需要 SSE 的 FFMPEG 關掉：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>Release <span class="nt">-DWITH_FFMPEG</span><span class="o">=</span>OFF <span class="se">\</span>
+      <span class="nt">-DENABLE_SSE</span><span class="o">=</span>OFF <span class="se">\</span>
+      <span class="nt">-DENABLE_SSE2</span><span class="o">=</span>OFF <span class="se">\</span>
+      <span class="nt">-DENABLE_SSE3</span><span class="o">=</span>OFF <span class="se">\</span>
+      <span class="nt">-DENABLE_SSSE3</span><span class="o">=</span>OFF ..
+</code></pre></div></div>
+
+<p>結束後，我建議把 <code class="highlighter-rouge">opencv-2.X.X</code> 整個資料夾搬到一般的電腦去編譯，因為這邊如果要直接在 RoBoard/86Duino 上編譯會花非常久的一段時間。編譯的指令非常簡單，到 <code class="highlighter-rouge">opencv-2.X.X/build/</code> 底下執行 <code class="highlighter-rouge">make</code> 就可以了。完成後可以找到 <code class="highlighter-rouge">bin</code>、<code class="highlighter-rouge">lib</code>，這些就是編譯好的執行檔和函式庫了，至於 <code class="highlighter-rouge">header</code> 檔則是放在 <code class="highlighter-rouge">opencv-2.X.X/include</code> 裡面。</p>
+
+<h2 id="opencv-和-ros-的糾葛">OpenCV 和 ROS 的糾葛</h2>
+<p>在 ROS Fuerte 中許多的 package 都會用到 OpenCV，當安裝了 <code class="highlighter-rouge">vision-opencv</code> 或 image 相關的套件後，就可以發現 ROS 裡頭多了 OpenCV 這個東東，不過很可惜因為 SSE 的關係這份 OpenCV 是不能用的。所以要將我們自行編譯好的 OpenCV 覆蓋掉自動安裝好的。</p>
+
+<h3 id="bin">bin</h3>
+<p>移動到自己所產生的 bin 資料夾：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>cp <span class="k">*</span> /opt/ros/fuerte/bin/
+</code></pre></div></div>
+
+<h3 id="lib">lib</h3>
+<p>移動到自己所產生的 lib 資料夾：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>cp <span class="nt">-av</span> libopencv_<span class="k">*</span> /opt/ros/fuerte/lib/
+</code></pre></div></div>
+
+<p><strong>cp 指令的 -av 是為了能將 symbolic link 也複製過去，複製完成後記得檢查 .so 檔是否都正確的連結</strong></p>
+
+<h3 id="python">python</h3>
+<p>把自己編好的 <code class="highlighter-rouge">lib/python2.X/site-packages/cv2.so</code> 覆蓋掉 <code class="highlighter-rouge">/opt/ros/fuerte/lib/python2.6/dist-packages/cv2.so</code>，完成後打開 python 並輸入</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">__version__</span>
+</code></pre></div></div>
+
+<p>看看是否能正確載入 OpenCV，沒問題的話就算OK了</p>
+
+<h3 id="修改設定檔">修改設定檔</h3>
+<p>修要修改 <code class="highlighter-rouge">/opt/ros/fuerte/lib/pkgconfig/opencv.pc</code>、<code class="highlighter-rouge">/opt/ros/fuerte/share/OpenCV/OpenCV*</code>，主要是把版本修正，有出現 2.4.2 的地方都改成 2.4.X（自己編的版本），如果有出現自己沒編出來的函式庫可以先住解掉。<strong>如果出現編出 .a 檔的問題，可以利用下面的 script 把 .a 檔轉換為 .so 檔，依然要注意函式庫繫結的問題！</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nv">tmp</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$RANDOM$RANDOM$RANDOM</span><span class="sb">`</span>
+<span class="nv">current_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+<span class="nv">args0</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
+<span class="nv">args1</span><span class="o">=</span><span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span>
+
+helpmeplease<span class="o">()</span>
+<span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">"a2so &lt;a&gt; &lt;so&gt;"</span>
+<span class="o">}</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="nv">$args0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<span class="c">#    echo "good" &gt; /dev/null</span>
+<span class="c">#else</span>
+    helpmeplease
+    <span class="nb">exit </span>1
+<span class="k">fi
+
+if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="nv">$args1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<span class="c">#    echo "goodette" &gt; /dev/null</span>
+<span class="c">#else</span>
+    helpmeplease
+    <span class="nb">exit </span>1
+<span class="k">fi
+
+</span>mkdir <span class="nt">-p</span> /tmp/<span class="nv">$tmp</span>
+cp <span class="nt">-R</span> <span class="k">${</span><span class="nv">args0</span><span class="k">}</span> /tmp/<span class="nv">$tmp</span>/<span class="nv">$tmp</span>
+<span class="nb">cd</span> /tmp/<span class="nv">$tmp</span>
+ar <span class="nt">-x</span> <span class="nv">$tmp</span>
+gcc <span class="nt">-shared</span> <span class="k">*</span>.o <span class="nt">-o</span> <span class="nv">$tmp</span>.so
+<span class="nb">cd</span> <span class="nv">$current_dir</span>
+cp <span class="nt">-R</span> /tmp/<span class="nv">$tmp</span>/<span class="nv">$tmp</span>.so <span class="nv">$args1</span>
+rm <span class="nt">-R</span> /tmp/<span class="nv">$tmp</span>
+</code></pre></div></div>
+
+<ul>
+  <li><a href="http://ubuntuforums.org/showthread.php?t=1954793">Reference</a></li>
+</ul>
+
+<p>或是利用 gcc/g++ 來轉換，不過我也只有查到，沒有實際用過，夥伴們可以自行探索。</p>
+
+<h2 id="寫個傳輸影像-node-吧">寫個傳輸影像 node 吧！</h2>
+<p>首先一樣先移動 <code class="highlighter-rouge">cd ~/fuerte_workspace/sandbox</code>，再利用 <code class="highlighter-rouge">roscreate-pkg opencvXXX_test roscpp cv_bridge sensor_msgs image_transport</code> 建立新的 package，名字可以自己換，我是取 opencv249_test。接著在資料夾裡面建立資料夾 <code class="highlighter-rouge">src</code>，並在裡頭加入 <code class="highlighter-rouge">sub.cpp</code> 和 <code class="highlighter-rouge">pub.cpp</code> 兩個檔案，顧名思義一個是 publish 影像的 node，一個則是 subscribe 影像的 node。</p>
+
+<h3 id="修改-cmakelisttxt">修改 CMakeList.txt</h3>
+<p>對 ROS 比較不熟悉的朋友可能會不太知道 CMakeList.txt 的參數要怎麼寫，其實主要就是參考 <strong>3-4</strong> 裡頭的一些設定檔，那麼還是直接附上範例吧！</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 2.4.6<span class="p">)</span>
+<span class="nb">include</span><span class="p">(</span>$ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake<span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span>OpenCV REQUIRED<span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span> <span class="si">${</span><span class="nv">OpenCV_INCLUDE_DIRS</span><span class="si">}</span> <span class="p">)</span>
+
+<span class="nf">rosbuild_init</span><span class="p">()</span>
+
+<span class="nb">set</span><span class="p">(</span>EXECUTABLE_OUTPUT_PATH <span class="si">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="si">}</span>/bin<span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span>LIBRARY_OUTPUT_PATH <span class="si">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="si">}</span>/lib<span class="p">)</span>
+
+<span class="nf">rosbuild_add_executable</span><span class="p">(</span>sub src/sub.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>sub <span class="si">${</span><span class="nv">OpenCV_LIBS</span><span class="si">}</span><span class="p">)</span>
+<span class="nf">rosbuild_add_executable</span><span class="p">(</span>pub src/pub.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>pub <span class="si">${</span><span class="nv">OpenCV_LIBS</span><span class="si">}</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="srcpubcpp">src/pub.cpp</h3>
+<p>pub 會透過抓取 webcam 的影像，把影像存為 <code class="highlighter-rouge">sensor_msgs::Image</code> 類別，再上傳到 <strong>Topic: image_out</strong>。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;ros/ros.h&gt;
+#include &lt;iostream&gt;
+#include &lt;sstream&gt;
+#include &lt;image_transport/image_transport.h&gt;
+#include &lt;cv_bridge/cv_bridge.h&gt;
+#include &lt;sensor_msgs/image_encodings.h&gt;
+#include &lt;opencv2/core/core.hpp&gt;
+#include &lt;opencv2/imgproc/imgproc.hpp&gt;
+#include &lt;opencv2/highgui/highgui.hpp&gt;
+#include &lt;sensor_msgs/Image.h&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">cv</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">"pub"</span><span class="p">);</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span> <span class="n">out_img_pub</span> <span class="o">=</span> 
+    <span class="n">nh</span><span class="p">.</span><span class="n">advertise</span><span class="o">&lt;</span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">Image</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"image_out"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+
+  <span class="n">Mat</span> <span class="n">frame</span><span class="p">;</span>
+  <span class="n">VideoCapture</span> <span class="n">cap</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">cap</span><span class="p">.</span><span class="n">isOpened</span><span class="p">())</span>
+  <span class="p">{</span>
+    <span class="n">ROS_ERROR</span><span class="p">(</span><span class="s">"fail to open!"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">cap</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CV_CAP_PROP_FRAME_HEIGHT</span><span class="p">,</span><span class="mi">192</span><span class="p">);</span> <span class="c1">// 高
+</span>  <span class="n">cap</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CV_CAP_PROP_FRAME_WIDTH</span><span class="p">,</span> <span class="mi">256</span><span class="p">);</span> <span class="c1">// 寬
+</span>  <span class="n">cap</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CV_CAP_PROP_FPS</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span> <span class="c1">// 影片 FPS
+</span>  <span class="n">ros</span><span class="o">::</span><span class="n">Rate</span> <span class="n">loop_rate</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+  <span class="n">cv_bridge</span><span class="o">::</span><span class="n">CvImage</span> <span class="n">cv_img</span><span class="p">;</span>
+  <span class="n">stringstream</span> <span class="n">ss</span><span class="p">;</span>
+
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">ros</span><span class="o">::</span><span class="n">ok</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">cap</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">frame</span><span class="p">);</span>
+    <span class="n">cvtColor</span><span class="p">(</span> <span class="n">frame</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">CV_BGR2GRAY</span><span class="p">);</span>
+    <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="s">"frame "</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">;</span>
+    <span class="n">cv_img</span><span class="p">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s">"mono8"</span><span class="p">;</span> <span class="c1">// 若是要彩色圖片可以換成 rgb8、 bgr8 等等
+</span>    <span class="n">cv_img</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">stamp</span> <span class="o">=</span> <span class="n">ros</span><span class="o">::</span><span class="n">Time</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+    <span class="n">cv_img</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">frame_id</span> <span class="o">=</span> <span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">();</span>
+    <span class="n">cv_img</span><span class="p">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">frame</span><span class="p">;</span>
+    <span class="n">out_img_pub</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span> <span class="n">cv_img</span><span class="p">.</span><span class="n">toImageMsg</span><span class="p">()</span> <span class="p">);</span>
+    <span class="c1">//ROS_INFO("Publish Frame %d !", i);
+</span>    <span class="n">ros</span><span class="o">::</span><span class="n">spinOnce</span><span class="p">();</span>
+    <span class="n">loop_rate</span><span class="p">.</span><span class="n">sleep</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="srcpubcpp-1">src/pub.cpp</h3>
+<p>pub 會不斷聽取 <strong>image_out</strong> 裡面是不是有新東西，有新東西的話就利用 <code class="highlighter-rouge">imageCallback</code> 這個 callback 函式抓圖片來顯示。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;ros/ros.h&gt;
+#include &lt;iostream&gt;
+#include &lt;sstream&gt;
+#include &lt;image_transport/image_transport.h&gt;
+#include &lt;cv_bridge/cv_bridge.h&gt;
+#include &lt;sensor_msgs/image_encodings.h&gt;
+#include &lt;opencv2/core/core.hpp&gt;
+#include &lt;opencv2/imgproc/imgproc.hpp&gt;
+#include &lt;opencv2/highgui/highgui.hpp&gt;
+#include &lt;sensor_msgs/Image.h&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">cv</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">fcount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">imageCallback</span><span class="p">(</span><span class="k">const</span> <span class="n">sensor_msgs</span><span class="o">::</span><span class="n">ImageConstPtr</span><span class="o">&amp;</span> <span class="n">color_img</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">cv_bridge</span><span class="o">::</span><span class="n">CvImagePtr</span> <span class="n">cv_img</span><span class="p">;</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">frame</span><span class="p">;</span>
+  <span class="k">try</span>
+  <span class="p">{</span>
+      <span class="n">cv_img</span> <span class="o">=</span> <span class="n">cv_bridge</span><span class="o">::</span><span class="n">toCvCopy</span><span class="p">(</span><span class="n">color_img</span><span class="p">,</span>
+      <span class="n">sensor_msgs</span><span class="o">::</span><span class="n">image_encodings</span><span class="o">::</span><span class="n">BGR8</span><span class="p">);</span>
+      <span class="n">frame</span> <span class="o">=</span> <span class="n">cv_img</span><span class="o">-&gt;</span><span class="n">image</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">cv_bridge</span><span class="o">::</span><span class="n">Exception</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="n">ROS_ERROR</span><span class="p">(</span><span class="s">"cv_bridge exception: \%s"</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+      <span class="k">return</span> <span class="p">;</span>
+  <span class="p">}</span>
+  <span class="c1">//ROS_INFO("Cap Frame %d Sucess!", fcount++);
+</span>  <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"cap"</span><span class="p">,</span> <span class="n">frame</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">"sub"</span><span class="p">);</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span> <span class="n">sub</span> <span class="o">=</span> <span class="n">nh</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s">"image_out"</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">imageCallback</span><span class="p">);</span>
+  <span class="n">ros</span><span class="o">::</span><span class="n">spin</span><span class="p">();</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="完成">完成</h3>
+<p>到 package 的根目錄下 <code class="highlighter-rouge">rosmake</code> 編譯，完成後就可以試試看是否可以傳圖片囉！</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-08-14T00:00:00-06:00">August 14, 2015</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Ros+With+Rb8+2+Opencv%20http%3A%2F%2Flocalhost%3A4000%2FROS-with-RB8-2-OpenCV%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FROS-with-RB8-2-OpenCV%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FROS-with-RB8-2-OpenCV%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/ROS-with-RB8-1-Installation/" class="pagination--pager" title="Ros With Rb8 1 Installation
+">Previous</a>
+    
+    
+      <a href="/ROS-with-RB8-3-Partner/" class="pagination--pager" title="Ros With Rb8 3 Partner
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86Humanoid-Rider/" rel="permalink">86humanoid Rider
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">繼 2015 發表 86Hexapod 之後，隔了一年多終於迎來了另外一隻 3D 列印的機器人！這次的主角是一隻小型的兩足機器人，身高大約 25cm，機構全由 3D 列印件完成。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/AIServo86-Library/" rel="permalink">Aiservo86 Library
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">86Duino IDE 在下次更新中預計新增一個 AIServo86 涵式庫，此涵式庫可以說是 Servo86 的 AI 伺服機版本。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86Duino-Remote-Control-Car/" rel="permalink">86duino Remote Control Car
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">之前寫了一篇有關 MRAA 的文章，不過裡頭只有簡單的範例，藉由這一次實作遠端遙控車，希望能讓大家更瞭解 MRAA 能夠做些甚麼事情，說不定有些應用剛好很合適用 MRAA 來實作也不一定。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86Hexapod-with-Speech-Recognition/" rel="permalink">86hexapod With Speech Recognition
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">之前看到 ASUS Zenbo 的語音操控，覺得是應該找時間來熟悉語音辨識這一塊，而很恰巧的，最近正好有人透過 github 來詢問我 rosserial86 的詳細用法，打算要做聲控方面的專案，正好是個機會讓我多了解語音辨識的工具 XD
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Chi-Ju Wu. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>

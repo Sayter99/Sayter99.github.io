@@ -1,0 +1,593 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>86hexapod With Speech Recognition - Follow in my Footsteps</title>
+<meta name="description" content="之前看到 ASUS Zenbo 的語音操控，覺得是應該找時間來熟悉語音辨識這一塊，而很恰巧的，最近正好有人透過 github 來詢問我 rosserial86 的詳細用法，打算要做聲控方面的專案，正好是個機會讓我多了解語音辨識的工具 XD">
+
+
+  <meta name="author" content="Chi-Ju Wu">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Follow in my Footsteps">
+<meta property="og:title" content="86hexapod With Speech Recognition">
+<meta property="og:url" content="http://localhost:4000/86Hexapod-with-Speech-Recognition/">
+
+
+  <meta property="og:description" content="之前看到 ASUS Zenbo 的語音操控，覺得是應該找時間來熟悉語音辨識這一塊，而很恰巧的，最近正好有人透過 github 來詢問我 rosserial86 的詳細用法，打算要做聲控方面的專案，正好是個機會讓我多了解語音辨識的工具 XD">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2016-08-08T00:00:00-06:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/86Hexapod-with-Speech-Recognition/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Chi-Ju Wu",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Follow in my Footsteps Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/manifest.json">
+<meta name="theme-color" content="#ffffff">
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Chi-Ju Wu
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/profile.jpg" alt="Chi-Ju Wu" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Chi-Ju Wu</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>I am from Taiwan.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Boulder, CO</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:sayter99@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://sayter99.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          
+        
+          
+            <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="86hexapod With Speech Recognition">
+    <meta itemprop="description" content="之前看到 ASUS Zenbo 的語音操控，覺得是應該找時間來熟悉語音辨識這一塊，而很恰巧的，最近正好有人透過 github 來詢問我 rosserial86 的詳細用法，打算要做聲控方面的專案，正好是個機會讓我多了解語音辨識的工具 XD">
+    <meta itemprop="datePublished" content="August 08, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">86hexapod With Speech Recognition
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#speech-recognition-by-ros-pocketsphinx-package">Speech Recognition by ROS pocketsphinx package</a></li>
+  <li><a href="#creating-a-vocabulary">Creating a Vocabulary</a></li>
+  <li><a href="#control-86hexapod">Control 86Hexapod</a></li>
+  <li><a href="#reference">Reference</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>之前看到 ASUS Zenbo 的語音操控，覺得是應該找時間來熟悉語音辨識這一塊，而很恰巧的，最近正好有人透過 github 來詢問我 rosserial86 的詳細用法，打算要做聲控方面的專案，正好是個機會讓我多了解語音辨識的工具 XD</p>
+
+<h2 id="speech-recognition-by-ros-pocketsphinx-package">Speech Recognition by ROS pocketsphinx package</h2>
+<p>這次我使用的 package 為 pocketsphinx，首先我們要把這個 package 裝在 ROS-side PC or laptop，讓電腦能夠完成語音辨識，並把結果透過字串傳給小六足，小六足再藉由此字串決定要做甚麼樣的動作。小弟的筆電安裝的為 ROS hydro，以下為安裝 pocketsphinx 的步驟：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get install gstreamer0.10-pocketsphinx
+<span class="nb">sudo </span>apt-get install ros-hydro-pocketsphinx
+<span class="nb">sudo </span>apt-get install ros-hydro-audio-common
+<span class="nb">sudo </span>apt-get install libasound2
+</code></pre></div></div>
+
+<p>除了 pocketsphinx 本身之外，還有一些相依的涵式庫與套件，千萬別忽略囉。安裝完之後就完成 87% 了，pocketsphinx package 中含有一個 node <strong>recognizer.py</strong>，可以處理音訊接收與辨識，並把辨識到的結果以 <strong>std_msgs/String</strong> 發布到 <strong>/recognizer/output</strong> 這個 topic。安裝完畢之後就先來做個簡單的測試，把電腦接上麥克風之後，執行：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>roslaunch pocketsphinx robocup.launch
+</code></pre></div></div>
+
+<p>接著嘗試說一些 robocup 中設定的字詞，例如 <strong>bring me the glass, go to the kitchen, come with me</strong> 等等，順利的話就能在視窗中看到結果了。</p>
+
+<h2 id="creating-a-vocabulary">Creating a Vocabulary</h2>
+<p>因為 recognizer.py 是把音訊分析之後的結果拿去與一個字庫做比對，然後從字庫裡選出一個最接近的結果當作辨識結果，例如上面的例子，用到的字即是別人為了 robocup 設計的。所以自定義字庫是非常必要的，畢竟如果只需要幾條簡單的命令，用太大範圍的字庫反而會降低辨識的成功率，依照自己的需求來制定字庫才能達到最佳的效果。製作方式非常簡單，先新增一個文字檔，例如 <code class="highlighter-rouge">hexapod_command.txt</code>，產生之後輸入自己需要的字詞，例如：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stop
+move forward
+move backward
+move left
+move right
+half speed
+full speed
+</code></pre></div></div>
+
+<p>完成之後要使用 <a href="http://www.speech.cs.cmu.edu/tools/lmtool-new.html">online CMU language model(lm) tool</a> 來將 <code class="highlighter-rouge">hexapod_command.txt</code> 轉成 .dic 與 .lm 檔，以提供給 recognizer.py 當作參數使用。下載網頁產生出來的檔案之後，放到一個自己心儀的資料夾裡，接著在 <strong>pocketsphinx</strong> package 裡面新增一個 launch file：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;launch&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"recognizer"</span> <span class="na">pkg=</span><span class="s">"pocketsphinx"</span> <span class="na">type=</span><span class="s">"recognizer.py"</span> <span class="na">output=</span><span class="s">"screen"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"lm"</span> <span class="na">value=</span><span class="s">"PATH OF HEXAPOD_COMMAND/hexapod_command.lm"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"idct"</span> <span class="na">value=</span><span class="s">"PATH OF HEXAPOD_COMMAND/hexapod_command.dic"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/node&gt;</span>
+<span class="nt">&lt;/launch&gt;</span>
+</code></pre></div></div>
+
+<p>之後執行這個 launch file，recognizer 就可以運用 hexapod_command.txt 的內容來辨識囉！</p>
+
+<h2 id="control-86hexapod">Control 86Hexapod</h2>
+<p>跟<a href="http://sayter99.github.io/2015/10/30/86Hexapod-with-ROS/">之前的文章</a>中的配置一樣，這次硬體方面依然是 86Hexapod + ESP8266，並透過 <a href="https://github.com/Sayter99/rosserial">Rosserial86</a> 來與 ROS 連線，控制程式是由 <a href="https://github.com/Sayter99/86ME">86ME</a> 產生出來的小六足控制程式下去修改的，利用一個 callback function 把 <strong>/recognizer/output</strong> 中的字串接出來，然後讓程式判斷要觸發哪個動作，這樣就完成聲控小六足了，來個<a href="https://gist.github.com/Sayter99/3525c7b0b5a9c055bdccb6fc71d930fc">範例程式傳送門</a>，記得 <code class="highlighter-rouge">setup()</code> 中 wifi 的相關設定要自行修改才能用唷。</p>
+
+<!-- Courtesy of embedresponsively.com //-->
+<div class="responsive-video-container">
+
+  <iframe src="https://www.youtube-nocookie.com/embed/mpei7aNira8" frameborder="0" allowfullscreen=""></iframe>
+
+</div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li>R. Patrick Goebel. <em>ROS By Example</em>, vol. 1, ch. 9.</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-08-08T00:00:00-06:00">August 08, 2016</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=86hexapod+With+Speech+Recognition%20http%3A%2F%2Flocalhost%3A4000%2F86Hexapod-with-Speech-Recognition%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F86Hexapod-with-Speech-Recognition%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F86Hexapod-with-Speech-Recognition%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/86ME-v1.9/" class="pagination--pager" title="86me V1.9
+">Previous</a>
+    
+    
+      <a href="/86Duino-Remote-Control-Car/" class="pagination--pager" title="86duino Remote Control Car
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86Humanoid-Rider/" rel="permalink">86humanoid Rider
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">繼 2015 發表 86Hexapod 之後，隔了一年多終於迎來了另外一隻 3D 列印的機器人！這次的主角是一隻小型的兩足機器人，身高大約 25cm，機構全由 3D 列印件完成。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/AIServo86-Library/" rel="permalink">Aiservo86 Library
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">86Duino IDE 在下次更新中預計新增一個 AIServo86 涵式庫，此涵式庫可以說是 Servo86 的 AI 伺服機版本。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86Duino-Remote-Control-Car/" rel="permalink">86duino Remote Control Car
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">之前寫了一篇有關 MRAA 的文章，不過裡頭只有簡單的範例，藉由這一次實作遠端遙控車，希望能讓大家更瞭解 MRAA 能夠做些甚麼事情，說不定有些應用剛好很合適用 MRAA 來實作也不一定。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86ME-v1.9/" rel="permalink">86me V1.9
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">86ME v1.9 在馬不停蹄地趕工下接近尾聲了，這次的改版也加入了不少東西，第一點是支援以 Cubic Spline/Constrained Cubic Spline 方式來控制馬達的選項，讓使用者可以不只有走直線一種選擇，不過目前僅支援只含有 Frame 的動作，這點務必注意。第二點為支援兩個來源的 IMU ...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Chi-Ju Wu. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>

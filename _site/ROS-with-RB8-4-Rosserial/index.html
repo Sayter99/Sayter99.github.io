@@ -1,0 +1,822 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Ros With Rb8 4 Rosserial - Follow in my Footsteps</title>
+<meta name="description" content="拿到機器人後就先來測試馬達的運作吧！目前機器人身上裝載的為 RoBoard，因此我是採用 Rosserail + RoBoIo Lib，如果之後有玩到 86Duino 為控制核心的機器人我會直接使用 86ME XD，關於 86ME，之後應該會寫一篇非此系列的文章來介紹唷！">
+
+
+  <meta name="author" content="Chi-Ju Wu">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Follow in my Footsteps">
+<meta property="og:title" content="Ros With Rb8 4 Rosserial">
+<meta property="og:url" content="http://localhost:4000/ROS-with-RB8-4-Rosserial/">
+
+
+  <meta property="og:description" content="拿到機器人後就先來測試馬達的運作吧！目前機器人身上裝載的為 RoBoard，因此我是採用 Rosserail + RoBoIo Lib，如果之後有玩到 86Duino 為控制核心的機器人我會直接使用 86ME XD，關於 86ME，之後應該會寫一篇非此系列的文章來介紹唷！">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2015-08-16T00:00:00-06:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/ROS-with-RB8-4-Rosserial/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Chi-Ju Wu",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Follow in my Footsteps Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/manifest.json">
+<meta name="theme-color" content="#ffffff">
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Chi-Ju Wu
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/profile.jpg" alt="Chi-Ju Wu" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Chi-Ju Wu</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>I am from Taiwan.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Boulder, CO</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:sayter99@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://sayter99.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          
+        
+          
+            <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Ros With Rb8 4 Rosserial">
+    <meta itemprop="description" content="拿到機器人後就先來測試馬達的運作吧！目前機器人身上裝載的為 RoBoard，因此我是採用 Rosserail + RoBoIo Lib，如果之後有玩到 86Duino 為控制核心的機器人我會直接使用 86ME XD，關於 86ME，之後應該會寫一篇非此系列的文章來介紹唷！">
+    <meta itemprop="datePublished" content="August 16, 2015">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Ros With Rb8 4 Rosserial
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#rosserial_86duino">Rosserial_86Duino</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>拿到機器人後就先來測試馬達的運作吧！目前機器人身上裝載的為 <em>RoBoard</em>，因此我是採用 Rosserail + <a href="http://www.roboard.com/Files/Code/RoBoard_Training_SW_v18b.pdf">RoBoIo Lib</a>，如果之後有玩到 86Duino 為控制核心的機器人我會直接使用 <a href="https://github.com/Sayter99/86ME">86ME</a> XD，關於 86ME，之後應該會寫一篇非此系列的文章來介紹唷！</p>
+
+<h1 id="rosserial_86duino">Rosserial_86Duino</h1>
+<p>那麼言歸正傳，今天主要重點會放更多在 Rosserial 上面，RoBoIo 的詳細用法若是 RoBoard 玩家的話可以參考上面我給的連結。其實 <a href="https://github.com/Sayter99/rosserial">Rosserial_86Duino</a> 是個充滿特異功能的非官方套件，Rosserial_86Duino 可以在 86Duino/DOS/Windows/Linux 上編譯並順利執行（方法各有不同）：</p>
+
+<ul>
+  <li><strong>86Duino</strong>：與官方的 Rosserial_Arduino 用法相同。目前的 Coding 210 版本都已經內建，所以不必特別安裝，也有範例可以參考。</li>
+  <li><strong>DOS</strong>：要使用 <a href="https://github.com/andrewwutw/build-djgpp">DJGPP</a>，我這邊是在 Windows 裡頭用 DJGPP 編譯出 DOS 可跑的程式，再將程式放入 RoBoard 讓其執行。這邊就附上我的 Makefile，裡頭有包含 RoBoIo Lib，所以我是有自己再修改一些 IO Lib 的，但若不用使用 RoBoIo Lib，可以把相關的部分刪去（包含引入的部分和 一些 .o 檔的部分）。</li>
+</ul>
+
+<div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">IFLAGS</span>    <span class="o">=</span> <span class="nt">-I</span>./ros_lib <span class="nt">-I</span>./ros_lib/vortex86/utilities <span class="nt">-I</span>./RoBoIO/libsrc
+<span class="nv">OBJFILES</span>  <span class="o">=</span> HelloROS.o 86DuinoHardware.o time.o duration.o
+<span class="nv">OBJFILES</span> <span class="o">+=</span> io.o irq.o err.o uart.o vortex86.o com.o queue.o usb.o usb_desc.o can.o
+<span class="nv">OBJFILES</span> <span class="o">+=</span> common.o pwm.o pwmdx.o rcservo.o spi.o spidx.o ad79x8.o i2c.o i2cdx.o
+<span class="nv">EXEFILES</span>  <span class="o">=</span> HelloROS.exe
+<span class="nv">LIBFILES</span>  <span class="o">=</span> <span class="nt">-L</span>./ros_lib/vortex86/utilities <span class="nt">-lswsk</span>
+<span class="nv">OPTIONS</span>   <span class="o">=</span> <span class="nt">-Wall</span> <span class="nt">-Wno-write-strings</span> <span class="nt">-trigraphs</span>
+
+<span class="nl">.PHONY </span><span class="o">:</span> <span class="nf">everything all clean</span>
+
+<span class="nl">everything </span><span class="o">:</span> <span class="nf">$(OBJFILES) $(EXEFILES)</span>
+
+<span class="nl">all </span><span class="o">:</span> <span class="nf">clean everything</span>
+
+<span class="nl">clean </span><span class="o">:</span>
+	<span class="p">-</span>rm <span class="nt">-f</span> <span class="nv">$(EXEFILES)</span> <span class="nv">$(OBJFILES)</span>
+
+<span class="nl">%.o</span><span class="o">:</span> <span class="nf">%.cpp</span>
+	<span class="nv">$(CXX)</span> <span class="nt">-c</span> <span class="nv">$&lt;</span> <span class="nv">$(IFLAGS)</span> <span class="nv">$(OPTIONS)</span>
+
+<span class="nl">%.o</span><span class="o">:</span> <span class="nf">./ros_lib/%.cpp</span>
+	<span class="nv">$(CXX)</span> <span class="nt">-c</span> <span class="nv">$&lt;</span> <span class="nv">$(IFLAGS)</span> <span class="nv">$(OPTIONS)</span>
+
+<span class="nl">%.o</span><span class="o">:</span> <span class="nf">./ros_lib/vortex86/utilities/%.cpp</span>
+	<span class="nv">$(CXX)</span> <span class="nt">-c</span> <span class="nv">$&lt;</span> <span class="nv">$(IFLAGS)</span> <span class="nv">$(OPTIONS)</span>
+
+<span class="nl">%.o</span><span class="o">:</span> <span class="nf">./RoBoIO/libsrc/%.cpp</span>
+	<span class="nv">$(CXX)</span> <span class="nt">-c</span> <span class="nv">$&lt;</span> <span class="nv">$(IFLAGS)</span> <span class="nv">$(OPTIONS)</span>
+
+<span class="nl">HelloROS.exe </span><span class="o">:</span> <span class="nf">$(OBJFILES)</span>
+	<span class="nv">$(CXX)</span> <span class="nt">-o</span> <span class="nv">$@</span> <span class="nv">$(OBJFILES)</span> <span class="nv">$(LIBFILES)</span> <span class="nv">$(OPTIONS)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Windows</strong>：我是採用 VS2013 社群版來編譯，將 ros_lib 與 ros_lib/vortex86/ 裡面兩個資料的 header file 夾都引入專案，而連結方面需要連結以下函式庫：<code class="highlighter-rouge">WinIo.lib</code>、<code class="highlighter-rouge">kernel32.lib</code>、<code class="highlighter-rouge">user32.lib</code>、<code class="highlighter-rouge">gdi32.lib</code>、<code class="highlighter-rouge">winspool.lib</code>、<code class="highlighter-rouge">comdlg32.lib</code>、<code class="highlighter-rouge">advapi32.lib</code>、<code class="highlighter-rouge">shell32.lib</code>、<code class="highlighter-rouge">ole32.lib</code>、<code class="highlighter-rouge">oleaut32.lib</code>、<code class="highlighter-rouge">uuid.lib</code>、<code class="highlighter-rouge">odbc32.lib</code>、<code class="highlighter-rouge">odbccp32.lib</code>。</li>
+  <li><strong>Linux</strong>：與 DOS 較為類似，不過 compiler 為 GCC。一樣附上 Makefile：</li>
+</ul>
+
+<div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">IFLAGS</span>    <span class="o">=</span> <span class="nt">-I</span>./ros_lib <span class="nt">-I</span>./ros_lib/vortex86/utilities
+<span class="nv">OBJFILES</span>  <span class="o">=</span> HelloROS.o 86DuinoHardware.o time.o duration.o io.o irq.o err.o vortex86.o
+<span class="nv">OBJFILES</span> <span class="o">+=</span> 
+<span class="nv">EXEFILES</span>  <span class="o">=</span> HelloROS.exe
+<span class="nv">LIBFILES</span>  <span class="o">=</span> <span class="nt">-lrt</span>
+<span class="nv">OPTIONS</span>   <span class="o">=</span> 
+<span class="c"># GNU Make will set CXX to correct C++ compiler if it is not set.
+# You can use other compiler from command line of make, ex:
+# make CXX=gcc
+#CXX       = gcc
+</span>
+<span class="nl">.PHONY </span><span class="o">:</span> <span class="nf">everything all clean</span>
+
+<span class="nl">everything </span><span class="o">:</span> <span class="nf">$(OBJFILES) $(EXEFILES)</span>
+
+<span class="nl">all </span><span class="o">:</span> <span class="nf">clean everything</span>
+
+<span class="nl">clean </span><span class="o">:</span>
+	<span class="p">-</span>rm <span class="nt">-f</span> <span class="nv">$(EXEFILES)</span> <span class="nv">$(OBJFILES)</span>
+
+<span class="nl">%.o</span><span class="o">:</span> <span class="nf">%.cpp</span>
+	<span class="nv">$(CXX)</span> <span class="nt">-c</span> <span class="nv">$&lt;</span> <span class="nv">$(IFLAGS)</span> <span class="nv">$(OPTIONS)</span>
+
+<span class="nl">%.o</span><span class="o">:</span> <span class="nf">./ros_lib/%.cpp</span>
+	<span class="nv">$(CXX)</span> <span class="nt">-c</span> <span class="nv">$&lt;</span> <span class="nv">$(IFLAGS)</span> <span class="nv">$(OPTIONS)</span>
+
+<span class="nl">%.o</span><span class="o">:</span> <span class="nf">./ros_lib/vortex86/utilities/%.cpp</span>
+	<span class="nv">$(CXX)</span> <span class="nt">-c</span> <span class="nv">$&lt;</span> <span class="nv">$(IFLAGS)</span> <span class="nv">$(OPTIONS)</span>
+
+<span class="nl">HelloROS.exe </span><span class="o">:</span> <span class="nf">$(OBJFILES)</span>
+	<span class="nv">$(CXX)</span> <span class="nt">-o</span> <span class="nv">$@</span> <span class="nv">$(OBJFILES)</span> <span class="nv">$(LIBFILES)</span> <span class="nv">$(OPTIONS)</span>
+</code></pre></div></div>
+<p>除此之外，還在 DOS 平台提供<strong>網路連線</strong>的連線方式，用法會與 Linux/Windows 上用網路有些差別，一般的網路連接是在 <code class="highlighter-rouge">init NodeHandle</code> 時給 server 的 ip 當作參數，而 DOS　下則是要先用 <code class="highlighter-rouge">NodeHandleX.getHardware()-&gt;setEthernet(ip)</code> 來設定自己的 IP，再用 <code class="highlighter-rouge">NodeHandleX.initNode(srvIp)</code> 來初始化。</p>
+
+<p>程式的部分，<strong>86Duino</strong> 裡頭有 <em>Rosserial86</em> 範例可參考；<strong>DOS</strong>、<strong>Windows</strong>、<strong>Linux</strong> 基本上程式可以是同一份，並不需要修改，我就在此附上我用 RoBoIo 來控制 AX-12 馬達的程式，這支程式會去聽取 chatter 話題，並且依據收到的訊息來決定要怎麼讓輪子移動：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;ros.h&gt;
+#include &lt;std_msgs/String.h&gt;
+#include &lt;std_msgs/Float64MultiArray.h&gt;
+#include &lt;geometry_msgs/Twist.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;roboard.h&gt;
+</span>
+<span class="c1">// AX-12 commands
+</span><span class="cp">#define READ_DATA       0x02
+#define WRITE_DATA      0x03
+</span>
+<span class="c1">// AX-12 registers
+</span><span class="cp">#define ID_ADDR         0x03
+#define CW_ANG_LIMIT_L  0x06
+#define CCW_ANG_LIMIT_L 0x08
+#define GOAL_POSITION   0x1e
+#define MOVING_SPEED    0x20
+</span>
+<span class="n">COMPort</span><span class="o">*</span> <span class="n">ax12_com</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">comd</span><span class="p">[</span><span class="mi">128</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">rx_status</span><span class="p">[</span><span class="mi">128</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">speed</span> <span class="o">=</span> <span class="mh">0x01</span><span class="p">;</span>
+
+<span class="kt">bool</span> <span class="nf">com3_ServoTRX</span><span class="p">(</span><span class="n">COMPort</span> <span class="o">*</span><span class="n">port</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">char</span><span class="o">*</span> <span class="n">cmd</span><span class="p">,</span> <span class="kt">int</span> <span class="n">csize</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">char</span><span class="o">*</span> <span class="n">buf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">bsize</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">com_ClearRFIFO</span><span class="p">(</span><span class="n">port</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">com_Send</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">csize</span><span class="p">)</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">port</span><span class="o">-&gt;</span><span class="n">EnableHalfDuplex</span> <span class="o">==</span> <span class="n">uart_EnableHalfDuplex</span><span class="p">)</span>  <span class="c1">// discard the first-received csize bytes in case of TX/RX-short
+</span>    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+        <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">tmpbyte</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">csize</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">((</span><span class="n">tmpbyte</span> <span class="o">=</span> <span class="n">com_Read</span><span class="p">(</span><span class="n">port</span><span class="p">))</span> <span class="o">==</span> <span class="mh">0xffff</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span><span class="n">tmpbyte</span> <span class="o">!=</span> <span class="n">cmd</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="p">{</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"receive a wrong self-feedback byte</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">buf</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">com_Receive</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">bsize</span><span class="p">)</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">unsigned</span> <span class="kt">char</span> <span class="nf">chk_sum</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="p">(</span><span class="n">len</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span><span class="n">i</span><span class="o">++</span> <span class="p">)</span>
+        <span class="n">sum</span> <span class="o">+=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="n">sum</span> <span class="o">=</span> <span class="p">(</span><span class="o">~</span><span class="n">sum</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x00ff</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">)</span><span class="n">sum</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">set_comd</span><span class="p">(</span> <span class="kt">char</span> <span class="n">cmd</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ID</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ax12_reg</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">flag</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">ID</span> <span class="o">==</span> <span class="mi">15</span><span class="p">)</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="mh">0x04</span><span class="p">;</span>
+    <span class="k">switch</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">case</span> <span class="sc">'w'</span><span class="p">:</span>
+            <span class="n">comd</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0xf0</span><span class="p">;</span>
+            <span class="n">comd</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="n">flag</span> <span class="o">|</span> <span class="n">speed</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="sc">'s'</span><span class="p">:</span>
+            <span class="n">comd</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0xf0</span><span class="p">;</span>
+            <span class="n">comd</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mh">0x04</span> <span class="n">xor</span> <span class="n">flag</span><span class="p">)</span> <span class="o">|</span> <span class="n">speed</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="sc">'d'</span><span class="p">:</span>
+            <span class="n">comd</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0xf0</span><span class="p">;</span>
+            <span class="n">comd</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x00</span> <span class="o">|</span> <span class="n">speed</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="sc">'a'</span><span class="p">:</span>
+            <span class="n">comd</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0xf0</span><span class="p">;</span>
+            <span class="n">comd</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x04</span> <span class="o">|</span> <span class="n">speed</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="sc">'p'</span><span class="p">:</span>
+            <span class="n">comd</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">;</span>
+            <span class="n">comd</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="nl">default:</span>
+            <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">comd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0xff</span><span class="p">;</span>
+    <span class="n">comd</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0xff</span><span class="p">;</span>
+    <span class="n">comd</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">ID</span><span class="p">;</span>
+    <span class="n">comd</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span><span class="c1">// LENGTH : LENGTH INSTRUCTION PARAMETER1 PARAMETER2 PARAMETER3
+</span>    <span class="n">comd</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">WRITE_DATA</span><span class="p">;</span><span class="c1">// INSTRUCTION
+</span>    <span class="n">comd</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">ax12_reg</span><span class="p">;</span><span class="c1">// register
+</span>    <span class="n">comd</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">chk_sum</span><span class="p">(</span><span class="n">comd</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span><span class="c1">// Calculate the checksum.
+</span><span class="p">}</span>
+
+<span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">wheelCB</span><span class="p">(</span><span class="k">const</span> <span class="n">std_msgs</span><span class="o">::</span><span class="n">String</span> <span class="o">&amp;</span> <span class="n">msg</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">set_comd</span><span class="p">(</span> <span class="n">msg</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">15</span><span class="p">,</span> <span class="n">MOVING_SPEED</span><span class="p">);</span>
+    <span class="n">com3_ServoTRX</span><span class="p">(</span><span class="n">ax12_com</span><span class="p">,</span> <span class="n">comd</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">rx_status</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+
+    <span class="n">set_comd</span><span class="p">(</span> <span class="n">msg</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">15</span><span class="p">,</span> <span class="n">GOAL_POSITION</span><span class="p">);</span>
+    <span class="n">com3_ServoTRX</span><span class="p">(</span><span class="n">ax12_com</span><span class="p">,</span> <span class="n">comd</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">rx_status</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+
+    <span class="n">set_comd</span><span class="p">(</span> <span class="n">msg</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">18</span><span class="p">,</span> <span class="n">MOVING_SPEED</span><span class="p">);</span>
+    <span class="n">com3_ServoTRX</span><span class="p">(</span><span class="n">ax12_com</span><span class="p">,</span> <span class="n">comd</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">rx_status</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+
+    <span class="n">set_comd</span><span class="p">(</span> <span class="n">msg</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">18</span><span class="p">,</span> <span class="n">GOAL_POSITION</span><span class="p">);</span>
+    <span class="n">com3_ServoTRX</span><span class="p">(</span><span class="n">ax12_com</span><span class="p">,</span> <span class="n">comd</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">rx_status</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+
+    <span class="n">nh</span><span class="p">.</span><span class="n">getHardware</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+
+    <span class="n">set_comd</span><span class="p">(</span> <span class="sc">'p'</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">MOVING_SPEED</span><span class="p">);</span>
+    <span class="n">com3_ServoTRX</span><span class="p">(</span><span class="n">ax12_com</span><span class="p">,</span> <span class="n">comd</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">rx_status</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+
+    <span class="n">set_comd</span><span class="p">(</span> <span class="sc">'p'</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="n">MOVING_SPEED</span><span class="p">);</span>
+    <span class="n">com3_ServoTRX</span><span class="p">(</span><span class="n">ax12_com</span><span class="p">,</span> <span class="n">comd</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">rx_status</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="n">msg</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'l'</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">action_round</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">action_round</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">;</span> <span class="n">action_round</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">motion_frame</span><span class="p">[</span><span class="mi">17</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1600</span><span class="p">;</span>
+            <span class="n">rcservo_SetAction</span><span class="p">(</span> <span class="n">motion_frame</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+            <span class="k">while</span><span class="p">(</span> <span class="n">rcservo_PlayAction</span><span class="p">()</span> <span class="o">!=</span> <span class="n">RCSERVO_PLAYEND</span> <span class="p">)</span>
+                <span class="p">;</span>
+            <span class="n">motion_frame</span><span class="p">[</span><span class="mi">17</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1400</span><span class="p">;</span>
+            <span class="n">rcservo_SetAction</span><span class="p">(</span> <span class="n">motion_frame</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+            <span class="k">while</span><span class="p">(</span> <span class="n">rcservo_PlayAction</span><span class="p">()</span> <span class="o">!=</span> <span class="n">RCSERVO_PLAYEND</span> <span class="p">)</span>
+                <span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">msg</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'r'</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">action_round</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">action_round</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">;</span> <span class="n">action_round</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">motion_frame</span><span class="p">[</span><span class="mi">22</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1250</span><span class="p">;</span>
+            <span class="n">rcservo_SetAction</span><span class="p">(</span> <span class="n">motion_frame</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+            <span class="k">while</span><span class="p">(</span> <span class="n">rcservo_PlayAction</span><span class="p">()</span> <span class="o">!=</span> <span class="n">RCSERVO_PLAYEND</span> <span class="p">)</span>
+                <span class="p">;</span>
+            <span class="n">motion_frame</span><span class="p">[</span><span class="mi">22</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1450</span><span class="p">;</span>
+            <span class="n">rcservo_SetAction</span><span class="p">(</span> <span class="n">motion_frame</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+            <span class="k">while</span><span class="p">(</span> <span class="n">rcservo_PlayAction</span><span class="p">()</span> <span class="o">!=</span> <span class="n">RCSERVO_PLAYEND</span> <span class="p">)</span>
+                <span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'e'</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">speed</span> <span class="o">&lt;</span> <span class="mh">0x03</span><span class="p">)</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">speed</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="n">msg</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'q'</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">speed</span> <span class="o">&gt;</span> <span class="mh">0x01</span><span class="p">)</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">speed</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">double</span> <span class="nf">abs_d</span><span class="p">(</span> <span class="kt">double</span> <span class="n">num</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">num</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">num</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span><span class="o">&lt;</span><span class="n">std_msgs</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">wheelSub</span><span class="p">(</span><span class="s">"chatter"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">wheelCB</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">WaitMs</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">millisecond</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">nh</span><span class="p">.</span><span class="n">getHardware</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">delay</span><span class="p">(</span><span class="n">millisecond</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">roboio_SetRBVer</span><span class="p">(</span><span class="n">RB_100RD</span><span class="p">);</span>  <span class="c1">// set the RoBoard version
+</span>
+    <span class="n">ax12_com</span> <span class="o">=</span> <span class="n">com_Init</span><span class="p">(</span><span class="n">COM3</span><span class="p">);</span>
+    <span class="n">com_SetFormat</span><span class="p">(</span><span class="n">ax12_com</span><span class="p">,</span> <span class="n">BYTESIZE8</span> <span class="o">|</span> <span class="n">STOPBIT1</span> <span class="o">|</span> <span class="n">NOPARITY</span><span class="p">);</span>
+    <span class="n">com_SetBPS</span><span class="p">(</span><span class="n">ax12_com</span><span class="p">,</span> <span class="n">COM_UARTBAUD_115200BPS</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">"d"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%s %s %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+        <span class="n">nh</span><span class="p">.</span><span class="n">getHardware</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setEthernet</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+        <span class="n">nh</span><span class="p">.</span><span class="n">initNode</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="n">nh</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">wheelSub</span><span class="p">);</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">nh</span><span class="p">.</span><span class="n">spinOnce</span><span class="p">();</span>
+        <span class="n">WaitMs</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-08-16T00:00:00-06:00">August 16, 2015</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Ros+With+Rb8+4+Rosserial%20http%3A%2F%2Flocalhost%3A4000%2FROS-with-RB8-4-Rosserial%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FROS-with-RB8-4-Rosserial%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FROS-with-RB8-4-Rosserial%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/ROS-with-RB8-3-Partner/" class="pagination--pager" title="Ros With Rb8 3 Partner
+">Previous</a>
+    
+    
+      <a href="/ROS-with-RB8-5-URDF/" class="pagination--pager" title="Ros With Rb8 5 Urdf
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86Humanoid-Rider/" rel="permalink">86humanoid Rider
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">繼 2015 發表 86Hexapod 之後，隔了一年多終於迎來了另外一隻 3D 列印的機器人！這次的主角是一隻小型的兩足機器人，身高大約 25cm，機構全由 3D 列印件完成。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/AIServo86-Library/" rel="permalink">Aiservo86 Library
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">86Duino IDE 在下次更新中預計新增一個 AIServo86 涵式庫，此涵式庫可以說是 Servo86 的 AI 伺服機版本。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86Duino-Remote-Control-Car/" rel="permalink">86duino Remote Control Car
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">之前寫了一篇有關 MRAA 的文章，不過裡頭只有簡單的範例，藉由這一次實作遠端遙控車，希望能讓大家更瞭解 MRAA 能夠做些甚麼事情，說不定有些應用剛好很合適用 MRAA 來實作也不一定。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86Hexapod-with-Speech-Recognition/" rel="permalink">86hexapod With Speech Recognition
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">之前看到 ASUS Zenbo 的語音操控，覺得是應該找時間來熟悉語音辨識這一塊，而很恰巧的，最近正好有人透過 github 來詢問我 rosserial86 的詳細用法，打算要做聲控方面的專案，正好是個機會讓我多了解語音辨識的工具 XD
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Chi-Ju Wu. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>

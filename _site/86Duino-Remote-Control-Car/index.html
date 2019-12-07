@@ -1,0 +1,804 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>86duino Remote Control Car - Follow in my Footsteps</title>
+<meta name="description" content="之前寫了一篇有關 MRAA 的文章，不過裡頭只有簡單的範例，藉由這一次實作遠端遙控車，希望能讓大家更瞭解 MRAA 能夠做些甚麼事情，說不定有些應用剛好很合適用 MRAA 來實作也不一定。">
+
+
+  <meta name="author" content="Chi-Ju Wu">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Follow in my Footsteps">
+<meta property="og:title" content="86duino Remote Control Car">
+<meta property="og:url" content="http://localhost:4000/86Duino-Remote-Control-Car/">
+
+
+  <meta property="og:description" content="之前寫了一篇有關 MRAA 的文章，不過裡頭只有簡單的範例，藉由這一次實作遠端遙控車，希望能讓大家更瞭解 MRAA 能夠做些甚麼事情，說不定有些應用剛好很合適用 MRAA 來實作也不一定。">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2016-08-11T00:00:00-06:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/86Duino-Remote-Control-Car/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Chi-Ju Wu",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Follow in my Footsteps Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/manifest.json">
+<meta name="theme-color" content="#ffffff">
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Chi-Ju Wu
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/profile.jpg" alt="Chi-Ju Wu" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Chi-Ju Wu</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>I am from Taiwan.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Boulder, CO</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:sayter99@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://sayter99.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          
+        
+          
+            <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="86duino Remote Control Car">
+    <meta itemprop="description" content="之前寫了一篇有關 MRAA 的文章，不過裡頭只有簡單的範例，藉由這一次實作遠端遙控車，希望能讓大家更瞭解 MRAA 能夠做些甚麼事情，說不定有些應用剛好很合適用 MRAA 來實作也不一定。">
+    <meta itemprop="datePublished" content="August 11, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">86duino Remote Control Car
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#l86duntu-簡介">L86duntu 簡介</a>
+    <ul>
+      <li><a href="#超頻-86duino">超頻 86Duino</a></li>
+      <li><a href="#操作-l86duntu">操作 L86duntu</a></li>
+      <li><a href="#mjpg-streamer">mjpg-streamer</a></li>
+      <li><a href="#usb-wifi-設定">USB WiFi 設定</a></li>
+    </ul>
+  </li>
+  <li><a href="#web-app">Web App</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>之前寫了一篇有關 <a href="http://sayter99.github.io/2016/02/18/Access%2086Duino%20Peripheral%20using%20MRAA/">MRAA</a> 的文章，不過裡頭只有簡單的範例，藉由這一次實作遠端遙控車，希望能讓大家更瞭解 MRAA 能夠做些甚麼事情，說不定有些應用剛好很合適用 MRAA 來實作也不一定。</p>
+
+<!-- Courtesy of embedresponsively.com //-->
+<div class="responsive-video-container">
+
+  <iframe src="https://www.youtube-nocookie.com/embed/4G-8VedkQHc" frameborder="0" allowfullscreen=""></iframe>
+
+</div>
+
+<p>本篇會著重在如何用 MRAA 打造出 web app，硬體部分可以依照自己的想法去改變，基本上你需要有：</p>
+<ul>
+  <li>USB Camera 一個</li>
+  <li>USB WiFi 網卡一個</li>
+  <li>馬達和輪子，想要如何設計都可以唷</li>
+  <li>SD 卡一張，用來裝 L86duntu</li>
+</ul>
+
+<p>後面我會先介紹 L86duntu 的一些功能，最後再把它們串起來，完成遠端遙控車。</p>
+
+<h2 id="l86duntu-簡介">L86duntu 簡介</h2>
+<p>L86duntu 是專為 86Duino 打造的 Linux 作業系統，開發環境已經算建立得很完整了，除了基本的 GCC、JAVA、Python 還包含：</p>
+<ul>
+  <li><a href="http://www.ros.org/">ROS</a> Hydro Medusa</li>
+  <li><a href="https://nodejs.org/">Node.js</a> 0.10.42</li>
+  <li><a href="https://scratch.mit.edu/">Scratch</a> 1.4.0.6</li>
+  <li><a href="http://opencv.org/">OpenCV</a> 2.4.9</li>
+</ul>
+
+<p>當然也有方便好用的應用程式，舉幾個我常用的：</p>
+<ul>
+  <li><a href="https://www.realvnc.com/">VNC Server</a> 4.1.1：使用 RFB（Remote Framebuffer）協定的螢幕畫面分享及遠端操作軟體。</li>
+  <li><a href="https://github.com/codewithpassion/mjpg-streamer">MJPG-streamer</a>：WebCam 即時影像串流程式。</li>
+</ul>
+
+<p>除了提供工具以外，還有<a href="http://www.86duino.com/index.php?p=12443&amp;lang=TW">詳細的圖文教學</a>，對於想學習 Linux 系統的人來說應該也是個不錯的機會。</p>
+
+<h3 id="超頻-86duino">超頻 86Duino</h3>
+<p>使用 L86duntu 我個人建議超頻到 500MHz 的，使用上會比原本的 300MHz 順暢，首先要準備 <a href="http://www.86duino.com/?page_id=2844&amp;lang=TW">86Duino SysImage (參考 86Duino SysImage 工具程式部分)</a> 接著再<a href="http://www.86duino.com/?p=3245&amp;lang=TW">設定 CPU 時脈</a>裡用<a href="http://www.86duino.com/index.php?p=7780&amp;lang=TW">隱藏指令</a>超頻到 500MHz。超頻完成之後就把 SD 卡換成 L86duntu 開始使用囉！</p>
+
+<h3 id="操作-l86duntu">操作 L86duntu</h3>
+<p>L86duntu 最簡易的操作方式是用 USB 虛擬網卡和 SSH 連線，檔案傳輸可以依靠 sftp 的協定來進行。</p>
+<ul>
+  <li><a href="http://www.86duino.com/index.php?p=15607&amp;lang=TW">在 Windows 7 / Windows 8 上安裝 USB 網卡驅動程式</a></li>
+  <li><a href="http://www.86duino.com/index.php?p=15623&amp;lang=TW">在 Windows 10上安裝 USB 網卡驅動程式</a></li>
+</ul>
+
+<p>按照以上的方式安裝完虛擬網卡之後，可以利用 putty 或是 pietty 等程式連上 L86duntu，選擇 ssh 的方式，IP 設為 <code class="highlighter-rouge">10.0.1.1</code>，Port 為 <code class="highlighter-rouge">22</code> 即可。登入時帳號輸入 <code class="highlighter-rouge">dmp</code>，密碼輸入 <code class="highlighter-rouge">86duino</code>，等待一下就可以進入 L86duntu 了！</p>
+
+<h3 id="mjpg-streamer">mjpg-streamer</h3>
+<p>開進 L86duntu 之後先介紹大家如何使用 mjpg-streamer 這個套件，使用前要將 86Duino 接上一個 usb camera：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /home/dmp/mjpg-streamer/mjpg-streamer
+<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">"</span>
+./mjpg_streamer <span class="nt">-i</span> <span class="s2">"./input_uvc.so -y -r 320x240 -f 10"</span> <span class="nt">-o</span> <span class="s2">"./output_http.so -w ./www"</span> &amp;
+</code></pre></div></div>
+
+<p>前兩行是移動到 mjpg-streamer 資料夾並將需要用到的 Library 加入 LD_LIBRARY_PATH 中，這樣一來才能使用 mjpg-streamer 這個應用程式，參數的話 <code class="highlighter-rouge">-i</code> 表示 <strong>input-plugin</strong>，<code class="highlighter-rouge">-o</code> 表示 <strong>output-plugin</strong>，<code class="highlighter-rouge">-r</code> 和 <code class="highlighter-rouge">-f</code> 分別表示 <strong>resolution</strong> 和 <strong>frame rate</strong>，<code class="highlighter-rouge">-y</code> 表示使用 YUV 格式的 camera，一般預設是使用 JPG 格式，所以可以依照自己的 camera 決定要如何下參數。程式執行之後，要確認有沒有成功開始串流，可以用電腦的瀏覽器，連到 86Duino 所在的 IP，PORT 為 <code class="highlighter-rouge">8080</code> 的網頁，就可以看結果了，例如 86Duino IP 為 <strong>192.168.1.70</strong>，只要連上 <strong>192.168.1.70:8080</strong> 就能看到結果了。</p>
+
+<h3 id="usb-wifi-設定">USB WiFi 設定</h3>
+<p>我選用的 USB WiFi 跟<a href="http://www.86duino.com/index.php?p=13305&amp;lang=TW">教學</a>中的一樣，所以照這個步驟做就完成了，要注意的地方是系統有時候會找不到 driver，所以使用前建議下 <code class="highlighter-rouge">modprobe rt2800usb</code> 這個指令。而如果是用不同的 USB 網卡，也可以參照教學，整個流程應該會是類似的。</p>
+
+<h2 id="web-app">Web App</h2>
+<p>網頁是我們主要寫程式的部分，這邊我主要是使用 Express 3 來開發，後來一查才發現好像快出到 5 代了 XDD 有機會的話再改至較新的版本，請大家多多海涵。
+先附上<a href="https://github.com/Sayter99/86Duino_Remote_Control_Car">原始碼</a>，結構是很中規中矩的 Express 專案，重點部分在 <code class="highlighter-rouge">app.js</code> 和 <code class="highlighter-rouge">view/index.jade</code> 之中，我們先來看看 <code class="highlighter-rouge">app.js</code> 是如何使用 MRAA 的：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mraa'</span><span class="p">);</span>
+      <span class="p">.</span>
+      <span class="p">.</span>
+      <span class="p">.</span>
+<span class="c1">// 宣告四個用來控制輪子的 gpio 腳位，對應 86Duino 上的 10, 11, 31, 32</span>
+<span class="kd">var</span> <span class="nx">gpio0</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Gpio</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">gpio1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Gpio</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">gpio2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Gpio</span><span class="p">(</span><span class="mi">31</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">gpio3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Gpio</span><span class="p">(</span><span class="mi">32</span><span class="p">);</span>
+
+<span class="c1">// 把四根 gpio 設定成輸出模式</span>
+<span class="nx">gpio0</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">DIR_OUT</span><span class="p">);</span>
+<span class="nx">gpio1</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">DIR_OUT</span><span class="p">);</span>
+<span class="nx">gpio2</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">DIR_OUT</span><span class="p">);</span>
+<span class="nx">gpio3</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">DIR_OUT</span><span class="p">);</span>
+
+<span class="c1">// 利用 socket.io 與前端溝通，只要前端網頁用鍵盤或按鈕來</span>
+<span class="c1">// 觸發相應事件(move)，後端再進一步看事件傳來的 cmd 為何，</span>
+<span class="c1">// 就能依照 cmd 讓車子依照使用者的操作移動</span>
+<span class="c1">// 0：停止，所有的腳位輸出 0(LOW)</span>
+<span class="c1">// 1：往前，兩顆輪子皆正轉，腳位按順序是 0(LOW) 1(HIGH) 0(LOW) 1(HIGH)</span>
+<span class="c1">// 2：往左，左邊的輪子往後，右邊的輪子往前</span>
+<span class="c1">// 3：往右，右邊的輪子往後，左邊的輪子往前</span>
+<span class="c1">// 4：往下，兩顆輪子皆反轉</span>
+<span class="nx">serv_io</span><span class="p">.</span><span class="nx">sockets</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'connection'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'move'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="s1">'0'</span> <span class="o">==</span> <span class="nx">data</span><span class="p">.</span><span class="nx">cmd</span><span class="p">)</span> <span class="c1">//stop</span>
+        <span class="p">{</span>
+            <span class="nx">gpio0</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+            <span class="nx">gpio1</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+            <span class="nx">gpio2</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+            <span class="nx">gpio3</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="s1">'1'</span> <span class="o">==</span> <span class="nx">data</span><span class="p">.</span><span class="nx">cmd</span><span class="p">)</span> <span class="c1">//up</span>
+        <span class="p">{</span>
+            <span class="nx">gpio0</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+            <span class="nx">gpio1</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+            <span class="nx">gpio2</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+            <span class="nx">gpio3</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="s1">'2'</span> <span class="o">==</span> <span class="nx">data</span><span class="p">.</span><span class="nx">cmd</span><span class="p">)</span> <span class="c1">//left</span>
+        <span class="p">{</span>
+            <span class="nx">gpio0</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+            <span class="nx">gpio1</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+            <span class="nx">gpio2</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+            <span class="nx">gpio3</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="s1">'3'</span> <span class="o">==</span> <span class="nx">data</span><span class="p">.</span><span class="nx">cmd</span><span class="p">)</span> <span class="c1">//right</span>
+        <span class="p">{</span>
+            <span class="nx">gpio0</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+            <span class="nx">gpio1</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+            <span class="nx">gpio2</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+            <span class="nx">gpio3</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="s1">'4'</span> <span class="o">==</span> <span class="nx">data</span><span class="p">.</span><span class="nx">cmd</span><span class="p">)</span> <span class="c1">//down</span>
+        <span class="p">{</span>
+            <span class="nx">gpio0</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+            <span class="nx">gpio1</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+            <span class="nx">gpio2</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+            <span class="nx">gpio3</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>接著來看看 <code class="highlighter-rouge">view/index.jade</code>：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">block</span> <span class="nx">content</span>
+  <span class="p">.</span><span class="nx">jumbotron</span>
+    <span class="nx">h1</span> <span class="mi">86</span><span class="nx">Duino</span> <span class="nx">Remote</span> <span class="nx">Control</span> <span class="nx">Car</span>
+    <span class="nx">p</span>
+  <span class="p">.</span><span class="nx">row</span>
+    <span class="p">.</span><span class="nx">col</span><span class="o">-</span><span class="nx">md</span><span class="o">-</span><span class="mi">4</span>
+      <span class="nx">h2</span> <span class="nx">Control</span>
+      <span class="nx">script</span><span class="p">(</span><span class="nx">src</span><span class="o">=</span><span class="s1">'https://cdn.socket.io/socket.io-1.2.1.js'</span><span class="p">)</span>
+      <span class="nx">script</span><span class="p">(</span><span class="nx">src</span><span class="o">=</span><span class="s1">'https://cdnjs.cloudflare.com/ajax/libs/keypress/2.1.4/keypress.min.js'</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">center</span><span class="p">.</span><span class="nx">nopadding</span>
+        <span class="p">.</span><span class="nx">col</span><span class="o">-</span><span class="nx">md</span><span class="o">-</span><span class="mi">6</span>
+          <span class="nx">a</span><span class="p">.</span><span class="nx">btn</span><span class="p">.</span><span class="nx">btn</span><span class="o">-</span><span class="nx">primary</span><span class="p">(</span><span class="nx">onclick</span><span class="o">=</span><span class="s1">'move(1);'</span><span class="p">)</span> <span class="err">↑</span>
+      <span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">center</span><span class="p">.</span><span class="nx">nopadding</span>
+        <span class="p">.</span><span class="nx">col</span><span class="o">-</span><span class="nx">md</span><span class="o">-</span><span class="mi">6</span>
+          <span class="nx">a</span><span class="p">.</span><span class="nx">btn</span><span class="p">.</span><span class="nx">btn</span><span class="o">-</span><span class="nx">info</span><span class="p">(</span><span class="nx">onclick</span><span class="o">=</span><span class="s1">'move(2);'</span><span class="p">)</span> <span class="err">←</span>
+          <span class="nx">a</span><span class="p">.</span><span class="nx">btn</span><span class="p">.</span><span class="nx">btn</span><span class="o">-</span><span class="nx">danger</span><span class="p">(</span><span class="nx">onclick</span><span class="o">=</span><span class="s1">'move(0);'</span><span class="p">)</span> <span class="err">●</span>
+          <span class="nx">a</span><span class="p">.</span><span class="nx">btn</span><span class="p">.</span><span class="nx">btn</span><span class="o">-</span><span class="nx">info</span><span class="p">(</span><span class="nx">onclick</span><span class="o">=</span><span class="s1">'move(3);'</span><span class="p">)</span> <span class="err">→</span>
+      <span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">center</span><span class="p">.</span><span class="nx">nopadding</span>
+        <span class="p">.</span><span class="nx">col</span><span class="o">-</span><span class="nx">md</span><span class="o">-</span><span class="mi">6</span>
+          <span class="nx">a</span><span class="p">.</span><span class="nx">btn</span><span class="p">.</span><span class="nx">btn</span><span class="o">-</span><span class="nx">primary</span><span class="p">(</span><span class="nx">onclick</span><span class="o">=</span><span class="s1">'move(4);'</span><span class="p">)</span> <span class="err">↓</span>
+</code></pre></div></div>
+
+<p>以上是寫大標題和畫出五顆按鈕，按鈕被按下去時(onclick)會去執行 <code class="highlighter-rouge">move(cmd)</code> 這個函式，並依照不同的按鈕傳送不同的參數，而 move 這個函數我寫在 <code class="highlighter-rouge">public/javascript/car.js</code> 裡面：</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">move</span><span class="p">(</span><span class="nx">cmd</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'move'</span><span class="p">,</span> <span class="p">{</span> <span class="s1">'cmd'</span><span class="p">:</span> <span class="nx">cmd</span> <span class="p">});</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>單純的去處發 <code class="highlighter-rouge">move</code> 這個事件，並把 <code class="highlighter-rouge">cmd</code> 送出去。</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">script</span><span class="p">.</span>
+      <span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
+    <span class="p">.</span><span class="nx">col</span><span class="o">-</span><span class="nx">md</span><span class="o">-</span><span class="mi">6</span>
+      <span class="nx">h2</span> <span class="nx">Stream</span>
+      <span class="p">.</span><span class="nx">row</span><span class="p">.</span><span class="nx">center</span><span class="p">.</span><span class="nx">nopadding</span>
+        <span class="p">.</span><span class="nx">col</span><span class="o">-</span><span class="nx">md</span><span class="o">-</span><span class="mi">6</span>
+          <span class="nx">img</span><span class="p">(</span><span class="nx">id</span><span class="o">=</span><span class="s1">'stream'</span><span class="p">)</span>
+    <span class="nx">script</span><span class="p">.</span>
+      <span class="kd">var</span> <span class="nx">imgsrc</span> <span class="o">=</span> <span class="s1">'http://'</span> <span class="o">+</span> <span class="nx">location</span><span class="p">.</span><span class="nx">hostname</span> <span class="o">+</span> <span class="s1">':8080/?action=stream'</span><span class="p">;</span>
+      <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#stream'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'src'</span><span class="p">,</span> <span class="nx">imgsrc</span><span class="p">);</span>
+      <span class="p">});</span>
+</code></pre></div></div>
+
+<p>這邊插了一段 js 程式碼來宣告 socket，讓 socket.io 能正常運作，接著把視訊影像所需要的 <code class="highlighter-rouge">img</code> 標籤寫出來，因為遙控車的 ip 可能會每次不同，所以這邊只先給 id，之後在用 <code class="highlighter-rouge">jquery</code> 操作給予它 <code class="highlighter-rouge">src</code> 的內容，如上面程式碼 <code class="highlighter-rouge">$('#stream').attr('src', imgsrc);</code>，而 <code class="highlighter-rouge">src</code> 即為上面用 <code class="highlighter-rouge">mjpg-streamer</code> 產生的影像來源。</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">listener</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">window</span><span class="p">.</span><span class="nx">keypress</span><span class="p">.</span><span class="nx">Listener</span><span class="p">();</span>
+      <span class="kd">var</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
+      <span class="nx">listener</span><span class="p">.</span><span class="nx">register_combo</span><span class="p">({</span>
+        <span class="s2">"keys"</span><span class="p">:</span> <span class="s2">"right"</span><span class="p">,</span>
+        <span class="s2">"on_keydown"</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
+          <span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'move'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'cmd'</span><span class="p">:</span> <span class="mi">3</span><span class="p">});</span>
+        <span class="p">},</span>
+        <span class="s2">"on_keyup"</span><span class="p">:</span> <span class="kd">function</span><span class="p">(){</span>
+          <span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'move'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'cmd'</span><span class="p">:</span> <span class="mi">0</span><span class="p">});</span>
+        <span class="p">},</span>
+        <span class="s2">"prevent_repeat"</span><span class="p">:</span> <span class="kc">true</span>
+      <span class="p">});</span>
+</code></pre></div></div>
+
+<p>最後是類似的鍵盤事件註冊，就挑其中一個出來說明，為了讓 web app 也能接受用鍵盤操控小車，我採用 <a href="https://dmauro.github.io/Keypress/">keypress.js</a> 來偵測鍵盤事件，宣告 <code class="highlighter-rouge">listener</code> 之後就可以開始註冊事件了，事件中要設定 <code class="highlighter-rouge">keys</code> 表示要用到的案件，<code class="highlighter-rouge">on_keydown</code> 和 <code class="highlighter-rouge">on_keyup</code> 則分別表示按鈕被按下與放開時所要執行的函數，<code class="highlighter-rouge">prevent_repeat</code> 是用來表示事件是否要防止事件被重複觸發。</p>
+
+<p>至於其他小細節有興趣的可以參考原始碼唷～</p>
+
+<h1 id="整合">整合</h1>
+<p>做完以上全部的步驟並且每個部份都能運作的時候，我們就要把所有東西都整合起來了，這邊我的作法是寫一個開機自動執行的 script 把所有東西整合在一起：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/sh</span>
+<span class="c"># /etc/init.d/car</span>
+<span class="c">#</span>
+
+<span class="c">### BEGIN INIT INFO</span>
+<span class="c"># Provides:          car</span>
+<span class="c"># Required-Start:    $remote_fs $syslog</span>
+<span class="c"># Required-Stop:     $remote_fs $syslog</span>
+<span class="c"># Default-Start:     1 2 3 4 5 6</span>
+<span class="c"># Default-Stop:      0</span>
+<span class="c"># Short-Description: Start daemon at boot time</span>
+<span class="c"># Description:       Enable service provided by daemon.</span>
+<span class="c">### END INIT INFO</span>
+
+<span class="c"># Some things that run always</span>
+touch /var/lock/car
+
+<span class="c"># Carry out specific functions when asked to by the system</span>
+<span class="k">case</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="k">in
+  </span>start<span class="p">)</span>
+    <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/bin
+    <span class="nb">echo</span> <span class="s2">"Starting 86Duino Remote Control Car"</span>
+    modprobe rt2800usb
+    <span class="nb">echo </span>148F 5370 | tee /sys/bus/usb/drivers/rt2800usb/new_id
+    sleep 5
+    ifconfig wlan2 up
+    killall wpa_supplicant
+    killall wpa_supplicant
+    killall wpa_supplicant
+    killall wpa_supplicant
+    killall wpa_supplicant
+    wpa_supplicant <span class="nt">-i</span> wlan2 <span class="nt">-D</span> nl80211 <span class="nt">-c</span> /etc/wpa_supplicant.conf <span class="nt">-B</span>
+    udhcpc <span class="nt">-i</span> wlan2
+    sleep 5
+    <span class="nb">cd</span> /home/dmp/mjpg-streamer/mjpg-streamer
+    <span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">"</span>
+    ./mjpg_streamer <span class="nt">-i</span> <span class="s2">"./input_uvc.so -y -r 320x240 -f 10"</span> <span class="nt">-o</span> <span class="s2">"./output_http.so -w ./www"</span> &amp;
+    <span class="nb">cd</span> /home/dmp/86Duino_Remote_Control_Car
+    node app.js
+    <span class="p">;;</span>
+  stop<span class="p">)</span>
+    <span class="nb">echo</span> <span class="s2">"Stopping 86Duino Remote Control Car"</span>
+    <span class="p">;;</span>
+  <span class="k">*</span><span class="p">)</span>
+    <span class="nb">echo</span> <span class="s2">"Usage: /etc/init.d/car {start|stop}"</span>
+    <span class="nb">exit </span>1
+    <span class="p">;;</span>
+<span class="k">esac</span>
+
+<span class="nb">exit </span>0
+</code></pre></div></div>
+
+<p>把這支名為 <code class="highlighter-rouge">car</code> 的程式放進 <code class="highlighter-rouge">/etc/init.d/</code> 之中，並用指令 <code class="highlighter-rouge">update-rc.d car start 30 1 2 3 4 5 . stop 80 0 6 .</code> 來開啟這個服務，其中</p>
+<ul>
+  <li>0：關機 (Halt)</li>
+  <li>1：單一使用者模式 (single user mode)</li>
+  <li>2-5：多使用者模式 (multi user mode)</li>
+  <li>6：系統重啟 (reboot)</li>
+</ul>
+
+<p>而若要關閉則使用 <code class="highlighter-rouge">update-rc.d -f car remove</code> 來關閉。要注意的是若使用不同的網卡要記得換成對應的指令唷！
+最後最後，要連上遠端遙控車的網頁，還需要得到 86Duino 的 IP，這邊無論是要用 UDP Broadcast 還是車上裝小螢幕顯示出來都可以，我就不多加贅述了，希望大家能玩得開心 ^___^</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-08-11T00:00:00-06:00">August 11, 2016</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=86duino+Remote+Control+Car%20http%3A%2F%2Flocalhost%3A4000%2F86Duino-Remote-Control-Car%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F86Duino-Remote-Control-Car%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F86Duino-Remote-Control-Car%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/86Hexapod-with-Speech-Recognition/" class="pagination--pager" title="86hexapod With Speech Recognition
+">Previous</a>
+    
+    
+      <a href="/AIServo86-Library/" class="pagination--pager" title="Aiservo86 Library
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86Humanoid-Rider/" rel="permalink">86humanoid Rider
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">繼 2015 發表 86Hexapod 之後，隔了一年多終於迎來了另外一隻 3D 列印的機器人！這次的主角是一隻小型的兩足機器人，身高大約 25cm，機構全由 3D 列印件完成。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/AIServo86-Library/" rel="permalink">Aiservo86 Library
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">86Duino IDE 在下次更新中預計新增一個 AIServo86 涵式庫，此涵式庫可以說是 Servo86 的 AI 伺服機版本。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86Hexapod-with-Speech-Recognition/" rel="permalink">86hexapod With Speech Recognition
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">之前看到 ASUS Zenbo 的語音操控，覺得是應該找時間來熟悉語音辨識這一塊，而很恰巧的，最近正好有人透過 github 來詢問我 rosserial86 的詳細用法，打算要做聲控方面的專案，正好是個機會讓我多了解語音辨識的工具 XD
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/86ME-v1.9/" rel="permalink">86me V1.9
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">86ME v1.9 在馬不停蹄地趕工下接近尾聲了，這次的改版也加入了不少東西，第一點是支援以 Cubic Spline/Constrained Cubic Spline 方式來控制馬達的選項，讓使用者可以不只有走直線一種選擇，不過目前僅支援只含有 Frame 的動作，這點務必注意。第二點為支援兩個來源的 IMU ...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Chi-Ju Wu. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>
