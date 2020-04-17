@@ -1,0 +1,838 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Access 86duino Peripheral Using Mraa - 入屋且盡一杯酒</title>
+<meta name="description" content="最近移植了 MRAA 到 86Duino 上。MRAA 提供了可以將 C/C++ 函式轉為 Java, JavaScript, Python 的介面，因此有了 MRAA 之後，我們就能使用其他語言來操作 I/O 了！">
+
+
+  <meta name="author" content="Chi-Ju Wu">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="入屋且盡一杯酒">
+<meta property="og:title" content="Access 86duino Peripheral Using Mraa">
+<meta property="og:url" content="http://localhost:4000/Access-86Duino-Peripheral-using-MRAA/">
+
+
+  <meta property="og:description" content="最近移植了 MRAA 到 86Duino 上。MRAA 提供了可以將 C/C++ 函式轉為 Java, JavaScript, Python 的介面，因此有了 MRAA 之後，我們就能使用其他語言來操作 I/O 了！">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2016-02-18T00:00:00-07:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/Access-86Duino-Peripheral-using-MRAA/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Chi-Ju Wu",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="Prlc9BgFkJ22HPjYUaW5mB5UJk8T2_V5UuWEbjMvU2I" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="入屋且盡一杯酒 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/manifest.json">
+<meta name="theme-color" content="#ffffff">
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Chi-Ju Wu
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/profile.jpg" alt="Chi-Ju Wu" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Chi-Ju Wu</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>I am from Taiwan.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Boulder, CO</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:sayter99@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://sayter99.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          
+        
+          
+            <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Access 86duino Peripheral Using Mraa">
+    <meta itemprop="description" content="最近移植了 MRAA 到 86Duino 上。MRAA 提供了可以將 C/C++ 函式轉為 Java, JavaScript, Python 的介面，因此有了 MRAA 之後，我們就能使用其他語言來操作 I/O 了！">
+    <meta itemprop="datePublished" content="February 18, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Access 86duino Peripheral Using Mraa
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#install-mraa">Install MRAA</a></li>
+  <li><a href="#examples">Examples</a>
+    <ul>
+      <li><a href="#analog-read-aio">Analog Read (aio)</a></li>
+      <li><a href="#blink-gpio">Blink (gpio)</a></li>
+      <li><a href="#rm-g144-i2c">RM-G144 (i2c)</a></li>
+      <li><a href="#manipulate-sg-90-pwm">Manipulate SG-90 (pwm)</a></li>
+      <li><a href="#max7219-spi">MAX7219 (spi)</a></li>
+      <li><a href="#serial1-uart">Serial1 (uart)</a></li>
+    </ul>
+  </li>
+  <li><a href="#execution">Execution</a>
+    <ul>
+      <li><a href="#cc">C/C++</a></li>
+      <li><a href="#python">Python</a></li>
+      <li><a href="#javascript">JavaScript</a></li>
+      <li><a href="#java">Java</a></li>
+    </ul>
+  </li>
+  <li><a href="#limitation">Limitation</a></li>
+  <li><a href="#upm-useful-packages--modules-sensoractuator-repository-for-mraa">UPM (Useful Packages &amp; Modules) Sensor/Actuator repository for MRAA</a>
+    <ul>
+      <li><a href="#use-upm">Use UPM</a></li>
+    </ul>
+  </li>
+  <li><a href="#reference">Reference</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>最近移植了 <a href="https://github.com/intel-iot-devkit/mraa">MRAA</a> 到 86Duino 上。MRAA 提供了可以將 C/C++ 函式轉為 Java, JavaScript, Python 的介面，因此有了 MRAA 之後，我們就能使用其他語言來操作 I/O 了！</p>
+
+<h2 id="install-mraa">Install MRAA</h2>
+<p>官方版本的 MRAA 尚未支援 86Duino，所以之後會將支援 86Duino 的 MRAA 加入 L86duntu 之中。而若是要對 MRAA 進行升級或是修改，就要將 <a href="https://github.com/Sayter99/mraa">MRAA for 86Duino</a> 的源碼載下來，修改並重新編譯後再安裝，編譯源碼的相關資訊可以參考 <a href="http://iotdk.intel.com/docs/master/mraa/building.html">Intel 的網頁說明</a>。</p>
+
+<h2 id="examples">Examples</h2>
+<p>基本上各個語言寫起來差異不大，因此範例的部分我僅寫 Node.js，其他語言可以參考專案裡的 Example 資料夾。</p>
+
+<h3 id="analog-read-aio">Analog Read (aio)</h3>
+<p>讀取 A0 腳的值：</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mraa'</span><span class="p">);</span> <span class="c1">//require mraa</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'MRAA Version: '</span> <span class="o">+</span> <span class="nx">m</span><span class="p">.</span><span class="nx">getVersion</span><span class="p">());</span> <span class="c1">//write the mraa version to the console</span>
+
+<span class="kd">var</span> <span class="nx">analogPin0</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Aio</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">//setup access analog inpuput pin 0</span>
+<span class="kd">var</span> <span class="nx">analogValue</span> <span class="o">=</span> <span class="nx">analogPin0</span><span class="p">.</span><span class="nx">read</span><span class="p">();</span> <span class="c1">//read the value of the analog pin</span>
+<span class="kd">var</span> <span class="nx">analogValueFloat</span> <span class="o">=</span> <span class="nx">analogPin0</span><span class="p">.</span><span class="nx">readFloat</span><span class="p">();</span> <span class="c1">//read the pin value as a float</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">analogValue</span><span class="p">);</span> <span class="c1">//write the value of the analog pin to the console</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">analogValueFloat</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span> <span class="c1">//write the value in the float format</span>
+</code></pre></div></div>
+
+<h3 id="blink-gpio">Blink (gpio)</h3>
+<p>經典範例，閃爍 pin 13 的 LED 燈。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mraa'</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'MRAA Version: '</span> <span class="o">+</span> <span class="nx">m</span><span class="p">.</span><span class="nx">getVersion</span><span class="p">());</span>
+
+<span class="kd">var</span> <span class="nx">myLed</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Gpio</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
+<span class="nx">myLed</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">DIR_OUT</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">ledState</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">periodicActivity</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="nx">myLed</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">ledState</span><span class="p">?</span><span class="mi">1</span><span class="p">:</span><span class="mi">0</span><span class="p">);</span> <span class="c1">//if ledState is true then write a '1' (high) otherwise write a '0' (low)</span>
+  <span class="nx">ledState</span> <span class="o">=</span> <span class="o">!</span><span class="nx">ledState</span><span class="p">;</span> <span class="c1">//invert the ledState</span>
+  <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">periodicActivity</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span> <span class="c1">//call the indicated function after 1 second (1000 milliseconds)</span>
+<span class="p">}</span>
+
+<span class="nx">periodicActivity</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h3 id="rm-g144-i2c">RM-G144 (i2c)</h3>
+<p>此範例會讀取 RM-G144 sensor 中 compass HCM5843 的數值，在移動晶片時數值會跟著變化。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mraa'</span><span class="p">);</span>
+<span class="nx">x</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">m</span><span class="p">.</span><span class="nx">I2c</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">address</span><span class="p">(</span><span class="mh">0x1E</span><span class="p">);</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">writeReg</span><span class="p">(</span><span class="mh">0x02</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">pausecomp</span><span class="p">(</span><span class="nx">millis</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">curDate</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">do</span> <span class="p">{</span>
+        <span class="nx">curDate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="nx">curDate</span><span class="o">-</span><span class="nx">date</span> <span class="o">&lt;</span> <span class="nx">millis</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">periodicActivity</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">readBytesReg</span><span class="p">(</span><span class="mh">0x03</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'X axis: '</span><span class="p">,</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">?</span> <span class="p">(((</span><span class="o">~</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span> <span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Y axis: '</span><span class="p">,</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">?</span> <span class="p">(((</span><span class="o">~</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">3</span><span class="p">]):</span> <span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Z axis: '</span><span class="p">,</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">?</span> <span class="p">(((</span><span class="o">~</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">5</span><span class="p">]):</span> <span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">5</span><span class="p">]);</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">periodicActivity</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">pausecomp</span><span class="p">(</span><span class="mi">60</span><span class="p">);</span>
+<span class="nx">periodicActivity</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h3 id="manipulate-sg-90-pwm">Manipulate SG-90 (pwm)</h3>
+<p>PWM 能在有硬體 PWM 的腳位上輸出，此範例我選擇 86Duino One 中的 pin 29，讓馬達 SG-90 不斷旋轉。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mraa'</span><span class="p">)</span>
+
+<span class="nx">x</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Pwm</span><span class="p">(</span><span class="mi">29</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">period_ms</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">enable</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="nx">value</span> <span class="o">=</span> <span class="mf">0.03</span>
+
+<span class="kd">function</span> <span class="nx">periodicActivity</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="nx">x</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+	<span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span> <span class="o">+</span> <span class="mf">0.001</span>
+	<span class="k">if</span><span class="p">(</span><span class="nx">value</span> <span class="o">&gt;=</span> <span class="mf">0.1</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="nx">value</span> <span class="o">=</span> <span class="mf">0.03</span>
+	<span class="p">}</span>
+	<span class="nx">setTimeout</span><span class="p">(</span><span class="nx">periodicActivity</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">periodicActivity</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="max7219-spi">MAX7219 (spi)</h3>
+<p>透過 spi 來操作 LED 陣列 MAX7219。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mraa'</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">pausecomp</span><span class="p">(</span><span class="nx">millis</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">curDate</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">do</span> <span class="p">{</span>
+        <span class="nx">curDate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="nx">curDate</span><span class="o">-</span><span class="nx">date</span> <span class="o">&lt;</span> <span class="nx">millis</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">x</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Spi</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">bitPerWord</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0900</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0a05</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0b07</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0c01</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0f00</span><span class="p">)</span>
+
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x01aa</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0255</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x03aa</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0455</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x05aa</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0655</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x07aa</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0855</span><span class="p">)</span>
+
+<span class="nx">pausecomp</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0155</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x02aa</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0355</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x04aa</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0555</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x06aa</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0755</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x08aa</span><span class="p">)</span>
+
+<span class="nx">pausecomp</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0100</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0200</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0300</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0400</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0500</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0600</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0700</span><span class="p">)</span>
+<span class="nx">x</span><span class="p">.</span><span class="nx">write_word</span><span class="p">(</span><span class="mh">0x0800</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="serial1-uart">Serial1 (uart)</h3>
+<p>此程式使用 Serial1 來與電腦的 COM port 溝通，我是使用 TTL 轉 USB 線，電腦使用 putty，Baudrate 為 115200。執行後會先輸出 <code class="highlighter-rouge">test</code>，接著可以輸入要傳給 Serial1 的訊息，然後會進入第二次類似的流程，先出現 <code class="highlighter-rouge">2nd test</code>，接著可以寫訊息給 Serial1。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mraa'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'MRAA Version: '</span> <span class="o">+</span> <span class="nx">m</span><span class="p">.</span><span class="nx">getVersion</span><span class="p">());</span>
+<span class="nx">u</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Uart</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Note: connect Rx and Tx of UART with a wire before use"</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">sleep</span><span class="p">(</span><span class="nx">delay</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">delay</span> <span class="o">+=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">();</span>
+  <span class="k">while</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">&lt;</span> <span class="nx">delay</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Set UART parameters"</span><span class="p">);</span>
+
+<span class="nx">u</span><span class="p">.</span><span class="nx">setBaudRate</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+<span class="nx">u</span><span class="p">.</span><span class="nx">setMode</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nx">u</span><span class="p">.</span><span class="nx">setFlowcontrol</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">sleep</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"First write-read circle:"</span><span class="p">);</span>
+
+<span class="nx">u</span><span class="p">.</span><span class="nx">writeStr</span><span class="p">(</span><span class="s2">"test</span><span class="err">\</span><span class="s2">n"</span><span class="p">);</span>
+<span class="nx">sleep</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">readStr</span><span class="p">(</span><span class="mi">6</span><span class="p">));</span>
+<span class="nx">sleep</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Second write-read circle:"</span><span class="p">);</span>
+
+<span class="nx">u</span><span class="p">.</span><span class="nx">writeStr</span><span class="p">(</span><span class="s2">"2nd test</span><span class="err">\</span><span class="s2">n"</span><span class="p">);</span>
+<span class="nx">sleep</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">readStr</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h2 id="execution">Execution</h2>
+<p>有了 MRAA 之後，我們就可以充分利用不同語言的特性來實做更多有趣的 86Duino 應用了！那趕快來執行看看吧！</p>
+
+<h3 id="cc">C/C++</h3>
+<p>有使用 MRAA 函式庫的程式完成後，編譯時 link MRAA library 即可。
+<code class="highlighter-rouge">gcc/g++ source.c/source.cpp -lmraa -o output</code></p>
+
+<h3 id="python">Python</h3>
+<p>將 MRAA package 所安裝的路徑加入 PYTHONPATH 之中，以 L86duntu 為例：
+<code class="highlighter-rouge">export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages</code>
+之後以 <code class="highlighter-rouge">python source.py</code> 來執行程式即可。</p>
+
+<h3 id="javascript">JavaScript</h3>
+<p>只要將 MRAA module 加入 Node.js 專案中的 node_modules 即可。一樣以 L86duntu 為例：
+<code class="highlighter-rouge">cd &lt;PATH OF node_modules&gt;</code>
+<code class="highlighter-rouge">cp -R /usr/local/lib/node_modules/mraa .</code>
+這樣一來，就能以 <code class="highlighter-rouge">node source.js</code> 來執行程式了。</p>
+
+<h3 id="java">Java</h3>
+<p>一樣以 L86duntu 為例：
+編譯： <code class="highlighter-rouge">javac -cp /usr/local/lib/java/mraa.jar:. Source.java</code>
+執行： <code class="highlighter-rouge">java -cp /usr/local/lib/java/mraa.jar:. Source</code></p>
+
+<h2 id="limitation">Limitation</h2>
+<p>目前的版本還有些東西尚未支援：</p>
+<ul>
+  <li>gpio：目前不支援中斷功能</li>
+  <li>uart：高於標準 115200 的 baudrate 尚不支援</li>
+</ul>
+
+<h2 id="upm-useful-packages--modules-sensoractuator-repository-for-mraa">UPM (Useful Packages &amp; Modules) Sensor/Actuator repository for MRAA</h2>
+<p><a href="https://github.com/intel-iot-devkit/upm">UPM</a> 是以 MRAA 為基礎撰寫的專案，包含了感測器的使用、馬達的操作等等，許多常見的硬體都有支援，而 L86duntu 當然也裝好了，但因為不是每個硬體都有的關係，沒有完整測試所有的 package/module，不過小弟認為大部分的 package/module 都沒問題，除了少部分有用到 gpio isr 的不能跑之外，應該都能夠正常的使用唷！</p>
+
+<h3 id="use-upm">Use UPM</h3>
+<p>使用上這邊僅提一下 Node.js（<strong>好偏心</strong> <font color="#FF3333">&gt;___&lt;</font>），一樣把需要用到的 module 放入 node_modules 資料夾即可，以 ds1307 為例：
+<code class="highlighter-rouge">cd &lt;PATH OF node_modules&gt;</code>
+<code class="highlighter-rouge">cp -R /usr/local/lib/node_modules/jsupm_ds1307 .</code></p>
+
+<p><strong>範例程式：</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Load RTC Clock module for Grove - RTC clock</span>
+<span class="kd">var</span> <span class="nx">ds1307</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'jsupm_ds1307'</span><span class="p">);</span>
+<span class="c1">// load this on i2c bus 0</span>
+<span class="kd">var</span> <span class="nx">myRTCClockObj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ds1307</span><span class="p">.</span><span class="nx">DS1307</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">// always do this first</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Loading the current time... "</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">myRTCClockObj</span><span class="p">.</span><span class="nx">loadTime</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"myRTCClockObj.loadTime() failed."</span><span class="p">);</span>
+	<span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">printTime</span><span class="p">(</span><span class="nx">myRTCClockObj</span><span class="p">);</span>
+
+<span class="c1">// set the year as an example</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"setting the year to 50"</span><span class="p">);</span>
+<span class="nx">myRTCClockObj</span><span class="p">.</span><span class="nx">year</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+<span class="nx">myRTCClockObj</span><span class="p">.</span><span class="nx">setTime</span><span class="p">();</span>
+
+<span class="c1">// reload the time and print it</span>
+<span class="nx">myRTCClockObj</span><span class="p">.</span><span class="nx">loadTime</span><span class="p">();</span>
+<span class="nx">printTime</span><span class="p">(</span><span class="nx">myRTCClockObj</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">printTime</span><span class="p">(</span><span class="nx">RTCObj</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">timeStr</span> <span class="o">=</span> <span class="s2">"The time is: "</span> <span class="o">+</span> 
+        <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">month</span> <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">dayOfMonth</span> <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">year</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span>
+        <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">hours</span> <span class="o">+</span> <span class="s2">":"</span> <span class="o">+</span> <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">minutes</span> <span class="o">+</span> <span class="s2">":"</span> <span class="o">+</span> <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">seconds</span><span class="p">;</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="nx">RTCObj</span><span class="p">.</span><span class="nx">amPmMode</span><span class="p">)</span>
+		<span class="nx">timeStr</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">RTCObj</span><span class="p">.</span><span class="nx">pm</span> <span class="p">?</span> <span class="s2">" PM "</span> <span class="p">:</span> <span class="s2">" AM "</span><span class="p">);</span>
+
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">timeStr</span><span class="p">);</span>
+
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Clock is in "</span> <span class="o">+</span> 
+                <span class="p">(</span><span class="nx">RTCObj</span><span class="p">.</span><span class="nx">amPmMode</span> <span class="p">?</span> <span class="s2">"AM/PM mode"</span> <span class="p">:</span> <span class="s2">"24hr mode"</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+<ul>
+  <li><a href="https://github.com/intel-iot-devkit/mraa">https://github.com/intel-iot-devkit/mraa</a></li>
+  <li><a href="http://iotdk.intel.com/docs/master/mraa/building.html">http://iotdk.intel.com/docs/master/mraa/building.html</a></li>
+  <li><a href="https://github.com/intel-iot-devkit/upm">https://github.com/intel-iot-devkit/upm</a></li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-02-18T00:00:00-07:00">February 18, 2016</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Access+86duino+Peripheral+Using+Mraa%20http%3A%2F%2Flocalhost%3A4000%2FAccess-86Duino-Peripheral-using-MRAA%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FAccess-86Duino-Peripheral-using-MRAA%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FAccess-86Duino-Peripheral-using-MRAA%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/Study-of-Edison-Ethernet-Library/" class="pagination--pager" title="Study Of Edison Ethernet Library
+">Previous</a>
+    
+    
+      <a href="/86ME-v1.7/" class="pagination--pager" title="86me V1.7
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/Ultra-Light-Affect-Recognition/" rel="permalink">Ultra Light Affect Recognition
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">For aHRI class, we developed our face and emotion recognition ROS package based on pretrained models:
+
+  Face detection: Ultra-light face detector
+  Face rec...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/Boulder-GO-Resources/" rel="permalink">Boulder Go Resources
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">因為之前一直忙於找工作，沒能仔細研究 Boulder 的圍棋活動，這次就來介紹一下 Boulder 可以下棋的去處。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/%E9%A3%9B%E7%A6%BD%E5%B3%B6%E7%9A%84%E4%B8%8D%E6%95%97%E5%B0%91%E5%B9%B4/" rel="permalink">飛禽島的不敗少年
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">昨天晚上，看著小李下完退役賽的倒數第二盤，突然有感而發。回憶起來，自己會來到美國也跟小李與 AlphaGo 的對局有點關聯，對於棋魂中所表達的傳承，似乎又有了新的體會。趁著這次紀錄一下這幾年小李與 AI 帶給我的轉折。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/Life-at-CU-Boulder/" rel="permalink">Life At Cu Boulder
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">轉眼間來美國讀書已經過了3個學期，這段時間真的學習到很多東西，但之前實在太忙碌了沒辦法一一紀錄，今天就來寫一篇在 CU Boulder 讀 CS Master 的心得吧！
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Chi-Ju Wu. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>

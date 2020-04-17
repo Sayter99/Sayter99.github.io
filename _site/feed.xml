@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-04-13T10:43:36-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">入屋且盡一杯酒</title><subtitle>My blog</subtitle><author><name>Chi-Ju Wu</name></author><entry><title type="html">Ultra Light Affect Recognition</title><link href="http://localhost:4000/Ultra-Light-Affect-Recognition/" rel="alternate" type="text/html" title="Ultra Light Affect Recognition" /><published>2020-04-13T00:00:00-06:00</published><updated>2020-04-13T00:00:00-06:00</updated><id>http://localhost:4000/Ultra-Light-Affect-Recognition</id><content type="html" xml:base="http://localhost:4000/Ultra-Light-Affect-Recognition/">&lt;p&gt;For aHRI class, we developed our face and emotion recognition &lt;a href=&quot;(https://github.com/Sayter99/face_recognition_ultra_light)&quot;&gt;ROS package&lt;/a&gt; based on pretrained models:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Face detection: &lt;a href=&quot;https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB&quot;&gt;Ultra-light face detector&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Face recognition: MobileFaceNet&lt;/li&gt;
+  &lt;li&gt;Emotion recognition:
+    &lt;ul&gt;
+      &lt;li&gt;Arch: VGG networks4&lt;/li&gt;
+      &lt;li&gt;Dataset: facial expression dataset (FER13 dataset)&lt;/li&gt;
+      &lt;li&gt;Accuracy: 65.93%&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We implemented two nodes for face recognition and emotion recognition. The face recognition node firstly detects human faces in images sent by an Astra Stereo S U3 camera, and conducts face recognition based on our trained face data. After recognition, the module outputs the face image along with the detected name and pixel location to the emotion recognition subscriber. Finally, the emotion recognition node processes the face images and outputs the result via MQTT to Austin, our Robotic Bat. There is an optional face distance measurement node in this package. It will compute the distance between the camera and the detected face based on the depth value of the detected face.&lt;/p&gt;
+
+&lt;h2 id=&quot;diagram&quot;&gt;Diagram&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;../assets/images/20200413/flowchart.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;rqt-graph&quot;&gt;RQT Graph&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Sayter99/face_recognition_ultra_light/master/media/rosgraph.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;result&quot;&gt;Result&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Sayter99/face_recognition_ultra_light/master/media/demo.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB&quot;&gt;Ultra-Light Fast Generic Face Detector&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/real-time-face-recognition-with-cpu-983d35cc3ec5&quot;&gt;real time face recognition with cpu&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mc.ai/emotion-recognition-using-keras/&quot;&gt;emotion recognition using keras&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Chen, Sheng, et al. “Mobilefacenets: Efficient cnns for accurate real-time face verification on mobile devices.” Chinese Conference on Biometric Recognition. Springer, Cham, 2018.&lt;/li&gt;
+  &lt;li&gt;Simonyan, Karen, and Andrew Zisserman. “Very deep convolutional networks for large-scale image recognition.” arXiv preprint arXiv:1409.1556 (2014).&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">For aHRI class, we developed our face and emotion recognition ROS package based on pretrained models: Face detection: Ultra-light face detector Face recognition: MobileFaceNet Emotion recognition: Arch: VGG networks4 Dataset: facial expression dataset (FER13 dataset) Accuracy: 65.93%</summary></entry><entry><title type="html">Boulder Go Resources</title><link href="http://localhost:4000/Boulder-GO-Resources/" rel="alternate" type="text/html" title="Boulder Go Resources" /><published>2020-02-10T00:00:00-07:00</published><updated>2020-02-10T00:00:00-07:00</updated><id>http://localhost:4000/Boulder-GO-Resources</id><content type="html" xml:base="http://localhost:4000/Boulder-GO-Resources/">&lt;p&gt;因為之前一直忙於找工作，沒能仔細研究 Boulder 的圍棋活動，這次就來介紹一下 Boulder 可以下棋的去處。&lt;/p&gt;
+
+&lt;h2 id=&quot;boulder-go-club&quot;&gt;&lt;a href=&quot;https://www.meetup.com/Boulder-Go-Club/&quot;&gt;Boulder GO Club&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;這是一個在 &lt;a href=&quot;https://www.colorado.edu/umc/&quot;&gt;CU Boulder UMC&lt;/a&gt; 每周三的聚會，時間從晚上六點到晚上十點結束，人數大概五六個人，實力分布挺廣的，級位段位都有，地點也非常方便就在學校裡面，算是一個不錯的去處。&lt;/p&gt;
+
+&lt;h2 id=&quot;go-club-for-kids--teens&quot;&gt;&lt;a href=&quot;https://www.boulderdowntown.com/do/go-club-for-kids-and-teens4&quot;&gt;Go Club for Kids &amp;amp; Teens&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;這是在 &lt;a href=&quot;https://www.boulderdowntown.com/go/boulder-public-library&quot;&gt;Boulder Public Libaray&lt;/a&gt; 每個禮拜天下午兩點到下午六點的活動，有人會熱心的推廣圍棋教小朋友下棋，想對弈的話也有厲害的人可以互相下，圖書館環境也非常好，是假日休閒下期的好選擇‧。&lt;/p&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">因為之前一直忙於找工作，沒能仔細研究 Boulder 的圍棋活動，這次就來介紹一下 Boulder 可以下棋的去處。</summary></entry><entry><title type="html">飛禽島的不敗少年</title><link href="http://localhost:4000/%E9%A3%9B%E7%A6%BD%E5%B3%B6%E7%9A%84%E4%B8%8D%E6%95%97%E5%B0%91%E5%B9%B4/" rel="alternate" type="text/html" title="飛禽島的不敗少年" /><published>2019-12-19T00:00:00-07:00</published><updated>2019-12-19T00:00:00-07:00</updated><id>http://localhost:4000/%E9%A3%9B%E7%A6%BD%E5%B3%B6%E7%9A%84%E4%B8%8D%E6%95%97%E5%B0%91%E5%B9%B4</id><content type="html" xml:base="http://localhost:4000/%E9%A3%9B%E7%A6%BD%E5%B3%B6%E7%9A%84%E4%B8%8D%E6%95%97%E5%B0%91%E5%B9%B4/">&lt;p&gt;昨天晚上，看著小李下完退役賽的倒數第二盤，突然有感而發。回憶起來，自己會來到美國也跟小李與 AlphaGo 的對局有點關聯，對於棋魂中所表達的傳承，似乎又有了新的體會。趁著這次紀錄一下這幾年小李與 AI 帶給我的轉折。&lt;/p&gt;
+
+&lt;h2 id=&quot;李世石&quot;&gt;李世石&lt;/h2&gt;
+&lt;h3 id=&quot;體制&quot;&gt;體制&lt;/h3&gt;
+&lt;p&gt;韓國的誑妄少年李世石，又稱是飛禽島的不敗少年，相信不少棋迷對他是又愛又恨。還記得當年大李李昌鎬稱霸國際棋壇時，小李還這麼說過：我的對手只有李昌鎬歐爸，實力我領先。當時實在是是覺得又帥又敗人品 XD 也有這麼一說是，誑妄的高永夏的參考原型是小李，真假這就不得而知了。而如今小李都要退役了，時間流逝的速度真的快到難以想像。他不僅僅對自己的實力展現高度的自信，同時也非常有想法，不參加常規賽，退出韓國棋院等等衝撞體制的行為，當時深受儒家思想影響的我，實在很難細細的思考跟體會他的想法。從李大師身上，只能說我學習到對於自己生活的這個世界，要更有勇氣去題出問題，去改變一些不合理的事情。當如今沒有什麼職業棋手願意與 AI 對戰的同時，他卻又挺身而出與 AI 下讓子棋作為退役賽，職業九段被讓兩子的比賽，以往絕對是難以想像。這一次又一次不同的想法，讓我愈來愈有勇氣去思考不同的可能，或許世俗的價值觀也是一種枷鎖吧。&lt;/p&gt;
+
+&lt;h3 id=&quot;重來一次&quot;&gt;重來一次&lt;/h3&gt;
+&lt;p&gt;小李在一次訪談中談到重來一次的話，還會不會選擇圍棋人生。他回答說：我已經體驗了圍棋人生，就想過別的人生。圍棋人生呀，輸棋的時候實在太痛苦了。雖然我的棋力並不強，但對於這句話也是有深深的體會，用盡全力輸了棋，對自己的否定感非常的強烈，連帶下一次遇到勁敵，都會產生怯戰的想法，導致自己慢慢的害怕挑戰。只能說小李嘴上這麼說，無論面對 AlphaGo 的頑強應戰還是選擇與 AI 完成自己的退役戰，都完美的展現出自己對壓力、對戰強敵時的勇氣與氣魄，能做到這種程度，真的非常值得學習。面對壓力的方式有無數種，或許李大師骨子裡把他看做是一種樂趣也不一定 XD&lt;/p&gt;
+
+&lt;h2 id=&quot;ai&quot;&gt;AI&lt;/h2&gt;
+&lt;p&gt;我還記得第一次人機大戰，2016年3月12號，李大師連輸兩盤，我在公司看著直播思考，究竟發生了什麼事情。許多年前我在大學的時候，總是跟人家說電腦離職業還差得遠，連我都下不過。直到老闆跑到我的座位旁邊跟我說，別想了，人贏不了機器的。還安慰我他們用了多少 GPU 才贏什麼的..但說真的我難以從複雜的心情裡走出來，一來是老闆居然上班也在看？喔不我是說，我有點生氣為何自己的刻板印象限制了自己的想像力，就像一道雷打在自己身上一樣，我決心開始要更認真的去理解這個世界，對那個時候的我來說，倒不是想去學 Deep Learning 什麼的，而是我開始覺得，這個世界有更多更多，多到難以想像有趣的事情，其實一直以來都是我自己不夠用心去體會而已，我非常明白自己需要轉變，或許出國留學能想清楚些什麼吧，所以我就到美國了。到美國後這也繼續影響著我，對我學習的態度、對一門學問的看法都有深遠的影響，也希望我對探索的熱情繼續這樣的維持下去。&lt;/p&gt;
+
+&lt;h2 id=&quot;傳承&quot;&gt;傳承&lt;/h2&gt;
+&lt;p&gt;進藤光最後回答自己為什麼下棋，為了連接遙遠的過去與遙遠的未來。這世界上的人事物，無形之中或許都影響著彼此，帶著某些啟發，某些人的信念，某些事情給你的動力、熱情，我們一直都傳承著些什麼，未來，我也會繼續把自己覺得有價值的經驗、想法分享出去。謝謝你們，一直在圍棋界努力的棋士、棋迷還有科學家們 ：）&lt;/p&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">昨天晚上，看著小李下完退役賽的倒數第二盤，突然有感而發。回憶起來，自己會來到美國也跟小李與 AlphaGo 的對局有點關聯，對於棋魂中所表達的傳承，似乎又有了新的體會。趁著這次紀錄一下這幾年小李與 AI 帶給我的轉折。</summary></entry><entry><title type="html">Life At Cu Boulder</title><link href="http://localhost:4000/Life-at-CU-Boulder/" rel="alternate" type="text/html" title="Life At Cu Boulder" /><published>2019-12-07T00:00:00-07:00</published><updated>2019-12-07T00:00:00-07:00</updated><id>http://localhost:4000/Life-at-CU-Boulder</id><content type="html" xml:base="http://localhost:4000/Life-at-CU-Boulder/">&lt;p&gt;轉眼間來美國讀書已經過了3個學期，這段時間真的學習到很多東西，但之前實在太忙碌了沒辦法一一紀錄，今天就來寫一篇在 CU Boulder 讀 CS Master 的心得吧！&lt;/p&gt;
+
+&lt;h2 id=&quot;生活&quot;&gt;生活&lt;/h2&gt;
+&lt;p&gt;小弟大部份時間都在宅或是跑到Lab假用功，所以就不著墨太多在生活上，有興趣的朋友可以參靠 &lt;a href=&quot;https://chihweil5.github.io/where-it-begins/&quot;&gt;Chih-Wei 大大的文章&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&quot;修課&quot;&gt;修課&lt;/h2&gt;
+&lt;p&gt;CU 的 CS 課感覺上不像其他學校那麼多，系也不是特別重點的感覺，基本上 CU 比較強的領域是航太跟物理，有興趣的話也是可以去修修這兩個系的課程。我自己的話選課通常是選水課或機器人方向的課程，這樣的選課策略主要是按照我的興趣跟時間分配，值不值得參考就按大家自己的狀況去考量囉。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Data Mining：這門課主要教一些 data mining 基本的技術，包含前處理、推論、還有一些分析資料的方法。作業的話程式用 Python，還有一些手算的題目，例如 Bayes Classifier, Decision Tree 等等，不是特別難，只有一次期末考也跟作業出的差不多，基本上把投影片看熟，不太懂的名詞去查一查課本就能拿高分。還有一個佔分很重的 final project。我個人覺得需要學分的話是可以考慮這門課的，loading 重的地方只有 project，考試不失常的話不難拿到 A，缺點是教得東西比較入門，但其實我認為這樣的課非常有彈性，因為這樣一來就不必花太多時間在作業，且想要學得深入一點可以做一個比較有挑戰性的 project，並且有問題的話老師也非常厲害，所以不必擔心。但這學期我都在寫 leetcode，沒有把 project 做得很好。&lt;a href=&quot;https://github.com/Sayter99/Movie_Revenue_Predictor&quot;&gt;連結&lt;/a&gt;給大家參考，個人會推薦給想選涼課又不排斥資料科學的人。&lt;/li&gt;
+  &lt;li&gt;User-Centered Design：也是一門涼課，每個禮拜會做一次作業、quiz和閱讀，教得東西在概念上，並不會帶大家做真正的作品。大概是講怎麼 brainstorming、設計 prototype、怎麼做問卷、怎麼樣去觀察使用習慣等等。期末 project 是用 Figma 做一個 prototype，包含讓同學試用做 iteratively improvement。對 UI/UX 理論有興趣且想選涼課的話還是可以選的。&lt;/li&gt;
+  &lt;li&gt;Advanced Robotics：這門課主要的目的是做一台小車繞行一個方形的迴廊，老師涵蓋了很多的機器人相關知識，但也因為實在太多了所以都不深入，從一開始的 control 講到 SLaM 和深度學習，要真正深入理解這些理論並練習實作完全需要靠自己下苦功，但還是從這門課學到很多東西。作業基本上不限制語言，有時候會給 Matlab 的 base code，但並不是強制一定要使用 Matlab，我自己偏好使用 C++ 和 ROS 也是被允許的，作業內容包含實作 RRT、熟悉 ROS、寫 Kalman Filter 來處理真實的 IMU 數據、兜一個 Bundle Adjustment 算法來最佳化 SLaM 數據等等。至於期末考的小車測驗，因為地形不是特別複雜，我們用狀態機和簡單的 PID 控制就解決了大部分的問題，當然如果想用更高端的解法也可以，只不過車子的電子零件是固定的，有 3D 相機、一個 Arm 板和 Pololu 的馬達控制器，所以也並不是所有方法都能使用上。總體而言，我還是很喜歡這門課，雖然我花了比其他同學多很多的額外時間去讀延伸的東西，但也是因為這樣收穫很多，未來也打算繼續朝機器人相關的領域前進的同學非常值得來上，退一萬步來說，能認識這門課的教授跟同學就值得了！&lt;/li&gt;
+  &lt;li&gt;Phys Human-Robot Interaction：這是小弟老闆開的課，CU CS 系上寫著 7000 的課通常是比較偏研究一點，上課大多是讀讀 paper 分享，並且最後做一個相關的 final project 這樣。這門課也離不開這個套路，主要是在講機器人與人類的互動，現在比較多的情況是發生在工廠，機器手臂與產線人員的互動，最高理念在於兼顧安全與效率，從 controller 到 planner, sensor 都有涵蓋，包山包海。老實說每兩個禮拜要報告一篇 paper 對我來說壓力真的非常大，因為我本身英文不太好，尤其口說更慘，但因為是老闆的課，也只能硬著頭皮上了。最後做了一個 project 讓機器人試圖理解人類社會中的 interruption cues，也算是很有收穫的一門課。但不太推薦給不喜歡報告的同學。&lt;/li&gt;
+  &lt;li&gt;Computer Graphics：因為一直對 rendering, OpenGL, shader 等等的東西不太熟悉，就抱著好奇心上了這門課，但跟我原本預期的有點小落差，我本來想說期末作業可以做跟 3D 視覺相關的東西，但這門課更著重在用 OpenGL 畫出複雜的場景，且希望我們儘量不要一直用現成的模型去畫，多自己加 normal, texture 等等的東西。這門課只有作業跟期末專題，作業的話基本上不會太花時間，總共6個作業大部份一兩天都能做完一個。期末作業的話我自己主要是做了一個樹的產生器，並用樹畫了一個森林，大概一個禮拜左右可以做完，但老師的範例大多是 C，不喜歡寫 C 的朋友建議不要選，但總體來說是一門很涼爽的課。&lt;/li&gt;
+  &lt;li&gt;Software Engineer for Scientists：這門課也是輕鬆的課，主要教很基礎的 Git Workflow 和用 Python 寫寫資料結構，只要目的是想讓讀基礎科學的同學能多會一些 CS 工具。主要是因為這學期在找全職工作，就選了這門涼課，推薦給缺學分也缺時間的人。&lt;/li&gt;
+  &lt;li&gt;Independent Study：因為我本身是讀 traditional MS，必須要修兩學期的 independent study，簡單來說就是找教授做研究或開發，他覺得你做得還可以的話就給你學分，適合想走 research 路線的同學，我基本上都在 &lt;a href=&quot;https://hiro-group.ronc.one/&quot;&gt;HIRO Group&lt;/a&gt; 工作，我非常喜歡老闆的專業度跟帶人風格，所以這兩學期過得很開心，如果之後有心想走機器人領域的同學也推薦可以跟 Alessandro 聊聊天並決定是不是要加入 HIRO。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;求職&quot;&gt;求職&lt;/h2&gt;
+&lt;h3 id=&quot;面試經歷&quot;&gt;面試經歷&lt;/h3&gt;
+&lt;p&gt;來美國念 CS 的人許多都是想要在美找工作，所以就寫一下自己的心得，這邊先介紹一下我自己，可能多少可以消除一些 bias，小弟本人求職時 28 歲，leetcode 赴美才開始刷，總共也才 247 題，交大資工5年碩，台灣工作3年，主要偏 Robotics 方向求職。&lt;/p&gt;
+
+&lt;p&gt;Offer: Orbbec 3D, Occipital, Zoox&lt;/p&gt;
+
+&lt;p&gt;on-site 後被拒： Torc Robotics&lt;/p&gt;
+
+&lt;p&gt;履歷拒：數不清&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Orbbec 3D&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;p&gt;這間公司是我暑假實習的公司，在密西根的 Troy，環境相當不錯，同事人也很 nice。實習的話只有兩輪 phone，第一輪介紹一下自己的履歷，第2輪考 C++ 的基本知識跟講一下 3D sensor 的相關經驗。實習中 software team 還非常新，所以人不多，自己負責幾個項目，過程中如果有遇到問題任何部門的同事都很快能找到並都樂意幫忙，除了要跟中國總公司溝通的時候會慢一些，其他時間都能很快得到回覆跟幫助，最後實習做了幾個項目學到不少，也拿了 return offer，很愉快的實習經驗。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Occipital&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;p&gt;這應該算是 Orbbec 的競爭對手之一，因為總部在 Boulder，所以也就去面試看看。面試的職位是 Robotics + Calibration 方面的，投了履歷之後跟 PM 還有 GM 聊聊天，主要是看經歷夠不夠 match，在 Boulder 的好處是我每個面試都是 in person 的，對溝通能力比較弱的我來說非常有幫助。結束了之後約了一次 on-site，主要考兩個 C/C++ 相關的 coding 題，然後還有兩次 on-site，可能是因為我就住在附近的關係給了我很多輪不同天的 on-site，一次對 manager，一次對 co-funder，都是講以前的經歷和考一些 3D geometry 的知識。最後有幸拿到 offer，這間公司給我的感覺是高手雲集，但大多都要自己負責一個大項目就是了。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Zoox&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;p&gt;這間公司是位在加州的自駕車公司，也是面試 Calibration/Optimization 相關的組，OA 是兩題演算法題，接著會給一輪 phone 考 C++ 和 system design，過的話就可以去加州 on-site 玩耍，當天面試了五個人，第一輪是考邏輯、機率、物理和數學，感覺答對或答錯不太像是重點，主要是看你怎麼去面對一個未知的問題，並且找出答案，過程中面試官也會給不少提示。第2輪是跟面試官吃吃午餐問問題，輕鬆愉快。第3輪是 coding，江湖在走，leetcode 要有。第四輪是跟未來的 manager 聊聊天，講一下自己的經歷，這邊我準備了投影片來講，第五輪也差不多。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Torc Robotics&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;p&gt;這間公司的 OA 印象中蠻多題的，但都不太難。Phone 的時候是考兩題，一題 C++ 的 OOP 題，一題是 leetcode 題。on-site 面試來到了 Blacksburg，我自己挺喜歡那個城市的，可惜最後沒上 QQ 主要也是講自己以前的經歷跟介紹他們那邊的環境，我覺得答得還可以，可能有些地方不是那麼 match 最後被拒了真的挺可惜的。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;準備&quot;&gt;準備&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;履歷&lt;/p&gt;
+
+    &lt;p&gt;基本上我很多輪都是在講以前的 project，可能因為我投的職缺都是跟 Robotics 相關，求學期間也都做相關的專案，履歷的話就是儘量把貢獻量化，把專案的 goal, motivation, contribution 都儘量表達出來，讓 recruiter 覺得你能有足夠的專業度通過面試。也要常常練習一到兩分鐘簡短介紹自己的 project，一樣要把重點講出來，這樣拿到後續面試的機會就會增大不少了。而且我所有的面試都是自己網丟拿到的，如果想去的領域能幫忙內推的人不多，寫好自己的履歷跟 cover letter 絕對是必要的，而且這個項目可以有很多時間打磨，請人幫忙看，在我的觀念裡是一定不能太差的環節。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;LeetCode&lt;/p&gt;
+
+    &lt;p&gt;刷起來就對了，一開始可以按照分類把不熟悉的算法練到熟，然後很推薦多多複習，這樣可以漸漸的強化對題的印象，也可以多看別人的討論多熟悉一點解法。除了演算法本身，對於複雜度的掌握也要有一定的程度，因為面試時常會遇到這樣的問題。最基本的話至少要能很快想到暴力解，然後有辦法嘗試去優化這個解。至於語言的話，機器人相關的職缺大多要求 C++，所以我也是一直都使用 C++ 來刷題。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;英文&lt;/p&gt;
+
+    &lt;p&gt;英文溝通能力非常重要，在 lab 工作對我來說幫助很大，因為同學通常比較 chill 的跟我聊天，儘管我都回答的零零落落 XD 平常的話 shadowing 跟聽寫應該可以有很大的幫助，但我實在太懶了，上工之前我會著重練習這個部份。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;心態&lt;/p&gt;
+
+    &lt;p&gt;心態上的調整在求職過程中也非常重要，一邊上課一邊找工作確實蠻忙碌的，所以適當的調適不可少，得失心也不要太重，以免像滾雪球般影響到生活還有課業。我自己的想法一直都是到美國學習，能找到工作也好，不能也罷，最重要的是努力過好每一天，其實這也是我唯一能做的事情，如果真的認真的話，無論結果如何我也都勇於接受，畢竟這就是我自己。之後上班的話我也會抱持一樣的心態，盡力去做，能多做一天就是多一天學習跟展現的機會，堅持邁進。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;總結-cu-求職&quot;&gt;總結 CU 求職&lt;/h3&gt;
+&lt;p&gt;總結一下 CU 的話，要找工作還是有的，基本上很多大廠的面試都能拿到，但就是要排在排名好的學校後面，排名參照 us news ranking。實際上許多朋友最後都找到好工作，所以也不必太擔心 CU 的知名度。我自己的話算是比較偏向 Robotics 所以沒有投太多常見的科技公司。優點的話，找工作的話目前很大一部份需要依賴刷題，在這個需求上，CU 提供了不少涼課可以讓你一邊拿 A 一邊刷題準備面試，算是一個好選擇。但 location 可能就不如東西岸的大學那麼好，很多人可能會說 Boulder 愈來愈多公司設點，但說真的要找還是會先找名校畢業生，公司也都出得起機票飯店請人來面試，所以地點上 CU 真的沒佔到太多便宜，風景美倒是真的就是了 XD 整體上 CU 要在美國找找工作還是可以的，而且申請門檻也不高，小弟我托福不到 90，GRE 不到 315 都能來這邊的 CS，應該基本上不會太難申請，對在職準備且英文底子不太好的人可以算一個保底吧。如果有決心認真刷題，履歷不要寫得太差，面試時溝通清楚，我覺得找工作還是沒問題的，也希望這篇能幫助想就讀 CU CS MS 的同學。&lt;/p&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">轉眼間來美國讀書已經過了3個學期，這段時間真的學習到很多東西，但之前實在太忙碌了沒辦法一一紀錄，今天就來寫一篇在 CU Boulder 讀 CS Master 的心得吧！</summary></entry><entry><title type="html">86humanoid Rider</title><link href="http://localhost:4000/86Humanoid-Rider/" rel="alternate" type="text/html" title="86humanoid Rider" /><published>2017-03-21T00:00:00-06:00</published><updated>2017-03-21T00:00:00-06:00</updated><id>http://localhost:4000/86Humanoid-Rider</id><content type="html" xml:base="http://localhost:4000/86Humanoid-Rider/">&lt;p&gt;繼 2015 發表 86Hexapod 之後，隔了一年多終於迎來了另外一隻 3D 列印的機器人！這次的主角是一隻小型的兩足機器人，身高大約 25cm，機構全由 3D 列印件完成。&lt;/p&gt;
+
+&lt;h2 id=&quot;the-birth-of-86humanoid-rider&quot;&gt;The Birth of 86Humanoid Rider&lt;/h2&gt;
+&lt;p&gt;Rider 誕生在一個月黑風高的夜晚（疑？）咳，其實看著 Plen2 和 miniplan 機器人的好成果，讓我們也燃起了製作 3D-printable Humanoid 的決心，順便測試我們的工具鏈是不是足夠拿來開發兩足機器人。因此便開始著手研究兩足機器人，請我們厲害的機構工程師們絞盡腦汁設計出 21 軸的小人形。在這次商討的過程中，有幾次我沒把詳細的規格想得徹底，造成大家的修改真是抱歉 O__Q..，總而言之，言而總之，Rider 的機構還是順利的產出了！&lt;/p&gt;
+
+&lt;h2 id=&quot;software-development&quot;&gt;Software Development&lt;/h2&gt;
+&lt;p&gt;來到軟體層面，這次開發兩足機器人不像上次的六足機器人，六足的步態編輯較容易，而兩足因為平衡較困難，步態的編輯也相對困難許多，向小弟這樣對機器人學不太熟悉的工程師實在苦手。因此這次的開發過程還需要請到高人幫忙 XD 先將 Rider 在他編寫的模擬環境下建立模型，接著再進一步生成步態，產生步態之後再匯入 86ME 進行其他動作的編輯，在這個過程中需要商討檔案格式，也一邊要向巨巨們請益關於步行調整的方式，可以說是獲益良多！我想沒有她的幫忙，Rider 是走不到這一步的。總體而言，Rider 的難點依然跟許多兩足一樣在於步行，要能穩定的展現步態實屬不易，要注意電壓、IMU 補償的調整與零點校正，缺一不可，且小型人型的體積受限，很難塞進大號的電池，選用的小馬達出力也要非常的注意。然而這一切的困難，也更加深我去研究動態調整步伐的想法，小弟認為缺乏這樣的演算法，很難做出適應性強的兩足，（迷：不過眼下似乎還有更重要的事情要去做 O__Q..&lt;/p&gt;
+
+&lt;h2 id=&quot;demo&quot;&gt;Demo&lt;/h2&gt;
+
+&lt;!-- Courtesy of embedresponsively.com //--&gt;
+&lt;div class=&quot;responsive-video-container&quot;&gt;
+
+  &lt;iframe src=&quot;https://www.youtube-nocookie.com/embed/6u4SSbwz0WE&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id=&quot;why-86humanoid&quot;&gt;Why 86Humanoid&lt;/h2&gt;
+&lt;p&gt;在我心裡的答案依然，想要藉由開源的方式讓更多人可以玩到機器人，提供完整的工具、好取得的零件、低廉的成本，讓各種機器人的入門門檻降低。目前軟體部分除了可生成步態的模擬環境外都會開源，而機構則是不確定，希望 Rider 能夠開源呀（吶喊）～&lt;/p&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">繼 2015 發表 86Hexapod 之後，隔了一年多終於迎來了另外一隻 3D 列印的機器人！這次的主角是一隻小型的兩足機器人，身高大約 25cm，機構全由 3D 列印件完成。</summary></entry><entry><title type="html">Aiservo86 Library</title><link href="http://localhost:4000/AIServo86-Library/" rel="alternate" type="text/html" title="Aiservo86 Library" /><published>2016-10-20T00:00:00-06:00</published><updated>2016-10-20T00:00:00-06:00</updated><id>http://localhost:4000/AIServo86-Library</id><content type="html" xml:base="http://localhost:4000/AIServo86-Library/">&lt;p&gt;&lt;a href=&quot;http://www.86duino.com/?page_id=8918&quot;&gt;86Duino IDE&lt;/a&gt; 在下次更新中預計新增一個 AIServo86 涵式庫，此涵式庫可以說是 &lt;a href=&quot;http://www.86duino.com/index.php?p=11050&amp;amp;lang=TW&quot;&gt;Servo86&lt;/a&gt; 的 AI 伺服機版本。&lt;/p&gt;
+
+&lt;p&gt;原來的 Servo86 專注在 RC 伺服機控制上，而 AIServo86 則是專注在 AI 伺服機上（目前主要支援 Robotis Dynamixel 廠牌之伺服機，包含 AX-12、RX-28、MX-28、XL-320）。&lt;/p&gt;
+
+&lt;h2 id=&quot;程式架構&quot;&gt;程式架構&lt;/h2&gt;
+&lt;p&gt;實際使用上可以參考 &lt;a href=&quot;http://www.86duino.com/index.php?p=16928&amp;amp;lang=TW&quot;&gt;AIServo86 涵式庫說明&lt;/a&gt;，且還有範例可供參考，這邊主要是分享此涵式庫的架構。在設計階段，為了要保留日後加入更多不同廠牌、型號的伺服機的彈性，使用了分層的方式進行抽象化，提出伺服機的核心功能進而實作出 AIServo86，具體架構如下圖：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/images/old/aiservo86_arch.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如同 Servo86，AIServo86 中最核心的部分就是 AIServo 和 AIServoFrame 這兩個物件，AIServo 供使用者設定目標位置、運動時間、運動速度等特性，也提供了暫停、停止、釋放伺服機等命令讓機器人控制更加有彈性，而 AIServoFrame，則是導入 Frame 的概念，同時控制多顆伺服機來呈現機器人動作更加方便，除了這些以外還有較進階的 Cubic Spline 路徑規劃、Realtime Mixing 補償功能，這些功能也都已經加入了，有興趣的朋友可以看前兩篇 [&lt;a href=&quot;http://sayter99.github.io/2016/06/14/86ME%201.8/&quot;&gt;1&lt;/a&gt;, &lt;a href=&quot;http://sayter99.github.io/2016/07/14/86ME%201.9/&quot;&gt;2&lt;/a&gt;] 相關的的文章。拉回程式架構身上，要讓 AIServo 和 AIServoFrame 可以正確支援多種不同控制方式的伺服機（可能有傳輸方式的不同，如 I2C、com port。或是 protocol 的不同，如 Dynamixel 1.0 和 Dynamixel 2.0），我們要再透過一個 AIServo Port 抽象化伺服機的控制方法，主要的方式就是 AIServoPort 裏頭有許多 virtual function，而這些用來控制伺服機的 virtual function 會依照伺服機不同的控制方式被實作在最下層，如此一來，以後要新增伺服機的支援時，就將底層需要用到的涵式搞定即可。也許大家會疑惑，這樣是不是有些專屬於某型號伺服機的功能是不是就用不到了，確實在 AIServo86 中沒有直接的將這些功能設計進去，但可以透過 AIServoPort 把自己想要的功能實作出來，以目前實作中的例子來說，XL-320 伺服機的 LED 燈功能，調整伺服機轉速功能等等都可以透過 AIServoPort 去呼叫了，所以功能完整性也是非常足夠的。&lt;/p&gt;
+
+&lt;h2 id=&quot;原始碼&quot;&gt;原始碼&lt;/h2&gt;
+&lt;p&gt;對程式有興趣的朋友可以在這找到&lt;a href=&quot;https://github.com/roboard/86Duino/tree/master/hardware/86duino/x86/libraries/AIServo86&quot;&gt;原始碼&lt;/a&gt;，裏頭也有範例可供使用上的參考。&lt;/p&gt;
+
+&lt;h2 id=&quot;demo&quot;&gt;DEMO&lt;/h2&gt;
+&lt;p&gt;因為 PPAP 正夯的關係，同事就幫忙用 AIServo86 做了這個 DEMO 影片，影片內的機器狗使用的是 AX-12 伺服機 XD&lt;/p&gt;
+
+&lt;!-- Courtesy of embedresponsively.com //--&gt;
+&lt;div class=&quot;responsive-video-container&quot;&gt;
+
+  &lt;iframe src=&quot;https://www.youtube-nocookie.com/embed/I3fFpKDMGe0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;/div&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">86Duino IDE 在下次更新中預計新增一個 AIServo86 涵式庫，此涵式庫可以說是 Servo86 的 AI 伺服機版本。</summary></entry><entry><title type="html">86duino Remote Control Car</title><link href="http://localhost:4000/86Duino-Remote-Control-Car/" rel="alternate" type="text/html" title="86duino Remote Control Car" /><published>2016-08-11T00:00:00-06:00</published><updated>2016-08-11T00:00:00-06:00</updated><id>http://localhost:4000/86Duino-Remote-Control-Car</id><content type="html" xml:base="http://localhost:4000/86Duino-Remote-Control-Car/">&lt;p&gt;之前寫了一篇有關 &lt;a href=&quot;http://sayter99.github.io/2016/02/18/Access%2086Duino%20Peripheral%20using%20MRAA/&quot;&gt;MRAA&lt;/a&gt; 的文章，不過裡頭只有簡單的範例，藉由這一次實作遠端遙控車，希望能讓大家更瞭解 MRAA 能夠做些甚麼事情，說不定有些應用剛好很合適用 MRAA 來實作也不一定。&lt;/p&gt;
+
+&lt;!-- Courtesy of embedresponsively.com //--&gt;
+&lt;div class=&quot;responsive-video-container&quot;&gt;
+
+  &lt;iframe src=&quot;https://www.youtube-nocookie.com/embed/4G-8VedkQHc&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;本篇會著重在如何用 MRAA 打造出 web app，硬體部分可以依照自己的想法去改變，基本上你需要有：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;USB Camera 一個&lt;/li&gt;
+  &lt;li&gt;USB WiFi 網卡一個&lt;/li&gt;
+  &lt;li&gt;馬達和輪子，想要如何設計都可以唷&lt;/li&gt;
+  &lt;li&gt;SD 卡一張，用來裝 L86duntu&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;後面我會先介紹 L86duntu 的一些功能，最後再把它們串起來，完成遠端遙控車。&lt;/p&gt;
+
+&lt;h2 id=&quot;l86duntu-簡介&quot;&gt;L86duntu 簡介&lt;/h2&gt;
+&lt;p&gt;L86duntu 是專為 86Duino 打造的 Linux 作業系統，開發環境已經算建立得很完整了，除了基本的 GCC、JAVA、Python 還包含：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.ros.org/&quot;&gt;ROS&lt;/a&gt; Hydro Medusa&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://nodejs.org/&quot;&gt;Node.js&lt;/a&gt; 0.10.42&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://scratch.mit.edu/&quot;&gt;Scratch&lt;/a&gt; 1.4.0.6&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://opencv.org/&quot;&gt;OpenCV&lt;/a&gt; 2.4.9&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;當然也有方便好用的應用程式，舉幾個我常用的：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.realvnc.com/&quot;&gt;VNC Server&lt;/a&gt; 4.1.1：使用 RFB（Remote Framebuffer）協定的螢幕畫面分享及遠端操作軟體。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/codewithpassion/mjpg-streamer&quot;&gt;MJPG-streamer&lt;/a&gt;：WebCam 即時影像串流程式。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;除了提供工具以外，還有&lt;a href=&quot;http://www.86duino.com/index.php?p=12443&amp;amp;lang=TW&quot;&gt;詳細的圖文教學&lt;/a&gt;，對於想學習 Linux 系統的人來說應該也是個不錯的機會。&lt;/p&gt;
+
+&lt;h3 id=&quot;超頻-86duino&quot;&gt;超頻 86Duino&lt;/h3&gt;
+&lt;p&gt;使用 L86duntu 我個人建議超頻到 500MHz 的，使用上會比原本的 300MHz 順暢，首先要準備 &lt;a href=&quot;http://www.86duino.com/?page_id=2844&amp;amp;lang=TW&quot;&gt;86Duino SysImage (參考 86Duino SysImage 工具程式部分)&lt;/a&gt; 接著再&lt;a href=&quot;http://www.86duino.com/?p=3245&amp;amp;lang=TW&quot;&gt;設定 CPU 時脈&lt;/a&gt;裡用&lt;a href=&quot;http://www.86duino.com/index.php?p=7780&amp;amp;lang=TW&quot;&gt;隱藏指令&lt;/a&gt;超頻到 500MHz。超頻完成之後就把 SD 卡換成 L86duntu 開始使用囉！&lt;/p&gt;
+
+&lt;h3 id=&quot;操作-l86duntu&quot;&gt;操作 L86duntu&lt;/h3&gt;
+&lt;p&gt;L86duntu 最簡易的操作方式是用 USB 虛擬網卡和 SSH 連線，檔案傳輸可以依靠 sftp 的協定來進行。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.86duino.com/index.php?p=15607&amp;amp;lang=TW&quot;&gt;在 Windows 7 / Windows 8 上安裝 USB 網卡驅動程式&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.86duino.com/index.php?p=15623&amp;amp;lang=TW&quot;&gt;在 Windows 10上安裝 USB 網卡驅動程式&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;按照以上的方式安裝完虛擬網卡之後，可以利用 putty 或是 pietty 等程式連上 L86duntu，選擇 ssh 的方式，IP 設為 &lt;code class=&quot;highlighter-rouge&quot;&gt;10.0.1.1&lt;/code&gt;，Port 為 &lt;code class=&quot;highlighter-rouge&quot;&gt;22&lt;/code&gt; 即可。登入時帳號輸入 &lt;code class=&quot;highlighter-rouge&quot;&gt;dmp&lt;/code&gt;，密碼輸入 &lt;code class=&quot;highlighter-rouge&quot;&gt;86duino&lt;/code&gt;，等待一下就可以進入 L86duntu 了！&lt;/p&gt;
+
+&lt;h3 id=&quot;mjpg-streamer&quot;&gt;mjpg-streamer&lt;/h3&gt;
+&lt;p&gt;開進 L86duntu 之後先介紹大家如何使用 mjpg-streamer 這個套件，使用前要將 86Duino 接上一個 usb camera：&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /home/dmp/mjpg-streamer/mjpg-streamer
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;LD_LIBRARY_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+./mjpg_streamer &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;./input_uvc.so -y -r 320x240 -f 10&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;./output_http.so -w ./www&quot;&lt;/span&gt; &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;前兩行是移動到 mjpg-streamer 資料夾並將需要用到的 Library 加入 LD_LIBRARY_PATH 中，這樣一來才能使用 mjpg-streamer 這個應用程式，參數的話 &lt;code class=&quot;highlighter-rouge&quot;&gt;-i&lt;/code&gt; 表示 &lt;strong&gt;input-plugin&lt;/strong&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;-o&lt;/code&gt; 表示 &lt;strong&gt;output-plugin&lt;/strong&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;-r&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;-f&lt;/code&gt; 分別表示 &lt;strong&gt;resolution&lt;/strong&gt; 和 &lt;strong&gt;frame rate&lt;/strong&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;-y&lt;/code&gt; 表示使用 YUV 格式的 camera，一般預設是使用 JPG 格式，所以可以依照自己的 camera 決定要如何下參數。程式執行之後，要確認有沒有成功開始串流，可以用電腦的瀏覽器，連到 86Duino 所在的 IP，PORT 為 &lt;code class=&quot;highlighter-rouge&quot;&gt;8080&lt;/code&gt; 的網頁，就可以看結果了，例如 86Duino IP 為 &lt;strong&gt;192.168.1.70&lt;/strong&gt;，只要連上 &lt;strong&gt;192.168.1.70:8080&lt;/strong&gt; 就能看到結果了。&lt;/p&gt;
+
+&lt;h3 id=&quot;usb-wifi-設定&quot;&gt;USB WiFi 設定&lt;/h3&gt;
+&lt;p&gt;我選用的 USB WiFi 跟&lt;a href=&quot;http://www.86duino.com/index.php?p=13305&amp;amp;lang=TW&quot;&gt;教學&lt;/a&gt;中的一樣，所以照這個步驟做就完成了，要注意的地方是系統有時候會找不到 driver，所以使用前建議下 &lt;code class=&quot;highlighter-rouge&quot;&gt;modprobe rt2800usb&lt;/code&gt; 這個指令。而如果是用不同的 USB 網卡，也可以參照教學，整個流程應該會是類似的。&lt;/p&gt;
+
+&lt;h2 id=&quot;web-app&quot;&gt;Web App&lt;/h2&gt;
+&lt;p&gt;網頁是我們主要寫程式的部分，這邊我主要是使用 Express 3 來開發，後來一查才發現好像快出到 5 代了 XDD 有機會的話再改至較新的版本，請大家多多海涵。
+先附上&lt;a href=&quot;https://github.com/Sayter99/86Duino_Remote_Control_Car&quot;&gt;原始碼&lt;/a&gt;，結構是很中規中矩的 Express 專案，重點部分在 &lt;code class=&quot;highlighter-rouge&quot;&gt;app.js&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;view/index.jade&lt;/code&gt; 之中，我們先來看看 &lt;code class=&quot;highlighter-rouge&quot;&gt;app.js&lt;/code&gt; 是如何使用 MRAA 的：&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'mraa'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 宣告四個用來控制輪子的 gpio 腳位，對應 86Duino 上的 10, 11, 31, 32&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gpio0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Gpio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gpio1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Gpio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gpio2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Gpio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;31&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gpio3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Gpio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 把四根 gpio 設定成輸出模式&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;gpio0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;DIR_OUT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;gpio1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;DIR_OUT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;gpio2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;DIR_OUT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;gpio3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;DIR_OUT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 利用 socket.io 與前端溝通，只要前端網頁用鍵盤或按鈕來&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 觸發相應事件(move)，後端再進一步看事件傳來的 cmd 為何，&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 就能依照 cmd 讓車子依照使用者的操作移動&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 0：停止，所有的腳位輸出 0(LOW)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 1：往前，兩顆輪子皆正轉，腳位按順序是 0(LOW) 1(HIGH) 0(LOW) 1(HIGH)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 2：往左，左邊的輪子往後，右邊的輪子往前&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 3：往右，右邊的輪子往後，左邊的輪子往前&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 4：往下，兩顆輪子皆反轉&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;serv_io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sockets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'connection'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'move'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'0'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//stop&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'1'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//up&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'2'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//left&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'3'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//right&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'4'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//down&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;gpio3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;接著來看看 &lt;code class=&quot;highlighter-rouge&quot;&gt;view/index.jade&lt;/code&gt;：&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;block&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;content&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;jumbotron&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;h1&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;86&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Duino&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Remote&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Control&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Car&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;row&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;col&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;md&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;h2&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Control&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'https://cdn.socket.io/socket.io-1.2.1.js'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'https://cdnjs.cloudflare.com/ajax/libs/keypress/2.1.4/keypress.min.js'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nopadding&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;col&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;md&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;btn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;btn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;primary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onclick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'move(1);'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;↑&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nopadding&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;col&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;md&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;btn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;btn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onclick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'move(2);'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;←&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;btn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;btn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;danger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onclick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'move(0);'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;●&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;btn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;btn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onclick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'move(3);'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;→&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nopadding&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;col&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;md&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;btn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;btn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;primary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onclick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'move(4);'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;↓&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;以上是寫大標題和畫出五顆按鈕，按鈕被按下去時(onclick)會去執行 &lt;code class=&quot;highlighter-rouge&quot;&gt;move(cmd)&lt;/code&gt; 這個函式，並依照不同的按鈕傳送不同的參數，而 move 這個函數我寫在 &lt;code class=&quot;highlighter-rouge&quot;&gt;public/javascript/car.js&lt;/code&gt; 裡面：&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;move&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;emit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'move'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'cmd'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cmd&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;單純的去處發 &lt;code class=&quot;highlighter-rouge&quot;&gt;move&lt;/code&gt; 這個事件，並把 &lt;code class=&quot;highlighter-rouge&quot;&gt;cmd&lt;/code&gt; 送出去。&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;col&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;md&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;h2&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Stream&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nopadding&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;col&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;md&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'stream'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;imgsrc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'http://'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hostname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;':8080/?action=stream'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'#stream'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'src'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;imgsrc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;這邊插了一段 js 程式碼來宣告 socket，讓 socket.io 能正常運作，接著把視訊影像所需要的 &lt;code class=&quot;highlighter-rouge&quot;&gt;img&lt;/code&gt; 標籤寫出來，因為遙控車的 ip 可能會每次不同，所以這邊只先給 id，之後在用 &lt;code class=&quot;highlighter-rouge&quot;&gt;jquery&lt;/code&gt; 操作給予它 &lt;code class=&quot;highlighter-rouge&quot;&gt;src&lt;/code&gt; 的內容，如上面程式碼 &lt;code class=&quot;highlighter-rouge&quot;&gt;$('#stream').attr('src', imgsrc);&lt;/code&gt;，而 &lt;code class=&quot;highlighter-rouge&quot;&gt;src&lt;/code&gt; 即為上面用 &lt;code class=&quot;highlighter-rouge&quot;&gt;mjpg-streamer&lt;/code&gt; 產生的影像來源。&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;listener&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;keypress&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Listener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;listener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;register_combo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&quot;keys&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;right&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&quot;on_keydown&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;emit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'move'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'cmd'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&quot;on_keyup&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;emit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'move'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'cmd'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&quot;prevent_repeat&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;最後是類似的鍵盤事件註冊，就挑其中一個出來說明，為了讓 web app 也能接受用鍵盤操控小車，我採用 &lt;a href=&quot;https://dmauro.github.io/Keypress/&quot;&gt;keypress.js&lt;/a&gt; 來偵測鍵盤事件，宣告 &lt;code class=&quot;highlighter-rouge&quot;&gt;listener&lt;/code&gt; 之後就可以開始註冊事件了，事件中要設定 &lt;code class=&quot;highlighter-rouge&quot;&gt;keys&lt;/code&gt; 表示要用到的案件，&lt;code class=&quot;highlighter-rouge&quot;&gt;on_keydown&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;on_keyup&lt;/code&gt; 則分別表示按鈕被按下與放開時所要執行的函數，&lt;code class=&quot;highlighter-rouge&quot;&gt;prevent_repeat&lt;/code&gt; 是用來表示事件是否要防止事件被重複觸發。&lt;/p&gt;
+
+&lt;p&gt;至於其他小細節有興趣的可以參考原始碼唷～&lt;/p&gt;
+
+&lt;h1 id=&quot;整合&quot;&gt;整合&lt;/h1&gt;
+&lt;p&gt;做完以上全部的步驟並且每個部份都能運作的時候，我們就要把所有東西都整合起來了，這邊我的作法是寫一個開機自動執行的 script 把所有東西整合在一起：&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#! /bin/sh&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# /etc/init.d/car&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;### BEGIN INIT INFO&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Provides:          car&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Required-Start:    $remote_fs $syslog&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Required-Stop:     $remote_fs $syslog&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Default-Start:     1 2 3 4 5 6&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Default-Stop:      0&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Short-Description: Start daemon at boot time&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Description:       Enable service provided by daemon.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;### END INIT INFO&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Some things that run always&lt;/span&gt;
+touch /var/lock/car
+
+&lt;span class=&quot;c&quot;&gt;# Carry out specific functions when asked to by the system&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in
+  &lt;/span&gt;start&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;:/usr/local/bin
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Starting 86Duino Remote Control Car&quot;&lt;/span&gt;
+    modprobe rt2800usb
+    &lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;148F 5370 | tee /sys/bus/usb/drivers/rt2800usb/new_id
+    sleep 5
+    ifconfig wlan2 up
+    killall wpa_supplicant
+    killall wpa_supplicant
+    killall wpa_supplicant
+    killall wpa_supplicant
+    killall wpa_supplicant
+    wpa_supplicant &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; wlan2 &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; nl80211 &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; /etc/wpa_supplicant.conf &lt;span class=&quot;nt&quot;&gt;-B&lt;/span&gt;
+    udhcpc &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; wlan2
+    sleep 5
+    &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /home/dmp/mjpg-streamer/mjpg-streamer
+    &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;LD_LIBRARY_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+    ./mjpg_streamer &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;./input_uvc.so -y -r 320x240 -f 10&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;./output_http.so -w ./www&quot;&lt;/span&gt; &amp;amp;
+    &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /home/dmp/86Duino_Remote_Control_Car
+    node app.js
+    &lt;span class=&quot;p&quot;&gt;;;&lt;/span&gt;
+  stop&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Stopping 86Duino Remote Control Car&quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Usage: /etc/init.d/car {start|stop}&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;1
+    &lt;span class=&quot;p&quot;&gt;;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;esac&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;把這支名為 &lt;code class=&quot;highlighter-rouge&quot;&gt;car&lt;/code&gt; 的程式放進 &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/init.d/&lt;/code&gt; 之中，並用指令 &lt;code class=&quot;highlighter-rouge&quot;&gt;update-rc.d car start 30 1 2 3 4 5 . stop 80 0 6 .&lt;/code&gt; 來開啟這個服務，其中&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;0：關機 (Halt)&lt;/li&gt;
+  &lt;li&gt;1：單一使用者模式 (single user mode)&lt;/li&gt;
+  &lt;li&gt;2-5：多使用者模式 (multi user mode)&lt;/li&gt;
+  &lt;li&gt;6：系統重啟 (reboot)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;而若要關閉則使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;update-rc.d -f car remove&lt;/code&gt; 來關閉。要注意的是若使用不同的網卡要記得換成對應的指令唷！
+最後最後，要連上遠端遙控車的網頁，還需要得到 86Duino 的 IP，這邊無論是要用 UDP Broadcast 還是車上裝小螢幕顯示出來都可以，我就不多加贅述了，希望大家能玩得開心 ^___^&lt;/p&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">之前寫了一篇有關 MRAA 的文章，不過裡頭只有簡單的範例，藉由這一次實作遠端遙控車，希望能讓大家更瞭解 MRAA 能夠做些甚麼事情，說不定有些應用剛好很合適用 MRAA 來實作也不一定。</summary></entry><entry><title type="html">86hexapod With Speech Recognition</title><link href="http://localhost:4000/86Hexapod-with-Speech-Recognition/" rel="alternate" type="text/html" title="86hexapod With Speech Recognition" /><published>2016-08-08T00:00:00-06:00</published><updated>2016-08-08T00:00:00-06:00</updated><id>http://localhost:4000/86Hexapod-with-Speech-Recognition</id><content type="html" xml:base="http://localhost:4000/86Hexapod-with-Speech-Recognition/">&lt;p&gt;之前看到 ASUS Zenbo 的語音操控，覺得是應該找時間來熟悉語音辨識這一塊，而很恰巧的，最近正好有人透過 github 來詢問我 rosserial86 的詳細用法，打算要做聲控方面的專案，正好是個機會讓我多了解語音辨識的工具 XD&lt;/p&gt;
+
+&lt;h2 id=&quot;speech-recognition-by-ros-pocketsphinx-package&quot;&gt;Speech Recognition by ROS pocketsphinx package&lt;/h2&gt;
+&lt;p&gt;這次我使用的 package 為 pocketsphinx，首先我們要把這個 package 裝在 ROS-side PC or laptop，讓電腦能夠完成語音辨識，並把結果透過字串傳給小六足，小六足再藉由此字串決定要做甚麼樣的動作。小弟的筆電安裝的為 ROS hydro，以下為安裝 pocketsphinx 的步驟：&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get install gstreamer0.10-pocketsphinx
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get install ros-hydro-pocketsphinx
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get install ros-hydro-audio-common
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get install libasound2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;除了 pocketsphinx 本身之外，還有一些相依的涵式庫與套件，千萬別忽略囉。安裝完之後就完成 87% 了，pocketsphinx package 中含有一個 node &lt;strong&gt;recognizer.py&lt;/strong&gt;，可以處理音訊接收與辨識，並把辨識到的結果以 &lt;strong&gt;std_msgs/String&lt;/strong&gt; 發布到 &lt;strong&gt;/recognizer/output&lt;/strong&gt; 這個 topic。安裝完畢之後就先來做個簡單的測試，把電腦接上麥克風之後，執行：&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;roslaunch pocketsphinx robocup.launch
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;接著嘗試說一些 robocup 中設定的字詞，例如 &lt;strong&gt;bring me the glass, go to the kitchen, come with me&lt;/strong&gt; 等等，順利的話就能在視窗中看到結果了。&lt;/p&gt;
+
+&lt;h2 id=&quot;creating-a-vocabulary&quot;&gt;Creating a Vocabulary&lt;/h2&gt;
+&lt;p&gt;因為 recognizer.py 是把音訊分析之後的結果拿去與一個字庫做比對，然後從字庫裡選出一個最接近的結果當作辨識結果，例如上面的例子，用到的字即是別人為了 robocup 設計的。所以自定義字庫是非常必要的，畢竟如果只需要幾條簡單的命令，用太大範圍的字庫反而會降低辨識的成功率，依照自己的需求來制定字庫才能達到最佳的效果。製作方式非常簡單，先新增一個文字檔，例如 &lt;code class=&quot;highlighter-rouge&quot;&gt;hexapod_command.txt&lt;/code&gt;，產生之後輸入自己需要的字詞，例如：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;stop
+move forward
+move backward
+move left
+move right
+half speed
+full speed
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;完成之後要使用 &lt;a href=&quot;http://www.speech.cs.cmu.edu/tools/lmtool-new.html&quot;&gt;online CMU language model(lm) tool&lt;/a&gt; 來將 &lt;code class=&quot;highlighter-rouge&quot;&gt;hexapod_command.txt&lt;/code&gt; 轉成 .dic 與 .lm 檔，以提供給 recognizer.py 當作參數使用。下載網頁產生出來的檔案之後，放到一個自己心儀的資料夾裡，接著在 &lt;strong&gt;pocketsphinx&lt;/strong&gt; package 裡面新增一個 launch file：&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;launch&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;node&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;recognizer&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;pkg=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pocketsphinx&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;recognizer.py&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;output=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;screen&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;param&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;lm&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;PATH OF HEXAPOD_COMMAND/hexapod_command.lm&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;param&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;idct&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;PATH OF HEXAPOD_COMMAND/hexapod_command.dic&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/node&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/launch&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;之後執行這個 launch file，recognizer 就可以運用 hexapod_command.txt 的內容來辨識囉！&lt;/p&gt;
+
+&lt;h2 id=&quot;control-86hexapod&quot;&gt;Control 86Hexapod&lt;/h2&gt;
+&lt;p&gt;跟&lt;a href=&quot;http://sayter99.github.io/2015/10/30/86Hexapod-with-ROS/&quot;&gt;之前的文章&lt;/a&gt;中的配置一樣，這次硬體方面依然是 86Hexapod + ESP8266，並透過 &lt;a href=&quot;https://github.com/Sayter99/rosserial&quot;&gt;Rosserial86&lt;/a&gt; 來與 ROS 連線，控制程式是由 &lt;a href=&quot;https://github.com/Sayter99/86ME&quot;&gt;86ME&lt;/a&gt; 產生出來的小六足控制程式下去修改的，利用一個 callback function 把 &lt;strong&gt;/recognizer/output&lt;/strong&gt; 中的字串接出來，然後讓程式判斷要觸發哪個動作，這樣就完成聲控小六足了，來個&lt;a href=&quot;https://gist.github.com/Sayter99/3525c7b0b5a9c055bdccb6fc71d930fc&quot;&gt;範例程式傳送門&lt;/a&gt;，記得 &lt;code class=&quot;highlighter-rouge&quot;&gt;setup()&lt;/code&gt; 中 wifi 的相關設定要自行修改才能用唷。&lt;/p&gt;
+
+&lt;!-- Courtesy of embedresponsively.com //--&gt;
+&lt;div class=&quot;responsive-video-container&quot;&gt;
+
+  &lt;iframe src=&quot;https://www.youtube-nocookie.com/embed/mpei7aNira8&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;R. Patrick Goebel. &lt;em&gt;ROS By Example&lt;/em&gt;, vol. 1, ch. 9.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">之前看到 ASUS Zenbo 的語音操控，覺得是應該找時間來熟悉語音辨識這一塊，而很恰巧的，最近正好有人透過 github 來詢問我 rosserial86 的詳細用法，打算要做聲控方面的專案，正好是個機會讓我多了解語音辨識的工具 XD</summary></entry><entry><title type="html">86me V1.9</title><link href="http://localhost:4000/86ME-v1.9/" rel="alternate" type="text/html" title="86me V1.9" /><published>2016-07-14T00:00:00-06:00</published><updated>2016-07-14T00:00:00-06:00</updated><id>http://localhost:4000/86ME-v1.9</id><content type="html" xml:base="http://localhost:4000/86ME-v1.9/">&lt;p&gt;&lt;a href=&quot;https://github.com/Sayter99/86ME&quot;&gt;86ME&lt;/a&gt; v1.9 在馬不停蹄地趕工下接近尾聲了，這次的改版也加入了不少東西，第一點是支援以 Cubic Spline/Constrained Cubic Spline 方式來控制馬達的選項，讓使用者可以不只有走直線一種選擇，不過&lt;strong&gt;目前僅支援只含有 Frame 的動作&lt;/strong&gt;，這點務必注意。第二點為支援兩個來源的 IMU 補償，例如可以利用 y 軸的旋轉角度與角速度來搭配服用，使用上可以說是頗具彈性，不過參數調整就會變得更加複雜就是了 O_Q&lt;/p&gt;
+
+&lt;h2 id=&quot;cubic-spline&quot;&gt;Cubic Spline&lt;/h2&gt;
+&lt;p&gt;在馬達的控制上，以往 86ME 所產生的程式是在指定時間內以直直的路線走到目標點，這樣的作法會讓機器人動作看起來很僵硬，實際上也會造成比較多的震動，因為通常在 Frame 與 Frame 之間的轉折處會有速度上的轉變，此時會瞬間產生一個加速度（可以把加速度想做力 —&amp;gt; F = ma），只要這個加速度較大，就會讓機器人震震的。為了解決這個問題，我們採用了 Cubic Spline 來作為控制馬達的軌跡，這個方法能讓馬達在通過每個 Frame 時的速度和加速度更為平順，詳細的作法可以參考&lt;a href=&quot;http://www.hmwu.idv.tw/web/teaching/104-1/numerical-analysis/chapter-03.5.pdf&quot;&gt;這篇教學&lt;/a&gt;。然而事情總是不會這麼容易的 XD 在做出新功能後正興高采烈測試時，發現了 Cubic Spline 會因為某些 Frame 與 Frame 之間速度太大（位移/時間）而導致整個曲線出現劇烈的 overshooting。可以利用這個&lt;a href=&quot;http://tools.timodenk.com/?p=cubic-spline-interpolation&quot;&gt;網站&lt;/a&gt;更深入了解這個問題。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;平均速度變化較平坦的資料（x軸時間，y軸為目標位置）&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;0 1310
+1000 1840
+1500 1840
+2000 1357
+2500 1840
+3000 1357
+3500 1840
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;會產生問題的資料（x軸時間，y軸為目標位置）&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;0 1310
+1000 1840
+1500 1840
+2000 1357
+2020 1840
+2520 1357
+3020 1840
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;小弟認為針對速度太大的兩點，把它們改為線性的方式，前後則拆為兩條 Cubic Spline，應該就能緩解這樣的症頭，有興趣的玩家可以試試看這樣的方法。那廢話不多說，我們就來看看 DEMO 吧！&lt;/p&gt;
+
+&lt;h2 id=&quot;demo&quot;&gt;DEMO&lt;/h2&gt;
+&lt;p&gt;可以從身體的震動來比較，使用 Cubic Spline 來規劃可以減輕加速度變化所帶來的振動。&lt;/p&gt;
+
+&lt;!-- Courtesy of embedresponsively.com //--&gt;
+&lt;div class=&quot;responsive-video-container&quot;&gt;
+
+  &lt;iframe src=&quot;https://www.youtube-nocookie.com/embed/GgaTg-OY0ag&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;/div&gt;
+
+&lt;h1 id=&quot;constrained-cubic-spline&quot;&gt;Constrained Cubic Spline&lt;/h1&gt;
+&lt;p&gt;針對 Cubic Spline 的 Overshooting，如果要更徹底避免掉，則可以考慮使用 Constrained Cubic Spline，詳細作法可以參考&lt;a href=&quot;http://www.korf.co.uk/spline.pdf&quot;&gt;這篇論文&lt;/a&gt;，若是採用此法，可以避免編輯好的動作太激動 XD 但因為 Constrained Cubic Spline 的加速度是不連續的，所以運動的平滑性也會稍打折扣，可以算是有得有失吧。以另一個角度來看，為了讓動作編輯盡量簡化，不要考慮與了解太多細節，Constrained 的方式不失為一個好選擇，而對於需要 Natural Cubic Spline 的玩家，小弟建議先對 Cubic Spline 有一定的了解，並且最好能知到所編輯動作轉為 Cubic Spline 之後的曲線，才能將 Cubic Spline 運用得恰到好處。&lt;/p&gt;
+
+&lt;h1 id=&quot;new-compensating-source-ωy--ωx&quot;&gt;New Compensating Source (ωy &amp;amp; ωx)&lt;/h1&gt;
+&lt;p&gt;加入了角速度的補償來源，可以幫助機器人穩定所受的外力。也因為來源增加了，每個馬達現在支援兩個來源的補償，最後補償的結果會加總再進行補償。&lt;/p&gt;
+
+&lt;h2 id=&quot;demo-1&quot;&gt;DEMO&lt;/h2&gt;
+&lt;p&gt;加入了角速度的補償之後，機器人就變得可以快速回穩囉！&lt;/p&gt;
+
+&lt;!-- Courtesy of embedresponsively.com //--&gt;
+&lt;div class=&quot;responsive-video-container&quot;&gt;
+
+  &lt;iframe src=&quot;https://www.youtube-nocookie.com/embed/fM1U95CtDd0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;/div&gt;
+
+&lt;h1 id=&quot;improve-uis&quot;&gt;Improve UIs&lt;/h1&gt;
+&lt;p&gt;除了上述的功能，UI 部分也做了一些改進，因為以往無法對 Motion 管理，為了解決這樣的不便，86ME 1.9 在 Motion 名稱旁加入了一個新按鈕，可以讓使用者&lt;strong&gt;匯入/匯出/更名/刪除&lt;/strong&gt; Motion。而 Action List 中的元件現在也可以藉由鍵盤上的 Delete 來刪除。&lt;/p&gt;
+
+&lt;p&gt;最近加入的幾個新功能對我來說還蠻新鮮的，也學習到了不少東西，最大的收穫莫過於增加了機器人領域了解吧 XD 至於 86ME，可以說是慢慢走到尾聲了，從超級陽春的 1.0 到可以拿來辦活動的 1.5，再到加入了更多進階功能的 1.8、1.9，之後應該是不會有太大的改版了，Lab 決定要開始鑽研 ROS 的原始碼，而且 86ME 1.9 也算是一個完整的收尾，至於還會不會修改，就看我自己埋藏了多少 BUG 了 XDD&lt;/p&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">86ME v1.9 在馬不停蹄地趕工下接近尾聲了，這次的改版也加入了不少東西，第一點是支援以 Cubic Spline/Constrained Cubic Spline 方式來控制馬達的選項，讓使用者可以不只有走直線一種選擇，不過目前僅支援只含有 Frame 的動作，這點務必注意。第二點為支援兩個來源的 IMU 補償，例如可以利用 y 軸的旋轉角度與角速度來搭配服用，使用上可以說是頗具彈性，不過參數調整就會變得更加複雜就是了 O_Q</summary></entry><entry><title type="html">86me V1.8</title><link href="http://localhost:4000/86ME-v1.8/" rel="alternate" type="text/html" title="86me V1.8" /><published>2016-06-14T00:00:00-06:00</published><updated>2016-06-14T00:00:00-06:00</updated><id>http://localhost:4000/86ME-v1.8</id><content type="html" xml:base="http://localhost:4000/86ME-v1.8/">&lt;p&gt;&lt;a href=&quot;https://github.com/Sayter99/86ME&quot;&gt;86ME&lt;/a&gt; v1.8 算是改動蠻大的一個版本，加入了支援 Inertial Measurement Unit(IMU) 的兩個功能，一為加&lt;strong&gt;速度事件觸發&lt;/strong&gt;，另一為 &lt;strong&gt;Gyro 補償&lt;/strong&gt;。Action List 部分也新增了 &lt;strong&gt;Comput、If、Release&lt;/strong&gt; 三個新指令。另外也有新增一些讓編輯動作更方便的 UI 唷！&lt;/p&gt;
+
+&lt;h2 id=&quot;compute--if&quot;&gt;Compute &amp;amp; If&lt;/h2&gt;
+&lt;p&gt;這個功能是用來在 Action List 中實做出一些邏輯運算，供使用者自由運用的變數有 50 &lt;strong&gt;（v0~v49）&lt;/strong&gt;個，而系統變數包含&lt;strong&gt;亂數（R0）&lt;/strong&gt;、&lt;strong&gt;目前時間（T0）&lt;/strong&gt;、&lt;strong&gt;加速度計之數值（AccX, AccY, AccZ）&lt;/strong&gt;和&lt;strong&gt;陀螺儀的 pitch 與 roll&lt;/strong&gt;。而 &lt;strong&gt;Compute&lt;/strong&gt; 就是可以利用這些變數做運算，來計算自己所需的數值，唯要注意的點是不同的動作最好使用不同的變數（v 系列），若兩個動作中使用了相同的變數，又被同時被觸發時，可能會產生同步問題。而 &lt;strong&gt;If&lt;/strong&gt; 指令可以說是 &lt;strong&gt;Compute&lt;/strong&gt; 的好兄弟，他可以判斷兩變數之間的關係（大於、等於之類的），若成立則會跳轉到指定的 &lt;strong&gt;Flag&lt;/strong&gt; 去，藉此可讓 86ME 編輯出更複雜的功能。&lt;/p&gt;
+
+&lt;p&gt;以下就是以這個新功能打造的 DEMO，在一些電動遊戲中，角色閒置一段時間後會自己做一些動作來活動筋骨，此 DEMO 就是讓機器人待機時也有這樣的功能。&lt;/p&gt;
+
+&lt;!-- Courtesy of embedresponsively.com //--&gt;
+&lt;div class=&quot;responsive-video-container&quot;&gt;
+
+  &lt;iframe src=&quot;https://www.youtube-nocookie.com/embed/Ulj7Y56Kbjo&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id=&quot;gyro-compensation&quot;&gt;Gyro Compensation&lt;/h2&gt;
+&lt;p&gt;陀螺儀的補償可以說是這版本最煞費苦心的了，從要設計新的 UI 進來就覺得蠻苦手的，後來把 IMU 的設定也加到 Robot Configuration 裡面，是好是壞就等時間告訴我答案了。實際功能、程式自動生成的部分更是經過不少努力，簡言之，目前的陀螺儀補償功能是去偵測機器人上 &lt;strong&gt;IMU 目前的狀態&lt;/strong&gt;（以四元數表示） 與&lt;strong&gt;初始狀態之四元數&lt;/strong&gt;（使用者可自行設定或連線後自動偵測）兩者間的關係（可以再得出一四元數），最後得出的四元數可以換算為目前機器人的傾角，也就是相對於初始狀態的 Roll 與 Pitch，有了這兩個角度，以即使用者可自行設定的 Gain 值，我們就能得出需要補償的 PWM 值（Gain × Pitch/Roll），這樣的補償方式也就等價於比例控制器，對於目前的 86ME，可以說是一個簡單又有效果的功能，也許未來會有完整的 PID 支援，不過這誰也說不定 XD&lt;/p&gt;
+
+&lt;!-- Courtesy of embedresponsively.com //--&gt;
+&lt;div class=&quot;responsive-video-container&quot;&gt;
+
+  &lt;iframe src=&quot;https://www.youtube-nocookie.com/embed/t7VN1pwLyjQ&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id=&quot;new-on-off-button&quot;&gt;New On-Off Button&lt;/h2&gt;
+&lt;p&gt;這個功能能讓使用者在編輯動作時釋放單一顆馬達，讓不必要出力的馬達可以好好休息，以免工作太久累壞了 O___Q&lt;/p&gt;
+
+&lt;!-- Courtesy of embedresponsively.com //--&gt;
+&lt;div class=&quot;responsive-video-container&quot;&gt;
+
+  &lt;iframe src=&quot;https://www.youtube-nocookie.com/embed/TFOPZgC4pog&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id=&quot;usage&quot;&gt;Usage&lt;/h2&gt;
+&lt;p&gt;最後補上小弟夥同安卓林弄得簡易教學影片。&lt;/p&gt;
+
+&lt;!-- Courtesy of embedresponsively.com //--&gt;
+&lt;div class=&quot;responsive-video-container&quot;&gt;
+
+  &lt;iframe src=&quot;https://www.youtube-nocookie.com/embed/SpkbxDcDCWk&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;/div&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">86ME v1.8 算是改動蠻大的一個版本，加入了支援 Inertial Measurement Unit(IMU) 的兩個功能，一為加速度事件觸發，另一為 Gyro 補償。Action List 部分也新增了 Comput、If、Release 三個新指令。另外也有新增一些讓編輯動作更方便的 UI 唷！</summary></entry></feed>

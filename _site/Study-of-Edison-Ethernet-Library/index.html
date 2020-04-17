@@ -1,0 +1,834 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Study Of Edison Ethernet Library - 入屋且盡一杯酒</title>
+<meta name="description" content="不知不覺又過了一個月，最近小弟正在開發 86Duino Linux SDK，而剛好有負責到 Ethernet lib 的部分，老實說…之前上學不認真，這塊從沒好好學過 Orz。只好先偷偷惡補再上工啦XD">
+
+
+  <meta name="author" content="Chi-Ju Wu">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="入屋且盡一杯酒">
+<meta property="og:title" content="Study Of Edison Ethernet Library">
+<meta property="og:url" content="http://localhost:4000/Study-of-Edison-Ethernet-Library/">
+
+
+  <meta property="og:description" content="不知不覺又過了一個月，最近小弟正在開發 86Duino Linux SDK，而剛好有負責到 Ethernet lib 的部分，老實說…之前上學不認真，這塊從沒好好學過 Orz。只好先偷偷惡補再上工啦XD">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2015-11-07T00:00:00-07:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/Study-of-Edison-Ethernet-Library/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Chi-Ju Wu",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="Prlc9BgFkJ22HPjYUaW5mB5UJk8T2_V5UuWEbjMvU2I" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="入屋且盡一杯酒 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/manifest.json">
+<meta name="theme-color" content="#ffffff">
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Chi-Ju Wu
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/profile.jpg" alt="Chi-Ju Wu" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Chi-Ju Wu</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>I am from Taiwan.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Boulder, CO</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:sayter99@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://sayter99.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          
+        
+          
+            <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Study Of Edison Ethernet Library">
+    <meta itemprop="description" content="不知不覺又過了一個月，最近小弟正在開發 86Duino Linux SDK，而剛好有負責到 Ethernet lib 的部分，老實說…之前上學不認真，這塊從沒好好學過 Orz。只好先偷偷惡補再上工啦XD">
+    <meta itemprop="datePublished" content="November 07, 2015">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Study Of Edison Ethernet Library
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#linux-socket-programming">Linux Socket Programming</a>
+    <ul>
+      <li><a href="#the-client-server-model">The client server model</a></li>
+      <li><a href="#address-domain--socket-types">Address Domain &amp; Socket Types</a>
+        <ul>
+          <li><a href="#address-domain">Address Domain</a></li>
+          <li><a href="#socket-types">Socket Types</a></li>
+        </ul>
+      </li>
+      <li><a href="#sample">Sample</a>
+        <ul>
+          <li><a href="#serverc">server.c</a></li>
+        </ul>
+      </li>
+      <li><a href="#clientc">client.c</a></li>
+    </ul>
+  </li>
+  <li><a href="#server-code">Server Code</a></li>
+  <li><a href="#client-code">Client Code</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>不知不覺又過了一個月，最近小弟正在開發 <a href="https://github.com/roboard/86Duino_Linux_SDK">86Duino Linux SDK</a>，而剛好有負責到 Ethernet lib 的部分，老實說…之前上學不認真，這塊從沒好好學過 Orz。只好先偷偷惡補再上工啦XD</p>
+
+<h2 id="linux-socket-programming">Linux Socket Programming</h2>
+<p>因為 Edison 的 Ethernet library 是用 Linux Socket Programming 完成的，因此這也是惡補的第一步啦！</p>
+
+<h3 id="the-client-server-model">The client server model</h3>
+<p>許多行程間通訊都是採用這個架構。其中一個行程為 Client，可連上 Server 來交換資訊。其中 client 要知道 server 的位址，但 server 則不必知道 client 的位置。當連線建立時，雙方都能夠收送訊息。雖然建立 client 與 server 的系統指令不同，但都需要透過 <em>socket</em> 來建構。Socket 為一端的接口，server 與 client 都需要建立自己的 socket。</p>
+
+<p>建立 client 的步驟：</p>
+
+<ol>
+  <li>以 <strong>socket()</strong> 來建立 socket</li>
+  <li>以 <strong>connect()</strong> 來連結 server 端的 socket</li>
+  <li>收送資訊，最簡單的方式為透過 <strong>write()</strong> 與 <strong>read()</strong>。</li>
+</ol>
+
+<p>建立 server 的步驟：</p>
+
+<ol>
+  <li>以 <strong>socket()</strong> 來建立 socket</li>
+  <li>用 <strong>bind()</strong> 將 socket 與一個位址（包含 port number）綁定。</li>
+  <li>用 <strong>listen()</strong> 聽取是否有連線</li>
+  <li>用 <strong>accept()</strong> 來允許連線。這個函式會阻塞直到 client 連進來。</li>
+  <li>收送資訊</li>
+</ol>
+
+<h3 id="address-domain--socket-types">Address Domain &amp; Socket Types</h3>
+<p>兩個程序要互相溝通的話，各自所擁有的 <em>address domain</em> 與 <em>socket type</em> 要是相同的。</p>
+
+<h4 id="address-domain">Address Domain</h4>
+<p>比較常見的有：</p>
+
+<ol>
+  <li><em>Unix doamin</em>：用於檔案傳輸，其位址為一表檔案路徑的字串。</li>
+  <li><em>Internet domain</em>：用於網路傳輸，其位址為 32 bit 的 IP address 加上 16 bit 的 port number。通常較低的 port 為系統服務，例如 FTP 為 21。而 2000 以上通常為可用的。</li>
+</ol>
+
+<h4 id="socket-types">Socket Types</h4>
+<p>比較常使用的：</p>
+
+<ol>
+  <li><em>Stream socket</em>：將資料視為連續的字元流，使用 TCP。</li>
+  <li><em>Datagram socket</em>：每次要處理完整的一段訊息，使用 UDP。</li>
+</ol>
+
+<h3 id="sample">Sample</h3>
+<h4 id="serverc">server.c</h4>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* A simple server in the internet domain using TCP
+   The port number is passed as an argument */</span>
+<span class="cp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/types.h&gt; 
+#include &lt;sys/socket.h&gt;
+#include &lt;netinet/in.h&gt;
+</span>
+<span class="kt">void</span> <span class="nf">error</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">msg</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">perror</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+     <span class="kt">int</span> <span class="n">sockfd</span><span class="p">,</span> <span class="n">newsockfd</span><span class="p">,</span> <span class="n">portno</span><span class="p">;</span>
+     <span class="n">socklen_t</span> <span class="n">clilen</span><span class="p">;</span>
+     <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+     <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">serv_addr</span><span class="p">,</span> <span class="n">cli_addr</span><span class="p">;</span>
+     <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+         <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"ERROR, no port provided</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+         <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+     <span class="p">}</span>
+     <span class="n">sockfd</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">sockfd</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> 
+        <span class="n">error</span><span class="p">(</span><span class="s">"ERROR opening socket"</span><span class="p">);</span>
+     <span class="n">bzero</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_addr</span><span class="p">));</span>
+     <span class="n">portno</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+     <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+     <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">INADDR_ANY</span><span class="p">;</span>
+     <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">portno</span><span class="p">);</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">bind</span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span>
+              <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_addr</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> 
+              <span class="n">error</span><span class="p">(</span><span class="s">"ERROR on binding"</span><span class="p">);</span>
+     <span class="n">listen</span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+     <span class="n">clilen</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">cli_addr</span><span class="p">);</span>
+     <span class="n">newsockfd</span> <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span> 
+                 <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">cli_addr</span><span class="p">,</span> 
+                 <span class="o">&amp;</span><span class="n">clilen</span><span class="p">);</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">newsockfd</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> 
+          <span class="n">error</span><span class="p">(</span><span class="s">"ERROR on accept"</span><span class="p">);</span>
+     <span class="n">bzero</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="mi">256</span><span class="p">);</span>
+     <span class="n">n</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">newsockfd</span><span class="p">,</span><span class="n">buffer</span><span class="p">,</span><span class="mi">255</span><span class="p">);</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">error</span><span class="p">(</span><span class="s">"ERROR reading from socket"</span><span class="p">);</span>
+     <span class="n">printf</span><span class="p">(</span><span class="s">"Here is the message: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">buffer</span><span class="p">);</span>
+     <span class="n">n</span> <span class="o">=</span> <span class="n">write</span><span class="p">(</span><span class="n">newsockfd</span><span class="p">,</span><span class="s">"I got your message"</span><span class="p">,</span><span class="mi">18</span><span class="p">);</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">error</span><span class="p">(</span><span class="s">"ERROR writing to socket"</span><span class="p">);</span>
+     <span class="n">close</span><span class="p">(</span><span class="n">newsockfd</span><span class="p">);</span>
+     <span class="n">close</span><span class="p">(</span><span class="n">sockfd</span><span class="p">);</span>
+     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> 
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="clientc">client.c</h3>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;string.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;netinet/in.h&gt;
+#include &lt;netdb.h&gt; 
+</span>
+<span class="kt">void</span> <span class="nf">error</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">msg</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">perror</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">sockfd</span><span class="p">,</span> <span class="n">portno</span><span class="p">,</span> <span class="n">n</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">serv_addr</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">hostent</span> <span class="o">*</span><span class="n">server</span><span class="p">;</span>
+
+    <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+       <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"usage %s hostname port</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+       <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">portno</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+    <span class="n">sockfd</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">sockfd</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> 
+        <span class="n">error</span><span class="p">(</span><span class="s">"ERROR opening socket"</span><span class="p">);</span>
+    <span class="n">server</span> <span class="o">=</span> <span class="n">gethostbyname</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">server</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"ERROR, no such host</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">bzero</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_addr</span><span class="p">));</span>
+    <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+    <span class="n">bcopy</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">server</span><span class="o">-&gt;</span><span class="n">h_addr</span><span class="p">,</span> 
+         <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="p">,</span>
+         <span class="n">server</span><span class="o">-&gt;</span><span class="n">h_length</span><span class="p">);</span>
+    <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">portno</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">connect</span><span class="p">(</span><span class="n">sockfd</span><span class="p">,(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">serv_addr</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> 
+        <span class="n">error</span><span class="p">(</span><span class="s">"ERROR connecting"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Please enter the message: "</span><span class="p">);</span>
+    <span class="n">bzero</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="mi">256</span><span class="p">);</span>
+    <span class="n">fgets</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">write</span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="n">buffer</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">buffer</span><span class="p">));</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> 
+         <span class="n">error</span><span class="p">(</span><span class="s">"ERROR writing to socket"</span><span class="p">);</span>
+    <span class="n">bzero</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="mi">256</span><span class="p">);</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">sockfd</span><span class="p">,</span><span class="n">buffer</span><span class="p">,</span><span class="mi">255</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> 
+         <span class="n">error</span><span class="p">(</span><span class="s">"ERROR reading from socket"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">buffer</span><span class="p">);</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">sockfd</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>在 Ubuntu 系統應該是可以直接編譯成功的，若無法的話，嘗試加上 -lsocket 來編譯。編譯完成之後，先啟動 server</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server &lt;port number&gt;
+</code></pre></div></div>
+
+<p>接著啟動 client</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>client &lt;IP address&gt; &lt;port number&gt;
+</code></pre></div></div>
+
+<p>之後 client 會要求輸入訊息，輸入訊息後 client 會將訊息送出，server 接收到訊息後會顯示相關資訊，接著結束。</p>
+
+<h2 id="server-code">Server Code</h2>
+<p>接著我們就挑些重點來說明吧！</p>
+
+<ul>
+  <li><code class="highlighter-rouge">#include &lt;sys/types.h&gt;</code>：types.h 定義了許多系統指令需要的資料型別，也包含了 socket.h 和 in.h 所需要的。</li>
+  <li><code class="highlighter-rouge">#include &lt;sys/socket.h&gt;</code>：定義了 <em>socket</em> 所需要的結構。</li>
+  <li><code class="highlighter-rouge">#include &lt;netinet/in.h&gt;</code>：包含 <em>internet address domain</em> 所需要的常數與結構。</li>
+  <li><code class="highlighter-rouge">void error(char *msg){...}</code>：當系統指令呼叫失敗時使用，會印出錯誤訊息並結束程式。<a href="http://www.linuxhowtos.org/data/6/perror.txt">更深入了解 perror</a>。</li>
+  <li><code class="highlighter-rouge">int sockfd, newsockfd, portno, clilen, n</code>：
+    <ul>
+      <li>sockfd 與 newsockfd 為 file descriptor，每個執行中的程序有一個 file descriptor table，這張表包含了指向所有開啟的 i/o stream，例如最常見的 stdin、stdout、stderr。<a href="http://www.linuxhowtos.org/data/6/fd.txt">更詳盡的 file descriptor</a>。而這兩個變數是用來儲存 socket() 與 accept() 函數的回傳值。</li>
+      <li>portno 用來存 server 在 bind() 時所用的 port number。</li>
+      <li>clilen 用來儲存 client 的 size，這是 accept() 所需要的參數。</li>
+      <li>n 用來存 read() 與 write() 的回傳值，表示讀或寫了多少字元。</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">char buffer[256]</code>：Server 讀進來的字元將會存在此 buffer。</li>
+  <li><code class="highlighter-rouge">struct sockaddr_in serv_addr, cli_addr</code>：sockaddr_in 為儲存網路位址的資料結構，定義在 &lt;netinet/in.h&gt;，其定義如下
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">sockaddr_in</span>
+<span class="p">{</span>
+<span class="kt">short</span>   <span class="n">sin_family</span><span class="p">;</span> <span class="cm">/* must be AF_INET */</span>
+<span class="n">u_short</span> <span class="n">sin_port</span><span class="p">;</span>
+<span class="k">struct</span>  <span class="n">in_addr</span> <span class="n">sin_addr</span><span class="p">;</span>
+<span class="kt">char</span>    <span class="n">sin_zero</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span> <span class="cm">/* Not used, must be zero */</span>
+<span class="p">};</span>
+</code></pre></div>    </div>
+    <p>其中，in_addr 也是定義在同個檔案的結構，僅包含一個 unsigned long 變數 s_addr。而 serv_addr 與 cli_addr 各是用來儲存 server 與 client 的位址。</p>
+  </li>
+  <li><code class="highlighter-rouge">sockfd = socket(AF_INET, SOCK_STREAM, 0)</code>：socket() 會創建一個新的 socket。<a href="http://www.linuxhowtos.org/data/6/socket.txt">The socket() man page</a>。
+    <ul>
+      <li>第一個參數為 address domain，若是使用 Unix domain 要使用 AF_UNIX，而 Internet domain 的話則像範例中一樣使用 AF_INET。</li>
+      <li>第二個參數為 socket type，此處採用 SOCK_STREAM，為連續的字元流。若要使用 datagram 的方式，要改用 SOCK_DGRAM。</li>
+      <li>第三個參數為使用的 protocol，若為 0，作業系統會選擇一個合適的協定，例如 TCP 或 UDP。</li>
+      <li>回傳值為 file descriptor table 的某一個入口，若失敗則回傳 -1。</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">bzero((char *) &amp;serv_addr, sizeof(serv_addr))</code>：bzero() 會將 buffer 內的值全部設定為 0。第一個參數為 buffer 位址，第二個參數為 buffer 大小。</li>
+  <li><code class="highlighter-rouge">portno = atoi(argv[1])</code>：把輸入的 port number 轉成數字。</li>
+  <li><code class="highlighter-rouge">serv_addr.sin_family = AF_INET</code>：開始設定 serv_addr，首先第一個要設定的為 sin_family，意思為 address family，設定為 AF_INET。</li>
+  <li><code class="highlighter-rouge">serv_addr.sin_port = htons(protno)</code>：接著設定 port number，值得注意的是因為網路上使用 big endian，而大部分電腦採用 little endian，所以要透過 <a href="http://www.linuxhowtos.org/data/6/byteorder.html">htons()</a> 這個函數幫忙轉換 port number。</li>
+  <li><code class="highlighter-rouge">serv_addr.sin_addr.s_addr = INADDR_ANY</code>：設定 IP address，此處通常為執行 server 那台機器的 IP 位址，可以透過 INADDR_ANY 這個變數取得。</li>
+  <li><code class="highlighter-rouge">if(bind(sockfd, (struct sockaddr *)&amp;serv_addr, sizeof(serv_addr)) &lt; 0) error("...")</code>：將剛剛用 socket() 建立的 socket bind 到 serv_addr 這個位址，成功回傳 0，失敗回傳 -1。<a href="http://www.linuxhowtos.org/data/6/bind.txt">bind()</a>。</li>
+  <li><code class="highlighter-rouge">liten(sockfd, 5)</code>：這裡比較值得注意的是第二個參數，這是指 blocking queue 的大小，當程式在處理某個連線時，允許等待的連線上限。而 5 為大部分系統所允許的上限。<a href="http://www.linuxhowtos.org/data/6/listen.txt">listen() man page</a>。</li>
+  <li><code class="highlighter-rouge">newsockfd = accept(sockfd, (struct sockaddr*)&amp;cli_addr, &amp;clilen);</code>：accept() 會 block 整個程式直到有 client 連上。回傳值為一個新的 file descriptor，而所有的通訊都要在這個 file descriptor 完成。第二個參數為一個 client 位址的參考指標。<a href="http://www.linuxhowtos.org/data/6/accept.txt">accept() man page</a>。</li>
+  <li><code class="highlighter-rouge">n = read(newsockfd, buffer, 255)</code>：從剛剛 accept() 回傳的 file descriptor 來將資料讀進 buffer 之中。<a href="http://www.linuxhowtos.org/data/6/read.txt">read() man page</a>。</li>
+  <li><code class="highlighter-rouge">n = write(newsockfd, "...", ...)</code>：<a href="http://www.linuxhowtos.org/data/6/write.txt">write() man page</a>。</li>
+</ul>
+
+<h2 id="client-code">Client Code</h2>
+<p>有部分程式碼已經在上面介紹過，所以可能會跳過比較多。</p>
+<ul>
+  <li><code class="highlighter-rouge">#include &lt;netdb.h&gt;</code>：定義了 hostent 這個結構，之後會有更詳細的說明。</li>
+  <li><code class="highlighter-rouge">struct hostent *server</code>：hostent 結構內容
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span>  <span class="n">hostent</span>
+<span class="p">{</span>
+<span class="kt">char</span>    <span class="o">*</span><span class="n">h_name</span><span class="p">;</span>        <span class="cm">/* official name of host */</span>
+<span class="kt">char</span>    <span class="o">**</span><span class="n">h_aliases</span><span class="p">;</span>    <span class="cm">/* alias list */</span>
+<span class="kt">int</span>     <span class="n">h_addrtype</span><span class="p">;</span>     <span class="cm">/* host address type */</span>
+<span class="kt">int</span>     <span class="n">h_length</span><span class="p">;</span>       <span class="cm">/* length of address */</span>
+<span class="kt">char</span>    <span class="o">**</span><span class="n">h_addr_list</span><span class="p">;</span>  <span class="cm">/* list of addresses from name server */</span>
+<span class="cp">#define h_addr  h_addr_list[0]  </span><span class="cm">/* address, for backward compatiblity */</span><span class="cp">
+</span><span class="p">};</span>
+</code></pre></div>    </div>
+    <ul>
+      <li>h_name：主機的名稱。</li>
+      <li>h_aliases：主機的別名。</li>
+      <li>h_addrtype：要回傳的 address type，為 AF_INET。</li>
+      <li>h_length：位址長度，以 byte 為單位。</li>
+      <li>h_addr_list：一個指向網路位址列表的指標。</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">server = gethostbyname(argv[1])</code>：gethostbyname() 會回傳一個 hostent 指標，儲存了以 “argv[1]” 為名之主機的資訊。而 <code class="highlighter-rouge">char *h_addr</code> 包含了 IP address。若回傳值為 NULL，代表找不到這台機器。<a href="http://www.linuxhowtos.org/data/6/gethostbyname.txt">gethostbyname() man page</a>。</li>
+  <li>接著我們會拿 server 中的資訊填到 serv_addr 裡頭：
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bzero</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_addr</span><span class="p">));</span>
+<span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+<span class="n">bcopy</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">server</span><span class="o">-&gt;</span><span class="n">h_addr</span><span class="p">,</span>
+    <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="p">,</span>
+    <span class="n">server</span><span class="o">-&gt;</span><span class="n">h_length</span><span class="p">);</span>
+<span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">portno</span><span class="p">);</span>
+</code></pre></div>    </div>
+    <p><code class="highlighter-rouge">void bcopy(char* s1, char* s2, int length)</code>會將 s1 內 length bytes 的資料複製到 s2 中。</p>
+  </li>
+  <li><code class="highlighter-rouge">if(connect(sockfd, &amp;serv_addr, sizeof(serv_addr)) &lt; 0) ...</code>：connect() 是 client 用來與 server 建立連線用的，包含了三個參數，第一個參數為 socket file descriptor，第二個參數為欲連線的 server 位址，第三個參數為 server 位址的 size。<a href="http://www.linuxhowtos.org/data/6/connect.txt">connect() man page</a>。</li>
+</ul>
+
+<h1 id="ethernet-library-of-intel-edison">Ethernet Library of Intel Edison</h1>
+<p>到這邊算是初步了解 Linux Socket Programming 了，雖然還有非常多東西可以深入研究，例如使用 fork() 讓 server 可以處理更多連線，解決衍生而來的 zombie problem；研究 UDP、Unix Domain 等等。不過呢，基本上要看懂愛迪生的 Ethernet 函式庫已經不是大問題了！接著大家可以先取得愛迪生的原始碼，去<a href="https://software.intel.com/en-us/iot/hardware/edison/downloads">官方網站</a>下載 Developer Kit，安裝好後開啟 Arduino IDE，選擇 Board-&gt;Intel Edison，接著開啟編譯資訊並編譯，就能找出原始碼位置了！下面我就稍微補充一下前面沒有提到的函式與結構。</p>
+
+<ul>
+  <li><code class="highlighter-rouge">&lt;sys/ioctl.h&gt;, &lt;net/if.h&gt;</code>：Linux 常見的網路裝置操作都是以 ifreq 結構為參數，例如 <code class="highlighter-rouge">ioctl(fd, 各種屬性操作 , &amp;ifr)</code></li>
+  <li><code class="highlighter-rouge">&lt;ifaddrs.h&gt;</code>：取得 local ip -&gt; <code class="highlighter-rouge">getifaddrs(&amp;ifaddr)</code>。</li>
+  <li>Edison 的 Dhcp、Dns 沒有實做任何東西，有修改 core/IPAddress.h。</li>
+  <li>EthernetClient 沒有實做 peek()，user 需要的話可以自己弄一個。</li>
+  <li>EthernetClient 中 availabe() 的實做是使用 poll。在這邊要先了解一個結構 <code class="highlighter-rouge">struct pollfd{int fd; short event; short revents};</code>，poll 類似 select，用來等待某個事件發生，使用前先設定好 pollfd 結構，此處 fd = socket、events = POLLIN（當 data 進來）、revents = 0。設定好之後可以利用指令 <code class="highlighter-rouge">ret = poll(&amp;ufds, 1, 5000)</code> 第一個參數為指向 pollfd 列表的指標，第二個參數為 pollfd 的總數，第三個參數為 timeout。當 POLLIN 這個事件真的發生時 <code class="highlighter-rouge">if(ret &gt; 0 &amp;&amp; ufds.revent &amp; POLLIN)</code> 成立，就可以用 <code class="highlighter-rouge">ret = ioctl(_sock, FIONREAD, &amp;byte)</code> 來得知 socket 中有多少資料要讀。</li>
+  <li>EthernetServer 中的 accept() 實做與 available() 類似，當有 client 連進來時（一樣是 POLLIN 事件）會呼叫 accept() 並將連線存到 pclients 陣列中沒被使用的位置。</li>
+  <li>EthernetServer 中的 available() 是回傳已經連線的其中一個 client，不要與 EthernetClient 中的 available() 搞混了。</li>
+  <li>UDP server 不用 listen()、accept()，只需要 bind()。 Client 不用 connect()。 SOCK_STREAM 改為 SOCK_DGRAM。 不使用 read()、write() 改用 sendto()、recvfrom()。EthernetUDP 沒有實做 peek()、remoteIP()、remotePORT()；flush() 有機率失敗。</li>
+</ul>
+
+<h1 id="reference">Reference</h1>
+<p><a href="http://www.linuxhowtos.org/C_C++/socket.htm">Linux Howtos: C/C++ -&gt; Sockets Tutorial</a></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-11-07T00:00:00-07:00">November 07, 2015</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Study+Of+Edison+Ethernet+Library%20http%3A%2F%2Flocalhost%3A4000%2FStudy-of-Edison-Ethernet-Library%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FStudy-of-Edison-Ethernet-Library%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FStudy-of-Edison-Ethernet-Library%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/86Hexapod-with-ROS/" class="pagination--pager" title="86hexapod With Ros
+">Previous</a>
+    
+    
+      <a href="/Access-86Duino-Peripheral-using-MRAA/" class="pagination--pager" title="Access 86duino Peripheral Using Mraa
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/Ultra-Light-Affect-Recognition/" rel="permalink">Ultra Light Affect Recognition
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">For aHRI class, we developed our face and emotion recognition ROS package based on pretrained models:
+
+  Face detection: Ultra-light face detector
+  Face rec...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/Boulder-GO-Resources/" rel="permalink">Boulder Go Resources
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">因為之前一直忙於找工作，沒能仔細研究 Boulder 的圍棋活動，這次就來介紹一下 Boulder 可以下棋的去處。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/%E9%A3%9B%E7%A6%BD%E5%B3%B6%E7%9A%84%E4%B8%8D%E6%95%97%E5%B0%91%E5%B9%B4/" rel="permalink">飛禽島的不敗少年
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">昨天晚上，看著小李下完退役賽的倒數第二盤，突然有感而發。回憶起來，自己會來到美國也跟小李與 AlphaGo 的對局有點關聯，對於棋魂中所表達的傳承，似乎又有了新的體會。趁著這次紀錄一下這幾年小李與 AI 帶給我的轉折。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/Life-at-CU-Boulder/" rel="permalink">Life At Cu Boulder
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">轉眼間來美國讀書已經過了3個學期，這段時間真的學習到很多東西，但之前實在太忙碌了沒辦法一一紀錄，今天就來寫一篇在 CU Boulder 讀 CS Master 的心得吧！
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Chi-Ju Wu. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>

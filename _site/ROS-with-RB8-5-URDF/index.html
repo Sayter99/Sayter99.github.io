@@ -1,0 +1,569 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Ros With Rb8 5 Urdf - 入屋且盡一杯酒</title>
+<meta name="description" content="要在 ROS 中玩一隻自己的機器人，我認為自己編輯一個 URDF（Unified Robot Description Format） 模型是非常必要的。">
+
+
+  <meta name="author" content="Chi-Ju Wu">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="入屋且盡一杯酒">
+<meta property="og:title" content="Ros With Rb8 5 Urdf">
+<meta property="og:url" content="http://localhost:4000/ROS-with-RB8-5-URDF/">
+
+
+  <meta property="og:description" content="要在 ROS 中玩一隻自己的機器人，我認為自己編輯一個 URDF（Unified Robot Description Format） 模型是非常必要的。">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2015-08-17T00:00:00-06:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/ROS-with-RB8-5-URDF/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Chi-Ju Wu",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="Prlc9BgFkJ22HPjYUaW5mB5UJk8T2_V5UuWEbjMvU2I" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="入屋且盡一杯酒 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/images/favicon/manifest.json">
+<meta name="theme-color" content="#ffffff">
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Chi-Ju Wu
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/profile.jpg" alt="Chi-Ju Wu" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Chi-Ju Wu</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>I am from Taiwan.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Boulder, CO</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:sayter99@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://sayter99.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          
+        
+          
+            <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Ros With Rb8 5 Urdf">
+    <meta itemprop="description" content="要在 ROS 中玩一隻自己的機器人，我認為自己編輯一個 URDF（Unified Robot Description Format） 模型是非常必要的。">
+    <meta itemprop="datePublished" content="August 17, 2015">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Ros With Rb8 5 Urdf
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#用途">用途</a>
+    <ul>
+      <li><a href="#1-將-model-放入模擬器中">1. 將 Model 放入模擬器中</a></li>
+      <li><a href="#2-使用-moveit-來控制機器人">2. 使用 MoveIt! 來控制機器人</a></li>
+    </ul>
+  </li>
+  <li><a href="#xacro-編輯心得">xacro 編輯心得</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p>要在 ROS 中玩一隻自己的機器人，我認為自己編輯一個 <a href="http://wiki.ros.org/urdf">URDF（Unified Robot Description Format）</a> 模型是非常必要的。</p>
+
+<p>URDF 的內容是在描述機器人的機構，包含每個 link 的大小、形狀、重量、馬達的最大與最小速度、可以承受的力量為何等等，寫作方式可以參考 <a href="http://wiki.ros.org/urdf/Tutorials">URDF Tutorial</a>。這邊大家也可以考慮使用 <a href="http://wiki.ros.org/xacro">xacro</a>，一個可以轉換為 URDF 的檔案型別，因為加入了 macro 功能，可以寫出更加具有可讀性且較精簡的描述檔，我自己也是使用 xacro。</p>
+
+<h2 id="用途">用途</h2>
+<p>說了那麼多，URDF 究竟有甚麼實際的用途呢！？</p>
+
+<h3 id="1-將-model-放入模擬器中">1. 將 Model 放入模擬器中</h3>
+<p>開啟 <a href="http://wiki.ros.org/robot_state_publisher">robot_state_publisher</a> 與 <a href="http://wiki.ros.org/joint_state_publisher">joint_state_publisher</a>，並將 robot_description 參數設為編輯好的 urdf 檔（xacro 檔可以用 xacro package 的 xacro.py 轉換成 urdf），就可以在 Rviz 中加入機器人模型，包含各個 link、joint　的 <a href="http://wiki.ros.org/tf">tf</a> 與外觀，更可以藉由操作 joint_state_publisher 控制視窗來轉動關節，測試看看 urdf 的編寫是否正確。</p>
+
+<h3 id="2-使用-moveit-來控制機器人">2. 使用 MoveIt! 來控制機器人</h3>
+<p><a href="http://moveit.ros.org/">MoveIt!</a> 是一個結合路徑歸化、運動學、3D 感測的套件，通常用來控制機器手臂。只要擁有機器人的 urdf 檔，配合 <a href="http://moveit.ros.org/wiki/MoveIt!_Setup_Assistant">MoveIt! Setup Assistant</a> 就可以產生出一個屬於自己機器人的 MoveIt! 套件，基本上是不需要自己去算運動學的，前提是要將自己的 urdf 檔案描述得到位。接著可以在產生出來的目錄找到 <em>demo.launch</em>，執行這個 launch file 就可以開始試試路徑規劃、障礙避碰等等功能。 3D 環境的產生則是需要額外設定，在 config 資料夾加入 <em>sensors_rgbd.yaml</em>，並設定 3D sensor 的相關資訊即可。都完成後，我會將 MoveIt! 在運動過程中產生的 <code class="highlighter-rouge">/move_group/display_planned_path</code> 傳到 RoBoard 上，讓馬達跟著算出來的結果一起移動。機器人基本上是應該要有反饋的，不過這邊就算是一個雛形，我沒有選擇本身能反饋訊息的馬達，也沒有利用其他的 sensor 來解決，且我的 urdf 基本上也是有點粗糙，要如何精進就看個人的發揮了！</p>
+
+<p>下面的影片是示範一下 MoveIt! 的反運動學，接著我在模擬器中加入一個物件展示一下避碰，這邊不是用 Xtion 照的喔！因為我得手不夠長 XD，所以 Xtion 的 Demo 就先免了吧，以後有機會再拍拍加入 3D camera 之後環境會變得怎麼樣吧！</p>
+
+<!-- Courtesy of embedresponsively.com //-->
+<div class="responsive-video-container">
+
+  <iframe src="https://www.youtube-nocookie.com/embed/F78GE17FgEI" frameborder="0" allowfullscreen=""></iframe>
+
+</div>
+
+<h2 id="xacro-編輯心得">xacro 編輯心得</h2>
+<p>說了那麼多還沒提到編寫 xacro XD，基本上我建議每個部位都寫一個 xacro，例如頭部、手部、基座等等，方便之後修改每個部位的規格。最後再寫一個檔案把所有部位整合起來就可以了，千萬不要把所有東西都寫進一個 xacro 檔裡，這樣會造成檔案超級長，不方便修改也難套用到其他專案去，只能說非常可惜 O_Q</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-08-17T00:00:00-06:00">August 17, 2015</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Ros+With+Rb8+5+Urdf%20http%3A%2F%2Flocalhost%3A4000%2FROS-with-RB8-5-URDF%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2FROS-with-RB8-5-URDF%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2FROS-with-RB8-5-URDF%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/ROS-with-RB8-4-Rosserial/" class="pagination--pager" title="Ros With Rb8 4 Rosserial
+">Previous</a>
+    
+    
+      <a href="/86ME-and-86Hexapod/" class="pagination--pager" title="86me And 86hexapod
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/Ultra-Light-Affect-Recognition/" rel="permalink">Ultra Light Affect Recognition
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">For aHRI class, we developed our face and emotion recognition ROS package based on pretrained models:
+
+  Face detection: Ultra-light face detector
+  Face rec...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/Boulder-GO-Resources/" rel="permalink">Boulder Go Resources
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">因為之前一直忙於找工作，沒能仔細研究 Boulder 的圍棋活動，這次就來介紹一下 Boulder 可以下棋的去處。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/%E9%A3%9B%E7%A6%BD%E5%B3%B6%E7%9A%84%E4%B8%8D%E6%95%97%E5%B0%91%E5%B9%B4/" rel="permalink">飛禽島的不敗少年
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">昨天晚上，看著小李下完退役賽的倒數第二盤，突然有感而發。回憶起來，自己會來到美國也跟小李與 AlphaGo 的對局有點關聯，對於棋魂中所表達的傳承，似乎又有了新的體會。趁著這次紀錄一下這幾年小李與 AI 帶給我的轉折。
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/Life-at-CU-Boulder/" rel="permalink">Life At Cu Boulder
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">轉眼間來美國讀書已經過了3個學期，這段時間真的學習到很多東西，但之前實在太忙碌了沒辦法一一紀錄，今天就來寫一篇在 CU Boulder 讀 CS Master 的心得吧！
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/sayter99" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Chi-Ju Wu. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>
