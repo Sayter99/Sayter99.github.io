@@ -77,10 +77,6 @@
 <lastmod>2017-03-21T00:00:00-06:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/Life-at-CU-Boulder/</loc>
-<lastmod>2019-12-07T00:00:00-07:00</lastmod>
-</url>
-<url>
 <loc>http://localhost:4000/%E9%A3%9B%E7%A6%BD%E5%B3%B6%E7%9A%84%E4%B8%8D%E6%95%97%E5%B0%91%E5%B9%B4/</loc>
 <lastmod>2019-12-19T00:00:00-07:00</lastmod>
 </url>
@@ -91,6 +87,10 @@
 <url>
 <loc>http://localhost:4000/Ultra-Light-Affect-Recognition/</loc>
 <lastmod>2020-04-13T00:00:00-06:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/Life-at-CU-Boulder/</loc>
+<lastmod>2020-04-28T00:00:00-06:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/about/</loc>
@@ -112,10 +112,10 @@
 </url>
 <url>
 <loc>http://localhost:4000/assets/images/old/Projects.pdf</loc>
-<lastmod>2020-02-10T11:01:48-07:00</lastmod>
+<lastmod>2020-04-28T08:48:16-06:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/google4c713f5dd676358a.html</loc>
-<lastmod>2020-02-10T11:01:48-07:00</lastmod>
+<lastmod>2020-04-28T08:48:16-06:00</lastmod>
 </url>
 </urlset>

@@ -1,54 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-04-13T10:43:36-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">入屋且盡一杯酒</title><subtitle>My blog</subtitle><author><name>Chi-Ju Wu</name></author><entry><title type="html">Ultra Light Affect Recognition</title><link href="http://localhost:4000/Ultra-Light-Affect-Recognition/" rel="alternate" type="text/html" title="Ultra Light Affect Recognition" /><published>2020-04-13T00:00:00-06:00</published><updated>2020-04-13T00:00:00-06:00</updated><id>http://localhost:4000/Ultra-Light-Affect-Recognition</id><content type="html" xml:base="http://localhost:4000/Ultra-Light-Affect-Recognition/">&lt;p&gt;For aHRI class, we developed our face and emotion recognition &lt;a href=&quot;(https://github.com/Sayter99/face_recognition_ultra_light)&quot;&gt;ROS package&lt;/a&gt; based on pretrained models:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Face detection: &lt;a href=&quot;https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB&quot;&gt;Ultra-light face detector&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Face recognition: MobileFaceNet&lt;/li&gt;
-  &lt;li&gt;Emotion recognition:
-    &lt;ul&gt;
-      &lt;li&gt;Arch: VGG networks4&lt;/li&gt;
-      &lt;li&gt;Dataset: facial expression dataset (FER13 dataset)&lt;/li&gt;
-      &lt;li&gt;Accuracy: 65.93%&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;We implemented two nodes for face recognition and emotion recognition. The face recognition node firstly detects human faces in images sent by an Astra Stereo S U3 camera, and conducts face recognition based on our trained face data. After recognition, the module outputs the face image along with the detected name and pixel location to the emotion recognition subscriber. Finally, the emotion recognition node processes the face images and outputs the result via MQTT to Austin, our Robotic Bat. There is an optional face distance measurement node in this package. It will compute the distance between the camera and the detected face based on the depth value of the detected face.&lt;/p&gt;
-
-&lt;h2 id=&quot;diagram&quot;&gt;Diagram&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;../assets/images/20200413/flowchart.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;rqt-graph&quot;&gt;RQT Graph&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Sayter99/face_recognition_ultra_light/master/media/rosgraph.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;result&quot;&gt;Result&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Sayter99/face_recognition_ultra_light/master/media/demo.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB&quot;&gt;Ultra-Light Fast Generic Face Detector&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/real-time-face-recognition-with-cpu-983d35cc3ec5&quot;&gt;real time face recognition with cpu&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mc.ai/emotion-recognition-using-keras/&quot;&gt;emotion recognition using keras&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Chen, Sheng, et al. “Mobilefacenets: Efficient cnns for accurate real-time face verification on mobile devices.” Chinese Conference on Biometric Recognition. Springer, Cham, 2018.&lt;/li&gt;
-  &lt;li&gt;Simonyan, Karen, and Andrew Zisserman. “Very deep convolutional networks for large-scale image recognition.” arXiv preprint arXiv:1409.1556 (2014).&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">For aHRI class, we developed our face and emotion recognition ROS package based on pretrained models: Face detection: Ultra-light face detector Face recognition: MobileFaceNet Emotion recognition: Arch: VGG networks4 Dataset: facial expression dataset (FER13 dataset) Accuracy: 65.93%</summary></entry><entry><title type="html">Boulder Go Resources</title><link href="http://localhost:4000/Boulder-GO-Resources/" rel="alternate" type="text/html" title="Boulder Go Resources" /><published>2020-02-10T00:00:00-07:00</published><updated>2020-02-10T00:00:00-07:00</updated><id>http://localhost:4000/Boulder-GO-Resources</id><content type="html" xml:base="http://localhost:4000/Boulder-GO-Resources/">&lt;p&gt;因為之前一直忙於找工作，沒能仔細研究 Boulder 的圍棋活動，這次就來介紹一下 Boulder 可以下棋的去處。&lt;/p&gt;
-
-&lt;h2 id=&quot;boulder-go-club&quot;&gt;&lt;a href=&quot;https://www.meetup.com/Boulder-Go-Club/&quot;&gt;Boulder GO Club&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;這是一個在 &lt;a href=&quot;https://www.colorado.edu/umc/&quot;&gt;CU Boulder UMC&lt;/a&gt; 每周三的聚會，時間從晚上六點到晚上十點結束，人數大概五六個人，實力分布挺廣的，級位段位都有，地點也非常方便就在學校裡面，算是一個不錯的去處。&lt;/p&gt;
-
-&lt;h2 id=&quot;go-club-for-kids--teens&quot;&gt;&lt;a href=&quot;https://www.boulderdowntown.com/do/go-club-for-kids-and-teens4&quot;&gt;Go Club for Kids &amp;amp; Teens&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;這是在 &lt;a href=&quot;https://www.boulderdowntown.com/go/boulder-public-library&quot;&gt;Boulder Public Libaray&lt;/a&gt; 每個禮拜天下午兩點到下午六點的活動，有人會熱心的推廣圍棋教小朋友下棋，想對弈的話也有厲害的人可以互相下，圖書館環境也非常好，是假日休閒下期的好選擇‧。&lt;/p&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">因為之前一直忙於找工作，沒能仔細研究 Boulder 的圍棋活動，這次就來介紹一下 Boulder 可以下棋的去處。</summary></entry><entry><title type="html">飛禽島的不敗少年</title><link href="http://localhost:4000/%E9%A3%9B%E7%A6%BD%E5%B3%B6%E7%9A%84%E4%B8%8D%E6%95%97%E5%B0%91%E5%B9%B4/" rel="alternate" type="text/html" title="飛禽島的不敗少年" /><published>2019-12-19T00:00:00-07:00</published><updated>2019-12-19T00:00:00-07:00</updated><id>http://localhost:4000/%E9%A3%9B%E7%A6%BD%E5%B3%B6%E7%9A%84%E4%B8%8D%E6%95%97%E5%B0%91%E5%B9%B4</id><content type="html" xml:base="http://localhost:4000/%E9%A3%9B%E7%A6%BD%E5%B3%B6%E7%9A%84%E4%B8%8D%E6%95%97%E5%B0%91%E5%B9%B4/">&lt;p&gt;昨天晚上，看著小李下完退役賽的倒數第二盤，突然有感而發。回憶起來，自己會來到美國也跟小李與 AlphaGo 的對局有點關聯，對於棋魂中所表達的傳承，似乎又有了新的體會。趁著這次紀錄一下這幾年小李與 AI 帶給我的轉折。&lt;/p&gt;
-
-&lt;h2 id=&quot;李世石&quot;&gt;李世石&lt;/h2&gt;
-&lt;h3 id=&quot;體制&quot;&gt;體制&lt;/h3&gt;
-&lt;p&gt;韓國的誑妄少年李世石，又稱是飛禽島的不敗少年，相信不少棋迷對他是又愛又恨。還記得當年大李李昌鎬稱霸國際棋壇時，小李還這麼說過：我的對手只有李昌鎬歐爸，實力我領先。當時實在是是覺得又帥又敗人品 XD 也有這麼一說是，誑妄的高永夏的參考原型是小李，真假這就不得而知了。而如今小李都要退役了，時間流逝的速度真的快到難以想像。他不僅僅對自己的實力展現高度的自信，同時也非常有想法，不參加常規賽，退出韓國棋院等等衝撞體制的行為，當時深受儒家思想影響的我，實在很難細細的思考跟體會他的想法。從李大師身上，只能說我學習到對於自己生活的這個世界，要更有勇氣去題出問題，去改變一些不合理的事情。當如今沒有什麼職業棋手願意與 AI 對戰的同時，他卻又挺身而出與 AI 下讓子棋作為退役賽，職業九段被讓兩子的比賽，以往絕對是難以想像。這一次又一次不同的想法，讓我愈來愈有勇氣去思考不同的可能，或許世俗的價值觀也是一種枷鎖吧。&lt;/p&gt;
-
-&lt;h3 id=&quot;重來一次&quot;&gt;重來一次&lt;/h3&gt;
-&lt;p&gt;小李在一次訪談中談到重來一次的話，還會不會選擇圍棋人生。他回答說：我已經體驗了圍棋人生，就想過別的人生。圍棋人生呀，輸棋的時候實在太痛苦了。雖然我的棋力並不強，但對於這句話也是有深深的體會，用盡全力輸了棋，對自己的否定感非常的強烈，連帶下一次遇到勁敵，都會產生怯戰的想法，導致自己慢慢的害怕挑戰。只能說小李嘴上這麼說，無論面對 AlphaGo 的頑強應戰還是選擇與 AI 完成自己的退役戰，都完美的展現出自己對壓力、對戰強敵時的勇氣與氣魄，能做到這種程度，真的非常值得學習。面對壓力的方式有無數種，或許李大師骨子裡把他看做是一種樂趣也不一定 XD&lt;/p&gt;
-
-&lt;h2 id=&quot;ai&quot;&gt;AI&lt;/h2&gt;
-&lt;p&gt;我還記得第一次人機大戰，2016年3月12號，李大師連輸兩盤，我在公司看著直播思考，究竟發生了什麼事情。許多年前我在大學的時候，總是跟人家說電腦離職業還差得遠，連我都下不過。直到老闆跑到我的座位旁邊跟我說，別想了，人贏不了機器的。還安慰我他們用了多少 GPU 才贏什麼的..但說真的我難以從複雜的心情裡走出來，一來是老闆居然上班也在看？喔不我是說，我有點生氣為何自己的刻板印象限制了自己的想像力，就像一道雷打在自己身上一樣，我決心開始要更認真的去理解這個世界，對那個時候的我來說，倒不是想去學 Deep Learning 什麼的，而是我開始覺得，這個世界有更多更多，多到難以想像有趣的事情，其實一直以來都是我自己不夠用心去體會而已，我非常明白自己需要轉變，或許出國留學能想清楚些什麼吧，所以我就到美國了。到美國後這也繼續影響著我，對我學習的態度、對一門學問的看法都有深遠的影響，也希望我對探索的熱情繼續這樣的維持下去。&lt;/p&gt;
-
-&lt;h2 id=&quot;傳承&quot;&gt;傳承&lt;/h2&gt;
-&lt;p&gt;進藤光最後回答自己為什麼下棋，為了連接遙遠的過去與遙遠的未來。這世界上的人事物，無形之中或許都影響著彼此，帶著某些啟發，某些人的信念，某些事情給你的動力、熱情，我們一直都傳承著些什麼，未來，我也會繼續把自己覺得有價值的經驗、想法分享出去。謝謝你們，一直在圍棋界努力的棋士、棋迷還有科學家們 ：）&lt;/p&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">昨天晚上，看著小李下完退役賽的倒數第二盤，突然有感而發。回憶起來，自己會來到美國也跟小李與 AlphaGo 的對局有點關聯，對於棋魂中所表達的傳承，似乎又有了新的體會。趁著這次紀錄一下這幾年小李與 AI 帶給我的轉折。</summary></entry><entry><title type="html">Life At Cu Boulder</title><link href="http://localhost:4000/Life-at-CU-Boulder/" rel="alternate" type="text/html" title="Life At Cu Boulder" /><published>2019-12-07T00:00:00-07:00</published><updated>2019-12-07T00:00:00-07:00</updated><id>http://localhost:4000/Life-at-CU-Boulder</id><content type="html" xml:base="http://localhost:4000/Life-at-CU-Boulder/">&lt;p&gt;轉眼間來美國讀書已經過了3個學期，這段時間真的學習到很多東西，但之前實在太忙碌了沒辦法一一紀錄，今天就來寫一篇在 CU Boulder 讀 CS Master 的心得吧！&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-04-28T08:49:45-06:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">入屋且盡一杯酒</title><subtitle>My blog</subtitle><author><name>Chi-Ju Wu</name></author><entry><title type="html">Life At Cu Boulder</title><link href="http://localhost:4000/Life-at-CU-Boulder/" rel="alternate" type="text/html" title="Life At Cu Boulder" /><published>2020-04-28T00:00:00-06:00</published><updated>2020-04-28T00:00:00-06:00</updated><id>http://localhost:4000/Life-at-CU-Boulder</id><content type="html" xml:base="http://localhost:4000/Life-at-CU-Boulder/">&lt;p&gt;轉眼間來美國讀書已經過了3個學期，這段時間真的學習到很多東西，但之前實在太忙碌了沒辦法一一紀錄，今天就來寫一篇在 CU Boulder 讀 CS Master 的心得吧！&lt;/p&gt;
 
 &lt;h2 id=&quot;生活&quot;&gt;生活&lt;/h2&gt;
 &lt;p&gt;小弟大部份時間都在宅或是跑到Lab假用功，所以就不著墨太多在生活上，有興趣的朋友可以參靠 &lt;a href=&quot;https://chihweil5.github.io/where-it-begins/&quot;&gt;Chih-Wei 大大的文章&lt;/a&gt;。&lt;/p&gt;
@@ -63,7 +13,9 @@
   &lt;li&gt;Phys Human-Robot Interaction：這是小弟老闆開的課，CU CS 系上寫著 7000 的課通常是比較偏研究一點，上課大多是讀讀 paper 分享，並且最後做一個相關的 final project 這樣。這門課也離不開這個套路，主要是在講機器人與人類的互動，現在比較多的情況是發生在工廠，機器手臂與產線人員的互動，最高理念在於兼顧安全與效率，從 controller 到 planner, sensor 都有涵蓋，包山包海。老實說每兩個禮拜要報告一篇 paper 對我來說壓力真的非常大，因為我本身英文不太好，尤其口說更慘，但因為是老闆的課，也只能硬著頭皮上了。最後做了一個 project 讓機器人試圖理解人類社會中的 interruption cues，也算是很有收穫的一門課。但不太推薦給不喜歡報告的同學。&lt;/li&gt;
   &lt;li&gt;Computer Graphics：因為一直對 rendering, OpenGL, shader 等等的東西不太熟悉，就抱著好奇心上了這門課，但跟我原本預期的有點小落差，我本來想說期末作業可以做跟 3D 視覺相關的東西，但這門課更著重在用 OpenGL 畫出複雜的場景，且希望我們儘量不要一直用現成的模型去畫，多自己加 normal, texture 等等的東西。這門課只有作業跟期末專題，作業的話基本上不會太花時間，總共6個作業大部份一兩天都能做完一個。期末作業的話我自己主要是做了一個樹的產生器，並用樹畫了一個森林，大概一個禮拜左右可以做完，但老師的範例大多是 C，不喜歡寫 C 的朋友建議不要選，但總體來說是一門很涼爽的課。&lt;/li&gt;
   &lt;li&gt;Software Engineer for Scientists：這門課也是輕鬆的課，主要教很基礎的 Git Workflow 和用 Python 寫寫資料結構，只要目的是想讓讀基礎科學的同學能多會一些 CS 工具。主要是因為這學期在找全職工作，就選了這門涼課，推薦給缺學分也缺時間的人。&lt;/li&gt;
-  &lt;li&gt;Independent Study：因為我本身是讀 traditional MS，必須要修兩學期的 independent study，簡單來說就是找教授做研究或開發，他覺得你做得還可以的話就給你學分，適合想走 research 路線的同學，我基本上都在 &lt;a href=&quot;https://hiro-group.ronc.one/&quot;&gt;HIRO Group&lt;/a&gt; 工作，我非常喜歡老闆的專業度跟帶人風格，所以這兩學期過得很開心，如果之後有心想走機器人領域的同學也推薦可以跟 Alessandro 聊聊天並決定是不是要加入 HIRO。&lt;/li&gt;
+  &lt;li&gt;Independent Study（兩學期）：因為我本身是讀 traditional MS，必須要修兩學期的 independent study，簡單來說就是找教授做研究或開發，他覺得你做得還可以的話就給你學分，適合想走 research 路線的同學，我基本上都在 &lt;a href=&quot;https://hiro-group.ronc.one/&quot;&gt;HIRO Group&lt;/a&gt; 工作，我非常喜歡老闆的專業度跟帶人風格，所以這兩學期過得很開心，如果之後有心想走機器人領域的同學也推薦可以跟 Alessandro 聊聊天並決定是不是要加入 HIRO。&lt;/li&gt;
+  &lt;li&gt;Algorithmic Human-Robot Interaction：這門課是 Bradley Hayes 教授開的，內容從控制、規劃、強化學習到事件分類，很多領域都有涉及。講解的內容深入淺出，搭配老師選的論文來學習真的收穫蠻多的。這門課基本上沒有作業（只有很簡單的 ROS 小作業），主要是圍繞在 Paper Presentation、quiz (paper 內容)、還有最重要的 Final Project。Final Project 主要是做人機相關的各種題目都可以，老師也會參與一起幫忙完善題目和給技術支持，我覺得體驗算是很不錯的一門課。&lt;/li&gt;
+  &lt;li&gt;Foundations of Software Engineering：這門課再最後一學期，想說跟朋友一起修，順便學學寫網頁的相關技術。講師是業界工程師，很樂於幫我們看程式碼一起討論，算是我覺得這門課最好的地方。課程評分有幾個部份，Quiz、Essay、作業跟期末專題。Quiz 就是上課的內容，題目從講義出居多，都是很基本的題。Essay 也算是蠻有趣的一部份，主要是寫自己期末專題用到的 tech stack 相關內容，例如有用到 Django、React 之類的東西，就可以寫一些你覺得實用或有趣的介紹等等，一學期一組要寫 8 篇，涵蓋自己大部分的 tech stack。作業跟期末專題是合在一起的，作業裏面會要求 run iterations 去開發我們的網頁。總體來說不難，適合想學 web 開發的人。&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&quot;求職&quot;&gt;求職&lt;/h2&gt;
@@ -124,7 +76,57 @@
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;總結-cu-求職&quot;&gt;總結 CU 求職&lt;/h3&gt;
-&lt;p&gt;總結一下 CU 的話，要找工作還是有的，基本上很多大廠的面試都能拿到，但就是要排在排名好的學校後面，排名參照 us news ranking。實際上許多朋友最後都找到好工作，所以也不必太擔心 CU 的知名度。我自己的話算是比較偏向 Robotics 所以沒有投太多常見的科技公司。優點的話，找工作的話目前很大一部份需要依賴刷題，在這個需求上，CU 提供了不少涼課可以讓你一邊拿 A 一邊刷題準備面試，算是一個好選擇。但 location 可能就不如東西岸的大學那麼好，很多人可能會說 Boulder 愈來愈多公司設點，但說真的要找還是會先找名校畢業生，公司也都出得起機票飯店請人來面試，所以地點上 CU 真的沒佔到太多便宜，風景美倒是真的就是了 XD 整體上 CU 要在美國找找工作還是可以的，而且申請門檻也不高，小弟我托福不到 90，GRE 不到 315 都能來這邊的 CS，應該基本上不會太難申請，對在職準備且英文底子不太好的人可以算一個保底吧。如果有決心認真刷題，履歷不要寫得太差，面試時溝通清楚，我覺得找工作還是沒問題的，也希望這篇能幫助想就讀 CU CS MS 的同學。&lt;/p&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">轉眼間來美國讀書已經過了3個學期，這段時間真的學習到很多東西，但之前實在太忙碌了沒辦法一一紀錄，今天就來寫一篇在 CU Boulder 讀 CS Master 的心得吧！</summary></entry><entry><title type="html">86humanoid Rider</title><link href="http://localhost:4000/86Humanoid-Rider/" rel="alternate" type="text/html" title="86humanoid Rider" /><published>2017-03-21T00:00:00-06:00</published><updated>2017-03-21T00:00:00-06:00</updated><id>http://localhost:4000/86Humanoid-Rider</id><content type="html" xml:base="http://localhost:4000/86Humanoid-Rider/">&lt;p&gt;繼 2015 發表 86Hexapod 之後，隔了一年多終於迎來了另外一隻 3D 列印的機器人！這次的主角是一隻小型的兩足機器人，身高大約 25cm，機構全由 3D 列印件完成。&lt;/p&gt;
+&lt;p&gt;總結一下 CU 的話，要找工作還是有的，基本上很多大廠的面試都能拿到，但就是要排在排名好的學校後面，排名參照 us news ranking。實際上許多朋友最後都找到好工作，所以也不必太擔心 CU 的知名度。我自己的話算是比較偏向 Robotics 所以沒有投太多常見的科技公司。優點的話，找工作的話目前很大一部份需要依賴刷題，在這個需求上，CU 提供了不少涼課可以讓你一邊拿 A 一邊刷題準備面試，算是一個好選擇。但 location 可能就不如東西岸的大學那麼好，很多人可能會說 Boulder 愈來愈多公司設點，但說真的要找還是會先找名校畢業生，公司也都出得起機票飯店請人來面試，所以地點上 CU 真的沒佔到太多便宜，風景美倒是真的就是了 XD 整體上 CU 要在美國找找工作還是可以的，而且申請門檻也不高，小弟我托福不到 90，GRE 不到 315 都能來這邊的 CS，應該基本上不會太難申請，對在職準備且英文底子不太好的人可以算一個保底吧。如果有決心認真刷題，履歷不要寫得太差，面試時溝通清楚，我覺得找工作還是沒問題的，也希望這篇能幫助想就讀 CU CS MS 的同學。&lt;/p&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">轉眼間來美國讀書已經過了3個學期，這段時間真的學習到很多東西，但之前實在太忙碌了沒辦法一一紀錄，今天就來寫一篇在 CU Boulder 讀 CS Master 的心得吧！</summary></entry><entry><title type="html">Ultra Light Affect Recognition</title><link href="http://localhost:4000/Ultra-Light-Affect-Recognition/" rel="alternate" type="text/html" title="Ultra Light Affect Recognition" /><published>2020-04-13T00:00:00-06:00</published><updated>2020-04-13T00:00:00-06:00</updated><id>http://localhost:4000/Ultra-Light-Affect-Recognition</id><content type="html" xml:base="http://localhost:4000/Ultra-Light-Affect-Recognition/">&lt;p&gt;For aHRI class, we developed our face and emotion recognition &lt;a href=&quot;(https://github.com/Sayter99/face_recognition_ultra_light)&quot;&gt;ROS package&lt;/a&gt; based on pretrained models:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Face detection: &lt;a href=&quot;https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB&quot;&gt;Ultra-light face detector&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Face recognition: MobileFaceNet&lt;/li&gt;
+  &lt;li&gt;Emotion recognition:
+    &lt;ul&gt;
+      &lt;li&gt;Arch: VGG networks4&lt;/li&gt;
+      &lt;li&gt;Dataset: facial expression dataset (FER13 dataset)&lt;/li&gt;
+      &lt;li&gt;Accuracy: 65.93%&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We implemented two nodes for face recognition and emotion recognition. The face recognition node firstly detects human faces in images sent by an Astra Stereo S U3 camera, and conducts face recognition based on our trained face data. After recognition, the module outputs the face image along with the detected name and pixel location to the emotion recognition subscriber. Finally, the emotion recognition node processes the face images and outputs the result via MQTT to Austin, our Robotic Bat. There is an optional face distance measurement node in this package. It will compute the distance between the camera and the detected face based on the depth value of the detected face.&lt;/p&gt;
+
+&lt;h2 id=&quot;diagram&quot;&gt;Diagram&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;../assets/images/20200413/flowchart.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;rqt-graph&quot;&gt;RQT Graph&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Sayter99/face_recognition_ultra_light/master/media/rosgraph.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;result&quot;&gt;Result&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Sayter99/face_recognition_ultra_light/master/media/demo.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB&quot;&gt;Ultra-Light Fast Generic Face Detector&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/real-time-face-recognition-with-cpu-983d35cc3ec5&quot;&gt;real time face recognition with cpu&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mc.ai/emotion-recognition-using-keras/&quot;&gt;emotion recognition using keras&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Chen, Sheng, et al. “Mobilefacenets: Efficient cnns for accurate real-time face verification on mobile devices.” Chinese Conference on Biometric Recognition. Springer, Cham, 2018.&lt;/li&gt;
+  &lt;li&gt;Simonyan, Karen, and Andrew Zisserman. “Very deep convolutional networks for large-scale image recognition.” arXiv preprint arXiv:1409.1556 (2014).&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">For aHRI class, we developed our face and emotion recognition ROS package based on pretrained models: Face detection: Ultra-light face detector Face recognition: MobileFaceNet Emotion recognition: Arch: VGG networks4 Dataset: facial expression dataset (FER13 dataset) Accuracy: 65.93%</summary></entry><entry><title type="html">Boulder Go Resources</title><link href="http://localhost:4000/Boulder-GO-Resources/" rel="alternate" type="text/html" title="Boulder Go Resources" /><published>2020-02-10T00:00:00-07:00</published><updated>2020-02-10T00:00:00-07:00</updated><id>http://localhost:4000/Boulder-GO-Resources</id><content type="html" xml:base="http://localhost:4000/Boulder-GO-Resources/">&lt;p&gt;因為之前一直忙於找工作，沒能仔細研究 Boulder 的圍棋活動，這次就來介紹一下 Boulder 可以下棋的去處。&lt;/p&gt;
+
+&lt;h2 id=&quot;boulder-go-club&quot;&gt;&lt;a href=&quot;https://www.meetup.com/Boulder-Go-Club/&quot;&gt;Boulder GO Club&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;這是一個在 &lt;a href=&quot;https://www.colorado.edu/umc/&quot;&gt;CU Boulder UMC&lt;/a&gt; 每周三的聚會，時間從晚上六點到晚上十點結束，人數大概五六個人，實力分布挺廣的，級位段位都有，地點也非常方便就在學校裡面，算是一個不錯的去處。&lt;/p&gt;
+
+&lt;h2 id=&quot;go-club-for-kids--teens&quot;&gt;&lt;a href=&quot;https://www.boulderdowntown.com/do/go-club-for-kids-and-teens4&quot;&gt;Go Club for Kids &amp;amp; Teens&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;這是在 &lt;a href=&quot;https://www.boulderdowntown.com/go/boulder-public-library&quot;&gt;Boulder Public Libaray&lt;/a&gt; 每個禮拜天下午兩點到下午六點的活動，有人會熱心的推廣圍棋教小朋友下棋，想對弈的話也有厲害的人可以互相下，圖書館環境也非常好，是假日休閒下期的好選擇‧。&lt;/p&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">因為之前一直忙於找工作，沒能仔細研究 Boulder 的圍棋活動，這次就來介紹一下 Boulder 可以下棋的去處。</summary></entry><entry><title type="html">飛禽島的不敗少年</title><link href="http://localhost:4000/%E9%A3%9B%E7%A6%BD%E5%B3%B6%E7%9A%84%E4%B8%8D%E6%95%97%E5%B0%91%E5%B9%B4/" rel="alternate" type="text/html" title="飛禽島的不敗少年" /><published>2019-12-19T00:00:00-07:00</published><updated>2019-12-19T00:00:00-07:00</updated><id>http://localhost:4000/%E9%A3%9B%E7%A6%BD%E5%B3%B6%E7%9A%84%E4%B8%8D%E6%95%97%E5%B0%91%E5%B9%B4</id><content type="html" xml:base="http://localhost:4000/%E9%A3%9B%E7%A6%BD%E5%B3%B6%E7%9A%84%E4%B8%8D%E6%95%97%E5%B0%91%E5%B9%B4/">&lt;p&gt;昨天晚上，看著小李下完退役賽的倒數第二盤，突然有感而發。回憶起來，自己會來到美國也跟小李與 AlphaGo 的對局有點關聯，對於棋魂中所表達的傳承，似乎又有了新的體會。趁著這次紀錄一下這幾年小李與 AI 帶給我的轉折。&lt;/p&gt;
+
+&lt;h2 id=&quot;李世石&quot;&gt;李世石&lt;/h2&gt;
+&lt;h3 id=&quot;體制&quot;&gt;體制&lt;/h3&gt;
+&lt;p&gt;韓國的誑妄少年李世石，又稱是飛禽島的不敗少年，相信不少棋迷對他是又愛又恨。還記得當年大李李昌鎬稱霸國際棋壇時，小李還這麼說過：我的對手只有李昌鎬歐爸，實力我領先。當時實在是是覺得又帥又敗人品 XD 也有這麼一說是，誑妄的高永夏的參考原型是小李，真假這就不得而知了。而如今小李都要退役了，時間流逝的速度真的快到難以想像。他不僅僅對自己的實力展現高度的自信，同時也非常有想法，不參加常規賽，退出韓國棋院等等衝撞體制的行為，當時深受儒家思想影響的我，實在很難細細的思考跟體會他的想法。從李大師身上，只能說我學習到對於自己生活的這個世界，要更有勇氣去題出問題，去改變一些不合理的事情。當如今沒有什麼職業棋手願意與 AI 對戰的同時，他卻又挺身而出與 AI 下讓子棋作為退役賽，職業九段被讓兩子的比賽，以往絕對是難以想像。這一次又一次不同的想法，讓我愈來愈有勇氣去思考不同的可能，或許世俗的價值觀也是一種枷鎖吧。&lt;/p&gt;
+
+&lt;h3 id=&quot;重來一次&quot;&gt;重來一次&lt;/h3&gt;
+&lt;p&gt;小李在一次訪談中談到重來一次的話，還會不會選擇圍棋人生。他回答說：我已經體驗了圍棋人生，就想過別的人生。圍棋人生呀，輸棋的時候實在太痛苦了。雖然我的棋力並不強，但對於這句話也是有深深的體會，用盡全力輸了棋，對自己的否定感非常的強烈，連帶下一次遇到勁敵，都會產生怯戰的想法，導致自己慢慢的害怕挑戰。只能說小李嘴上這麼說，無論面對 AlphaGo 的頑強應戰還是選擇與 AI 完成自己的退役戰，都完美的展現出自己對壓力、對戰強敵時的勇氣與氣魄，能做到這種程度，真的非常值得學習。面對壓力的方式有無數種，或許李大師骨子裡把他看做是一種樂趣也不一定 XD&lt;/p&gt;
+
+&lt;h2 id=&quot;ai&quot;&gt;AI&lt;/h2&gt;
+&lt;p&gt;我還記得第一次人機大戰，2016年3月12號，李大師連輸兩盤，我在公司看著直播思考，究竟發生了什麼事情。許多年前我在大學的時候，總是跟人家說電腦離職業還差得遠，連我都下不過。直到老闆跑到我的座位旁邊跟我說，別想了，人贏不了機器的。還安慰我他們用了多少 GPU 才贏什麼的..但說真的我難以從複雜的心情裡走出來，一來是老闆居然上班也在看？喔不我是說，我有點生氣為何自己的刻板印象限制了自己的想像力，就像一道雷打在自己身上一樣，我決心開始要更認真的去理解這個世界，對那個時候的我來說，倒不是想去學 Deep Learning 什麼的，而是我開始覺得，這個世界有更多更多，多到難以想像有趣的事情，其實一直以來都是我自己不夠用心去體會而已，我非常明白自己需要轉變，或許出國留學能想清楚些什麼吧，所以我就到美國了。到美國後這也繼續影響著我，對我學習的態度、對一門學問的看法都有深遠的影響，也希望我對探索的熱情繼續這樣的維持下去。&lt;/p&gt;
+
+&lt;h2 id=&quot;傳承&quot;&gt;傳承&lt;/h2&gt;
+&lt;p&gt;進藤光最後回答自己為什麼下棋，為了連接遙遠的過去與遙遠的未來。這世界上的人事物，無形之中或許都影響著彼此，帶著某些啟發，某些人的信念，某些事情給你的動力、熱情，我們一直都傳承著些什麼，未來，我也會繼續把自己覺得有價值的經驗、想法分享出去。謝謝你們，一直在圍棋界努力的棋士、棋迷還有科學家們 ：）&lt;/p&gt;</content><author><name>Chi-Ju Wu</name></author><summary type="html">昨天晚上，看著小李下完退役賽的倒數第二盤，突然有感而發。回憶起來，自己會來到美國也跟小李與 AlphaGo 的對局有點關聯，對於棋魂中所表達的傳承，似乎又有了新的體會。趁著這次紀錄一下這幾年小李與 AI 帶給我的轉折。</summary></entry><entry><title type="html">86humanoid Rider</title><link href="http://localhost:4000/86Humanoid-Rider/" rel="alternate" type="text/html" title="86humanoid Rider" /><published>2017-03-21T00:00:00-06:00</published><updated>2017-03-21T00:00:00-06:00</updated><id>http://localhost:4000/86Humanoid-Rider</id><content type="html" xml:base="http://localhost:4000/86Humanoid-Rider/">&lt;p&gt;繼 2015 發表 86Hexapod 之後，隔了一年多終於迎來了另外一隻 3D 列印的機器人！這次的主角是一隻小型的兩足機器人，身高大約 25cm，機構全由 3D 列印件完成。&lt;/p&gt;
 
 &lt;h2 id=&quot;the-birth-of-86humanoid-rider&quot;&gt;The Birth of 86Humanoid Rider&lt;/h2&gt;
 &lt;p&gt;Rider 誕生在一個月黑風高的夜晚（疑？）咳，其實看著 Plen2 和 miniplan 機器人的好成果，讓我們也燃起了製作 3D-printable Humanoid 的決心，順便測試我們的工具鏈是不是足夠拿來開發兩足機器人。因此便開始著手研究兩足機器人，請我們厲害的機構工程師們絞盡腦汁設計出 21 軸的小人形。在這次商討的過程中，有幾次我沒把詳細的規格想得徹底，造成大家的修改真是抱歉 O__Q..，總而言之，言而總之，Rider 的機構還是順利的產出了！&lt;/p&gt;
