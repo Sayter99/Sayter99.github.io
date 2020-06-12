@@ -31,7 +31,7 @@
 
 
 
-  <meta property="article:published_time" content="2015-11-07T00:00:00-07:00">
+  <meta property="article:published_time" content="2015-11-07T00:00:00-08:00">
 
 
 
@@ -189,7 +189,7 @@
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Boulder, CO</span>
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Mateo, CA</span>
         </li>
       
 
@@ -504,11 +504,11 @@
 <p>接著我們就挑些重點來說明吧！</p>
 
 <ul>
-  <li><code class="highlighter-rouge">#include &lt;sys/types.h&gt;</code>：types.h 定義了許多系統指令需要的資料型別，也包含了 socket.h 和 in.h 所需要的。</li>
-  <li><code class="highlighter-rouge">#include &lt;sys/socket.h&gt;</code>：定義了 <em>socket</em> 所需要的結構。</li>
-  <li><code class="highlighter-rouge">#include &lt;netinet/in.h&gt;</code>：包含 <em>internet address domain</em> 所需要的常數與結構。</li>
-  <li><code class="highlighter-rouge">void error(char *msg){...}</code>：當系統指令呼叫失敗時使用，會印出錯誤訊息並結束程式。<a href="http://www.linuxhowtos.org/data/6/perror.txt">更深入了解 perror</a>。</li>
-  <li><code class="highlighter-rouge">int sockfd, newsockfd, portno, clilen, n</code>：
+  <li><code class="language-plaintext highlighter-rouge">#include &lt;sys/types.h&gt;</code>：types.h 定義了許多系統指令需要的資料型別，也包含了 socket.h 和 in.h 所需要的。</li>
+  <li><code class="language-plaintext highlighter-rouge">#include &lt;sys/socket.h&gt;</code>：定義了 <em>socket</em> 所需要的結構。</li>
+  <li><code class="language-plaintext highlighter-rouge">#include &lt;netinet/in.h&gt;</code>：包含 <em>internet address domain</em> 所需要的常數與結構。</li>
+  <li><code class="language-plaintext highlighter-rouge">void error(char *msg){...}</code>：當系統指令呼叫失敗時使用，會印出錯誤訊息並結束程式。<a href="http://www.linuxhowtos.org/data/6/perror.txt">更深入了解 perror</a>。</li>
+  <li><code class="language-plaintext highlighter-rouge">int sockfd, newsockfd, portno, clilen, n</code>：
     <ul>
       <li>sockfd 與 newsockfd 為 file descriptor，每個執行中的程序有一個 file descriptor table，這張表包含了指向所有開啟的 i/o stream，例如最常見的 stdin、stdout、stderr。<a href="http://www.linuxhowtos.org/data/6/fd.txt">更詳盡的 file descriptor</a>。而這兩個變數是用來儲存 socket() 與 accept() 函數的回傳值。</li>
       <li>portno 用來存 server 在 bind() 時所用的 port number。</li>
@@ -516,8 +516,8 @@
       <li>n 用來存 read() 與 write() 的回傳值，表示讀或寫了多少字元。</li>
     </ul>
   </li>
-  <li><code class="highlighter-rouge">char buffer[256]</code>：Server 讀進來的字元將會存在此 buffer。</li>
-  <li><code class="highlighter-rouge">struct sockaddr_in serv_addr, cli_addr</code>：sockaddr_in 為儲存網路位址的資料結構，定義在 &lt;netinet/in.h&gt;，其定義如下
+  <li><code class="language-plaintext highlighter-rouge">char buffer[256]</code>：Server 讀進來的字元將會存在此 buffer。</li>
+  <li><code class="language-plaintext highlighter-rouge">struct sockaddr_in serv_addr, cli_addr</code>：sockaddr_in 為儲存網路位址的資料結構，定義在 &lt;netinet/in.h&gt;，其定義如下
     <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">sockaddr_in</span>
 <span class="p">{</span>
 <span class="kt">short</span>   <span class="n">sin_family</span><span class="p">;</span> <span class="cm">/* must be AF_INET */</span>
@@ -528,7 +528,7 @@
 </code></pre></div>    </div>
     <p>其中，in_addr 也是定義在同個檔案的結構，僅包含一個 unsigned long 變數 s_addr。而 serv_addr 與 cli_addr 各是用來儲存 server 與 client 的位址。</p>
   </li>
-  <li><code class="highlighter-rouge">sockfd = socket(AF_INET, SOCK_STREAM, 0)</code>：socket() 會創建一個新的 socket。<a href="http://www.linuxhowtos.org/data/6/socket.txt">The socket() man page</a>。
+  <li><code class="language-plaintext highlighter-rouge">sockfd = socket(AF_INET, SOCK_STREAM, 0)</code>：socket() 會創建一個新的 socket。<a href="http://www.linuxhowtos.org/data/6/socket.txt">The socket() man page</a>。
     <ul>
       <li>第一個參數為 address domain，若是使用 Unix domain 要使用 AF_UNIX，而 Internet domain 的話則像範例中一樣使用 AF_INET。</li>
       <li>第二個參數為 socket type，此處採用 SOCK_STREAM，為連續的字元流。若要使用 datagram 的方式，要改用 SOCK_DGRAM。</li>
@@ -536,23 +536,23 @@
       <li>回傳值為 file descriptor table 的某一個入口，若失敗則回傳 -1。</li>
     </ul>
   </li>
-  <li><code class="highlighter-rouge">bzero((char *) &amp;serv_addr, sizeof(serv_addr))</code>：bzero() 會將 buffer 內的值全部設定為 0。第一個參數為 buffer 位址，第二個參數為 buffer 大小。</li>
-  <li><code class="highlighter-rouge">portno = atoi(argv[1])</code>：把輸入的 port number 轉成數字。</li>
-  <li><code class="highlighter-rouge">serv_addr.sin_family = AF_INET</code>：開始設定 serv_addr，首先第一個要設定的為 sin_family，意思為 address family，設定為 AF_INET。</li>
-  <li><code class="highlighter-rouge">serv_addr.sin_port = htons(protno)</code>：接著設定 port number，值得注意的是因為網路上使用 big endian，而大部分電腦採用 little endian，所以要透過 <a href="http://www.linuxhowtos.org/data/6/byteorder.html">htons()</a> 這個函數幫忙轉換 port number。</li>
-  <li><code class="highlighter-rouge">serv_addr.sin_addr.s_addr = INADDR_ANY</code>：設定 IP address，此處通常為執行 server 那台機器的 IP 位址，可以透過 INADDR_ANY 這個變數取得。</li>
-  <li><code class="highlighter-rouge">if(bind(sockfd, (struct sockaddr *)&amp;serv_addr, sizeof(serv_addr)) &lt; 0) error("...")</code>：將剛剛用 socket() 建立的 socket bind 到 serv_addr 這個位址，成功回傳 0，失敗回傳 -1。<a href="http://www.linuxhowtos.org/data/6/bind.txt">bind()</a>。</li>
-  <li><code class="highlighter-rouge">liten(sockfd, 5)</code>：這裡比較值得注意的是第二個參數，這是指 blocking queue 的大小，當程式在處理某個連線時，允許等待的連線上限。而 5 為大部分系統所允許的上限。<a href="http://www.linuxhowtos.org/data/6/listen.txt">listen() man page</a>。</li>
-  <li><code class="highlighter-rouge">newsockfd = accept(sockfd, (struct sockaddr*)&amp;cli_addr, &amp;clilen);</code>：accept() 會 block 整個程式直到有 client 連上。回傳值為一個新的 file descriptor，而所有的通訊都要在這個 file descriptor 完成。第二個參數為一個 client 位址的參考指標。<a href="http://www.linuxhowtos.org/data/6/accept.txt">accept() man page</a>。</li>
-  <li><code class="highlighter-rouge">n = read(newsockfd, buffer, 255)</code>：從剛剛 accept() 回傳的 file descriptor 來將資料讀進 buffer 之中。<a href="http://www.linuxhowtos.org/data/6/read.txt">read() man page</a>。</li>
-  <li><code class="highlighter-rouge">n = write(newsockfd, "...", ...)</code>：<a href="http://www.linuxhowtos.org/data/6/write.txt">write() man page</a>。</li>
+  <li><code class="language-plaintext highlighter-rouge">bzero((char *) &amp;serv_addr, sizeof(serv_addr))</code>：bzero() 會將 buffer 內的值全部設定為 0。第一個參數為 buffer 位址，第二個參數為 buffer 大小。</li>
+  <li><code class="language-plaintext highlighter-rouge">portno = atoi(argv[1])</code>：把輸入的 port number 轉成數字。</li>
+  <li><code class="language-plaintext highlighter-rouge">serv_addr.sin_family = AF_INET</code>：開始設定 serv_addr，首先第一個要設定的為 sin_family，意思為 address family，設定為 AF_INET。</li>
+  <li><code class="language-plaintext highlighter-rouge">serv_addr.sin_port = htons(protno)</code>：接著設定 port number，值得注意的是因為網路上使用 big endian，而大部分電腦採用 little endian，所以要透過 <a href="http://www.linuxhowtos.org/data/6/byteorder.html">htons()</a> 這個函數幫忙轉換 port number。</li>
+  <li><code class="language-plaintext highlighter-rouge">serv_addr.sin_addr.s_addr = INADDR_ANY</code>：設定 IP address，此處通常為執行 server 那台機器的 IP 位址，可以透過 INADDR_ANY 這個變數取得。</li>
+  <li><code class="language-plaintext highlighter-rouge">if(bind(sockfd, (struct sockaddr *)&amp;serv_addr, sizeof(serv_addr)) &lt; 0) error("...")</code>：將剛剛用 socket() 建立的 socket bind 到 serv_addr 這個位址，成功回傳 0，失敗回傳 -1。<a href="http://www.linuxhowtos.org/data/6/bind.txt">bind()</a>。</li>
+  <li><code class="language-plaintext highlighter-rouge">liten(sockfd, 5)</code>：這裡比較值得注意的是第二個參數，這是指 blocking queue 的大小，當程式在處理某個連線時，允許等待的連線上限。而 5 為大部分系統所允許的上限。<a href="http://www.linuxhowtos.org/data/6/listen.txt">listen() man page</a>。</li>
+  <li><code class="language-plaintext highlighter-rouge">newsockfd = accept(sockfd, (struct sockaddr*)&amp;cli_addr, &amp;clilen);</code>：accept() 會 block 整個程式直到有 client 連上。回傳值為一個新的 file descriptor，而所有的通訊都要在這個 file descriptor 完成。第二個參數為一個 client 位址的參考指標。<a href="http://www.linuxhowtos.org/data/6/accept.txt">accept() man page</a>。</li>
+  <li><code class="language-plaintext highlighter-rouge">n = read(newsockfd, buffer, 255)</code>：從剛剛 accept() 回傳的 file descriptor 來將資料讀進 buffer 之中。<a href="http://www.linuxhowtos.org/data/6/read.txt">read() man page</a>。</li>
+  <li><code class="language-plaintext highlighter-rouge">n = write(newsockfd, "...", ...)</code>：<a href="http://www.linuxhowtos.org/data/6/write.txt">write() man page</a>。</li>
 </ul>
 
 <h2 id="client-code">Client Code</h2>
 <p>有部分程式碼已經在上面介紹過，所以可能會跳過比較多。</p>
 <ul>
-  <li><code class="highlighter-rouge">#include &lt;netdb.h&gt;</code>：定義了 hostent 這個結構，之後會有更詳細的說明。</li>
-  <li><code class="highlighter-rouge">struct hostent *server</code>：hostent 結構內容
+  <li><code class="language-plaintext highlighter-rouge">#include &lt;netdb.h&gt;</code>：定義了 hostent 這個結構，之後會有更詳細的說明。</li>
+  <li><code class="language-plaintext highlighter-rouge">struct hostent *server</code>：hostent 結構內容
     <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span>  <span class="n">hostent</span>
 <span class="p">{</span>
 <span class="kt">char</span>    <span class="o">*</span><span class="n">h_name</span><span class="p">;</span>        <span class="cm">/* official name of host */</span>
@@ -571,7 +571,7 @@
       <li>h_addr_list：一個指向網路位址列表的指標。</li>
     </ul>
   </li>
-  <li><code class="highlighter-rouge">server = gethostbyname(argv[1])</code>：gethostbyname() 會回傳一個 hostent 指標，儲存了以 “argv[1]” 為名之主機的資訊。而 <code class="highlighter-rouge">char *h_addr</code> 包含了 IP address。若回傳值為 NULL，代表找不到這台機器。<a href="http://www.linuxhowtos.org/data/6/gethostbyname.txt">gethostbyname() man page</a>。</li>
+  <li><code class="language-plaintext highlighter-rouge">server = gethostbyname(argv[1])</code>：gethostbyname() 會回傳一個 hostent 指標，儲存了以 “argv[1]” 為名之主機的資訊。而 <code class="language-plaintext highlighter-rouge">char *h_addr</code> 包含了 IP address。若回傳值為 NULL，代表找不到這台機器。<a href="http://www.linuxhowtos.org/data/6/gethostbyname.txt">gethostbyname() man page</a>。</li>
   <li>接著我們會拿 server 中的資訊填到 serv_addr 裡頭：
     <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bzero</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serv_addr</span><span class="p">));</span>
 <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
@@ -580,20 +580,20 @@
     <span class="n">server</span><span class="o">-&gt;</span><span class="n">h_length</span><span class="p">);</span>
 <span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">portno</span><span class="p">);</span>
 </code></pre></div>    </div>
-    <p><code class="highlighter-rouge">void bcopy(char* s1, char* s2, int length)</code>會將 s1 內 length bytes 的資料複製到 s2 中。</p>
+    <p><code class="language-plaintext highlighter-rouge">void bcopy(char* s1, char* s2, int length)</code>會將 s1 內 length bytes 的資料複製到 s2 中。</p>
   </li>
-  <li><code class="highlighter-rouge">if(connect(sockfd, &amp;serv_addr, sizeof(serv_addr)) &lt; 0) ...</code>：connect() 是 client 用來與 server 建立連線用的，包含了三個參數，第一個參數為 socket file descriptor，第二個參數為欲連線的 server 位址，第三個參數為 server 位址的 size。<a href="http://www.linuxhowtos.org/data/6/connect.txt">connect() man page</a>。</li>
+  <li><code class="language-plaintext highlighter-rouge">if(connect(sockfd, &amp;serv_addr, sizeof(serv_addr)) &lt; 0) ...</code>：connect() 是 client 用來與 server 建立連線用的，包含了三個參數，第一個參數為 socket file descriptor，第二個參數為欲連線的 server 位址，第三個參數為 server 位址的 size。<a href="http://www.linuxhowtos.org/data/6/connect.txt">connect() man page</a>。</li>
 </ul>
 
 <h1 id="ethernet-library-of-intel-edison">Ethernet Library of Intel Edison</h1>
 <p>到這邊算是初步了解 Linux Socket Programming 了，雖然還有非常多東西可以深入研究，例如使用 fork() 讓 server 可以處理更多連線，解決衍生而來的 zombie problem；研究 UDP、Unix Domain 等等。不過呢，基本上要看懂愛迪生的 Ethernet 函式庫已經不是大問題了！接著大家可以先取得愛迪生的原始碼，去<a href="https://software.intel.com/en-us/iot/hardware/edison/downloads">官方網站</a>下載 Developer Kit，安裝好後開啟 Arduino IDE，選擇 Board-&gt;Intel Edison，接著開啟編譯資訊並編譯，就能找出原始碼位置了！下面我就稍微補充一下前面沒有提到的函式與結構。</p>
 
 <ul>
-  <li><code class="highlighter-rouge">&lt;sys/ioctl.h&gt;, &lt;net/if.h&gt;</code>：Linux 常見的網路裝置操作都是以 ifreq 結構為參數，例如 <code class="highlighter-rouge">ioctl(fd, 各種屬性操作 , &amp;ifr)</code></li>
-  <li><code class="highlighter-rouge">&lt;ifaddrs.h&gt;</code>：取得 local ip -&gt; <code class="highlighter-rouge">getifaddrs(&amp;ifaddr)</code>。</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;sys/ioctl.h&gt;, &lt;net/if.h&gt;</code>：Linux 常見的網路裝置操作都是以 ifreq 結構為參數，例如 <code class="language-plaintext highlighter-rouge">ioctl(fd, 各種屬性操作 , &amp;ifr)</code></li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;ifaddrs.h&gt;</code>：取得 local ip -&gt; <code class="language-plaintext highlighter-rouge">getifaddrs(&amp;ifaddr)</code>。</li>
   <li>Edison 的 Dhcp、Dns 沒有實做任何東西，有修改 core/IPAddress.h。</li>
   <li>EthernetClient 沒有實做 peek()，user 需要的話可以自己弄一個。</li>
-  <li>EthernetClient 中 availabe() 的實做是使用 poll。在這邊要先了解一個結構 <code class="highlighter-rouge">struct pollfd{int fd; short event; short revents};</code>，poll 類似 select，用來等待某個事件發生，使用前先設定好 pollfd 結構，此處 fd = socket、events = POLLIN（當 data 進來）、revents = 0。設定好之後可以利用指令 <code class="highlighter-rouge">ret = poll(&amp;ufds, 1, 5000)</code> 第一個參數為指向 pollfd 列表的指標，第二個參數為 pollfd 的總數，第三個參數為 timeout。當 POLLIN 這個事件真的發生時 <code class="highlighter-rouge">if(ret &gt; 0 &amp;&amp; ufds.revent &amp; POLLIN)</code> 成立，就可以用 <code class="highlighter-rouge">ret = ioctl(_sock, FIONREAD, &amp;byte)</code> 來得知 socket 中有多少資料要讀。</li>
+  <li>EthernetClient 中 availabe() 的實做是使用 poll。在這邊要先了解一個結構 <code class="language-plaintext highlighter-rouge">struct pollfd{int fd; short event; short revents};</code>，poll 類似 select，用來等待某個事件發生，使用前先設定好 pollfd 結構，此處 fd = socket、events = POLLIN（當 data 進來）、revents = 0。設定好之後可以利用指令 <code class="language-plaintext highlighter-rouge">ret = poll(&amp;ufds, 1, 5000)</code> 第一個參數為指向 pollfd 列表的指標，第二個參數為 pollfd 的總數，第三個參數為 timeout。當 POLLIN 這個事件真的發生時 <code class="language-plaintext highlighter-rouge">if(ret &gt; 0 &amp;&amp; ufds.revent &amp; POLLIN)</code> 成立，就可以用 <code class="language-plaintext highlighter-rouge">ret = ioctl(_sock, FIONREAD, &amp;byte)</code> 來得知 socket 中有多少資料要讀。</li>
   <li>EthernetServer 中的 accept() 實做與 available() 類似，當有 client 連進來時（一樣是 POLLIN 事件）會呼叫 accept() 並將連線存到 pclients 陣列中沒被使用的位置。</li>
   <li>EthernetServer 中的 available() 是回傳已經連線的其中一個 client，不要與 EthernetClient 中的 available() 搞混了。</li>
   <li>UDP server 不用 listen()、accept()，只需要 bind()。 Client 不用 connect()。 SOCK_STREAM 改為 SOCK_DGRAM。 不使用 read()、write() 改用 sendto()、recvfrom()。EthernetUDP 沒有實做 peek()、remoteIP()、remotePORT()；flush() 有機率失敗。</li>
@@ -611,7 +611,7 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-11-07T00:00:00-07:00">November 07, 2015</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-11-07T00:00:00-08:00">November 07, 2015</time></p>
         
       </footer>
 

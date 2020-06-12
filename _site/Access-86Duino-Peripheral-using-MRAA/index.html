@@ -31,7 +31,7 @@
 
 
 
-  <meta property="article:published_time" content="2016-02-18T00:00:00-07:00">
+  <meta property="article:published_time" content="2016-02-18T00:00:00-08:00">
 
 
 
@@ -189,7 +189,7 @@
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Boulder, CO</span>
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Mateo, CA</span>
         </li>
       
 
@@ -342,8 +342,8 @@
 <h3 id="analog-read-aio">Analog Read (aio)</h3>
 <p>讀取 A0 腳的值：</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mraa'</span><span class="p">);</span> <span class="c1">//require mraa</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'MRAA Version: '</span> <span class="o">+</span> <span class="nx">m</span><span class="p">.</span><span class="nx">getVersion</span><span class="p">());</span> <span class="c1">//write the mraa version to the console</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mraa</span><span class="dl">'</span><span class="p">);</span> <span class="c1">//require mraa</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">MRAA Version: </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">m</span><span class="p">.</span><span class="nx">getVersion</span><span class="p">());</span> <span class="c1">//write the mraa version to the console</span>
 
 <span class="kd">var</span> <span class="nx">analogPin0</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Aio</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">//setup access analog inpuput pin 0</span>
 <span class="kd">var</span> <span class="nx">analogValue</span> <span class="o">=</span> <span class="nx">analogPin0</span><span class="p">.</span><span class="nx">read</span><span class="p">();</span> <span class="c1">//read the value of the analog pin</span>
@@ -355,9 +355,9 @@
 <h3 id="blink-gpio">Blink (gpio)</h3>
 <p>經典範例，閃爍 pin 13 的 LED 燈。</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mraa'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mraa</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'MRAA Version: '</span> <span class="o">+</span> <span class="nx">m</span><span class="p">.</span><span class="nx">getVersion</span><span class="p">());</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">MRAA Version: </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">m</span><span class="p">.</span><span class="nx">getVersion</span><span class="p">());</span>
 
 <span class="kd">var</span> <span class="nx">myLed</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Gpio</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span>
 <span class="nx">myLed</span><span class="p">.</span><span class="nx">dir</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">DIR_OUT</span><span class="p">);</span>
@@ -376,7 +376,7 @@
 <h3 id="rm-g144-i2c">RM-G144 (i2c)</h3>
 <p>此範例會讀取 RM-G144 sensor 中 compass HCM5843 的數值，在移動晶片時數值會跟著變化。</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mraa'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mraa</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">x</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">m</span><span class="p">.</span><span class="nx">I2c</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 <span class="nx">x</span><span class="p">.</span><span class="nx">address</span><span class="p">(</span><span class="mh">0x1E</span><span class="p">);</span>
 <span class="nx">x</span><span class="p">.</span><span class="nx">writeReg</span><span class="p">(</span><span class="mh">0x02</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">);</span>
@@ -393,9 +393,9 @@
 <span class="kd">function</span> <span class="nx">periodicActivity</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">readBytesReg</span><span class="p">(</span><span class="mh">0x03</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'X axis: '</span><span class="p">,</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">?</span> <span class="p">(((</span><span class="o">~</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span> <span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Y axis: '</span><span class="p">,</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">?</span> <span class="p">(((</span><span class="o">~</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">3</span><span class="p">]):</span> <span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Z axis: '</span><span class="p">,</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">?</span> <span class="p">(((</span><span class="o">~</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">5</span><span class="p">]):</span> <span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">5</span><span class="p">]);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">X axis: </span><span class="dl">'</span><span class="p">,</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">?</span> <span class="p">(((</span><span class="o">~</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span> <span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Y axis: </span><span class="dl">'</span><span class="p">,</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">?</span> <span class="p">(((</span><span class="o">~</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">3</span><span class="p">]):</span> <span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Z axis: </span><span class="dl">'</span><span class="p">,</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">?</span> <span class="p">(((</span><span class="o">~</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="nx">d</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">5</span><span class="p">]):</span> <span class="p">(</span><span class="nx">d</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">[</span><span class="mi">5</span><span class="p">]);</span>
     <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">periodicActivity</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
 <span class="p">}</span>
 
@@ -406,7 +406,7 @@
 <h3 id="manipulate-sg-90-pwm">Manipulate SG-90 (pwm)</h3>
 <p>PWM 能在有硬體 PWM 的腳位上輸出，此範例我選擇 86Duino One 中的 pin 29，讓馬達 SG-90 不斷旋轉。</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mraa'</span><span class="p">)</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mraa</span><span class="dl">'</span><span class="p">)</span>
 
 <span class="nx">x</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Pwm</span><span class="p">(</span><span class="mi">29</span><span class="p">)</span>
 <span class="nx">x</span><span class="p">.</span><span class="nx">period_ms</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
@@ -430,7 +430,7 @@
 <h3 id="max7219-spi">MAX7219 (spi)</h3>
 <p>透過 spi 來操作 LED 陣列 MAX7219。</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mraa'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mraa</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="kd">function</span> <span class="nx">pausecomp</span><span class="p">(</span><span class="nx">millis</span><span class="p">)</span>
 <span class="p">{</span>
@@ -483,36 +483,36 @@
 </code></pre></div></div>
 
 <h3 id="serial1-uart">Serial1 (uart)</h3>
-<p>此程式使用 Serial1 來與電腦的 COM port 溝通，我是使用 TTL 轉 USB 線，電腦使用 putty，Baudrate 為 115200。執行後會先輸出 <code class="highlighter-rouge">test</code>，接著可以輸入要傳給 Serial1 的訊息，然後會進入第二次類似的流程，先出現 <code class="highlighter-rouge">2nd test</code>，接著可以寫訊息給 Serial1。</p>
+<p>此程式使用 Serial1 來與電腦的 COM port 溝通，我是使用 TTL 轉 USB 線，電腦使用 putty，Baudrate 為 115200。執行後會先輸出 <code class="language-plaintext highlighter-rouge">test</code>，接著可以輸入要傳給 Serial1 的訊息，然後會進入第二次類似的流程，先出現 <code class="language-plaintext highlighter-rouge">2nd test</code>，接著可以寫訊息給 Serial1。</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mraa'</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'MRAA Version: '</span> <span class="o">+</span> <span class="nx">m</span><span class="p">.</span><span class="nx">getVersion</span><span class="p">());</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mraa</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">MRAA Version: </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">m</span><span class="p">.</span><span class="nx">getVersion</span><span class="p">());</span>
 <span class="nx">u</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">m</span><span class="p">.</span><span class="nx">Uart</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Note: connect Rx and Tx of UART with a wire before use"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Note: connect Rx and Tx of UART with a wire before use</span><span class="dl">"</span><span class="p">);</span>
 
 <span class="kd">function</span> <span class="nx">sleep</span><span class="p">(</span><span class="nx">delay</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">delay</span> <span class="o">+=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">();</span>
   <span class="k">while</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">&lt;</span> <span class="nx">delay</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Set UART parameters"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Set UART parameters</span><span class="dl">"</span><span class="p">);</span>
 
 <span class="nx">u</span><span class="p">.</span><span class="nx">setBaudRate</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
 <span class="nx">u</span><span class="p">.</span><span class="nx">setMode</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 <span class="nx">u</span><span class="p">.</span><span class="nx">setFlowcontrol</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 <span class="nx">sleep</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"First write-read circle:"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">First write-read circle:</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="nx">u</span><span class="p">.</span><span class="nx">writeStr</span><span class="p">(</span><span class="s2">"test</span><span class="err">\</span><span class="s2">n"</span><span class="p">);</span>
+<span class="nx">u</span><span class="p">.</span><span class="nx">writeStr</span><span class="p">(</span><span class="dl">"</span><span class="s2">test</span><span class="se">\n</span><span class="dl">"</span><span class="p">);</span>
 <span class="nx">sleep</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">readStr</span><span class="p">(</span><span class="mi">6</span><span class="p">));</span>
 <span class="nx">sleep</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Second write-read circle:"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Second write-read circle:</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="nx">u</span><span class="p">.</span><span class="nx">writeStr</span><span class="p">(</span><span class="s2">"2nd test</span><span class="err">\</span><span class="s2">n"</span><span class="p">);</span>
+<span class="nx">u</span><span class="p">.</span><span class="nx">writeStr</span><span class="p">(</span><span class="dl">"</span><span class="s2">2nd test</span><span class="se">\n</span><span class="dl">"</span><span class="p">);</span>
 <span class="nx">sleep</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">u</span><span class="p">.</span><span class="nx">readStr</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
 </code></pre></div></div>
@@ -522,23 +522,23 @@
 
 <h3 id="cc">C/C++</h3>
 <p>有使用 MRAA 函式庫的程式完成後，編譯時 link MRAA library 即可。
-<code class="highlighter-rouge">gcc/g++ source.c/source.cpp -lmraa -o output</code></p>
+<code class="language-plaintext highlighter-rouge">gcc/g++ source.c/source.cpp -lmraa -o output</code></p>
 
 <h3 id="python">Python</h3>
 <p>將 MRAA package 所安裝的路徑加入 PYTHONPATH 之中，以 L86duntu 為例：
-<code class="highlighter-rouge">export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages</code>
-之後以 <code class="highlighter-rouge">python source.py</code> 來執行程式即可。</p>
+<code class="language-plaintext highlighter-rouge">export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages</code>
+之後以 <code class="language-plaintext highlighter-rouge">python source.py</code> 來執行程式即可。</p>
 
 <h3 id="javascript">JavaScript</h3>
 <p>只要將 MRAA module 加入 Node.js 專案中的 node_modules 即可。一樣以 L86duntu 為例：
-<code class="highlighter-rouge">cd &lt;PATH OF node_modules&gt;</code>
-<code class="highlighter-rouge">cp -R /usr/local/lib/node_modules/mraa .</code>
-這樣一來，就能以 <code class="highlighter-rouge">node source.js</code> 來執行程式了。</p>
+<code class="language-plaintext highlighter-rouge">cd &lt;PATH OF node_modules&gt;</code>
+<code class="language-plaintext highlighter-rouge">cp -R /usr/local/lib/node_modules/mraa .</code>
+這樣一來，就能以 <code class="language-plaintext highlighter-rouge">node source.js</code> 來執行程式了。</p>
 
 <h3 id="java">Java</h3>
 <p>一樣以 L86duntu 為例：
-編譯： <code class="highlighter-rouge">javac -cp /usr/local/lib/java/mraa.jar:. Source.java</code>
-執行： <code class="highlighter-rouge">java -cp /usr/local/lib/java/mraa.jar:. Source</code></p>
+編譯： <code class="language-plaintext highlighter-rouge">javac -cp /usr/local/lib/java/mraa.jar:. Source.java</code>
+執行： <code class="language-plaintext highlighter-rouge">java -cp /usr/local/lib/java/mraa.jar:. Source</code></p>
 
 <h2 id="limitation">Limitation</h2>
 <p>目前的版本還有些東西尚未支援：</p>
@@ -552,30 +552,30 @@
 
 <h3 id="use-upm">Use UPM</h3>
 <p>使用上這邊僅提一下 Node.js（<strong>好偏心</strong> <font color="#FF3333">&gt;___&lt;</font>），一樣把需要用到的 module 放入 node_modules 資料夾即可，以 ds1307 為例：
-<code class="highlighter-rouge">cd &lt;PATH OF node_modules&gt;</code>
-<code class="highlighter-rouge">cp -R /usr/local/lib/node_modules/jsupm_ds1307 .</code></p>
+<code class="language-plaintext highlighter-rouge">cd &lt;PATH OF node_modules&gt;</code>
+<code class="language-plaintext highlighter-rouge">cp -R /usr/local/lib/node_modules/jsupm_ds1307 .</code></p>
 
 <p><strong>範例程式：</strong></p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Load RTC Clock module for Grove - RTC clock</span>
-<span class="kd">var</span> <span class="nx">ds1307</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'jsupm_ds1307'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">ds1307</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">jsupm_ds1307</span><span class="dl">'</span><span class="p">);</span>
 <span class="c1">// load this on i2c bus 0</span>
 <span class="kd">var</span> <span class="nx">myRTCClockObj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ds1307</span><span class="p">.</span><span class="nx">DS1307</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 
 <span class="c1">// always do this first</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Loading the current time... "</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Loading the current time... </span><span class="dl">"</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">myRTCClockObj</span><span class="p">.</span><span class="nx">loadTime</span><span class="p">();</span>
 <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">)</span>
 <span class="p">{</span>
-	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"myRTCClockObj.loadTime() failed."</span><span class="p">);</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">myRTCClockObj.loadTime() failed.</span><span class="dl">"</span><span class="p">);</span>
 	<span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="nx">printTime</span><span class="p">(</span><span class="nx">myRTCClockObj</span><span class="p">);</span>
 
 <span class="c1">// set the year as an example</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"setting the year to 50"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">setting the year to 50</span><span class="dl">"</span><span class="p">);</span>
 <span class="nx">myRTCClockObj</span><span class="p">.</span><span class="nx">year</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
 <span class="nx">myRTCClockObj</span><span class="p">.</span><span class="nx">setTime</span><span class="p">();</span>
 
@@ -585,17 +585,17 @@
 
 <span class="kd">function</span> <span class="nx">printTime</span><span class="p">(</span><span class="nx">RTCObj</span><span class="p">)</span>
 <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">timeStr</span> <span class="o">=</span> <span class="s2">"The time is: "</span> <span class="o">+</span> 
-        <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">month</span> <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">dayOfMonth</span> <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">year</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span>
-        <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">hours</span> <span class="o">+</span> <span class="s2">":"</span> <span class="o">+</span> <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">minutes</span> <span class="o">+</span> <span class="s2">":"</span> <span class="o">+</span> <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">seconds</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">timeStr</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">The time is: </span><span class="dl">"</span> <span class="o">+</span> 
+        <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">month</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">dayOfMonth</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">/</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">year</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> </span><span class="dl">"</span> <span class="o">+</span>
+        <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">hours</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">:</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">minutes</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">:</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">RTCObj</span><span class="p">.</span><span class="nx">seconds</span><span class="p">;</span>
 
 	<span class="k">if</span> <span class="p">(</span><span class="nx">RTCObj</span><span class="p">.</span><span class="nx">amPmMode</span><span class="p">)</span>
-		<span class="nx">timeStr</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">RTCObj</span><span class="p">.</span><span class="nx">pm</span> <span class="p">?</span> <span class="s2">" PM "</span> <span class="p">:</span> <span class="s2">" AM "</span><span class="p">);</span>
+		<span class="nx">timeStr</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">RTCObj</span><span class="p">.</span><span class="nx">pm</span> <span class="p">?</span> <span class="dl">"</span><span class="s2"> PM </span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2"> AM </span><span class="dl">"</span><span class="p">);</span>
 
 	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">timeStr</span><span class="p">);</span>
 
-	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Clock is in "</span> <span class="o">+</span> 
-                <span class="p">(</span><span class="nx">RTCObj</span><span class="p">.</span><span class="nx">amPmMode</span> <span class="p">?</span> <span class="s2">"AM/PM mode"</span> <span class="p">:</span> <span class="s2">"24hr mode"</span><span class="p">));</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Clock is in </span><span class="dl">"</span> <span class="o">+</span> 
+                <span class="p">(</span><span class="nx">RTCObj</span><span class="p">.</span><span class="nx">amPmMode</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">AM/PM mode</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">24hr mode</span><span class="dl">"</span><span class="p">));</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -615,7 +615,7 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-02-18T00:00:00-07:00">February 18, 2016</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-02-18T00:00:00-08:00">February 18, 2016</time></p>
         
       </footer>
 

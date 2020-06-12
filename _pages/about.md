@@ -2,18 +2,23 @@
 layout: single
 permalink: /about/
 title: "About"
-excerpt: "Doopy"
+excerpt: "Sayter"
 author_profile: true
 ---
 <figure class="half">
   <img src="../assets/images/old/me3.jpg">
-  <figcaption>Chi-Ju Wu, Taiwan, 10/23/1990</figcaption>
+  <figcaption>Chi-Ju Wu</figcaption>
 </figure>
 
-I am a Computer Science student at CU Boulder who finds joy in creating products that delight and help people. Love to take on any challenge and explore more about our new tech world!
+
+I am Chi-Ju, a huge fan of autonomous robots from Taiwan. Love to take on any challenge and explore more about our new tech world!
 
 ## Work Experience
+
+Software Engineer at [Zoox](https://www.zoox.com) <font color="#888888" size="4">[Jun 2020 - Present]</font>
+
 Software Engineer at [Orbbec 3D Technology](https://orbbec3d.com/) <font color="#888888" size="4">[Jun 2019 - Aug 2019]</font>
+
 * Designed and implemented an extrinsic calibration algorithm for little-overlapping dual-camera systems
 * Developed and maintained [Orbbec ROS package](https://github.com/orbbec/ros_astra_camera)
 
@@ -40,6 +45,7 @@ Software Engineer at [DMP Electronics](http://www.compactpc.com.tw/about_us.aspx
   * <font size="4">Built internal packages to integrate ROS with the 86Duino ecosystem</font>
 
 ## Education
+
 [University of Colorado Boulder](https://www.colorado.edu/)
 * Master in Computer Science, GPA 4.00/4.00 <font color="#888888" size="4">[2018 - 2020]</font>
   * Human Interruption Detection in HRC
@@ -65,9 +71,11 @@ Software Engineer at [DMP Electronics](http://www.compactpc.com.tw/about_us.aspx
     * <font size="4">Go: The fourth in National University Go Competition (Division 2d), Taiwan, 2010.</font>
 
 # Selected Projects
+
 * [See more about my projects](../assets/images/old/Projects.pdf)
 
 # More about me
+
 I am also a [Go](https://en.wikipedia.org/wiki/Go_(game)) player, game player, and I like sports such as basketball, bicycle.
 
 * In Taiwan, I am a [5-Dan](https://en.wikipedia.org/wiki/Go_ranks_and_ratings) Go player.

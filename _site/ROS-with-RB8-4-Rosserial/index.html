@@ -31,7 +31,7 @@
 
 
 
-  <meta property="article:published_time" content="2015-08-16T00:00:00-06:00">
+  <meta property="article:published_time" content="2015-08-16T00:00:00-07:00">
 
 
 
@@ -189,7 +189,7 @@
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Boulder, CO</span>
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Mateo, CA</span>
         </li>
       
 
@@ -331,7 +331,7 @@
 <span class="nl">all </span><span class="o">:</span> <span class="nf">clean everything</span>
 
 <span class="nl">clean </span><span class="o">:</span>
-	<span class="p">-</span>rm <span class="nt">-f</span> <span class="nv">$(EXEFILES)</span> <span class="nv">$(OBJFILES)</span>
+	<span class="p">-</span><span class="nb">rm</span> <span class="nt">-f</span> <span class="nv">$(EXEFILES)</span> <span class="nv">$(OBJFILES)</span>
 
 <span class="nl">%.o</span><span class="o">:</span> <span class="nf">%.cpp</span>
 	<span class="nv">$(CXX)</span> <span class="nt">-c</span> <span class="nv">$&lt;</span> <span class="nv">$(IFLAGS)</span> <span class="nv">$(OPTIONS)</span>
@@ -350,7 +350,7 @@
 </code></pre></div></div>
 
 <ul>
-  <li><strong>Windows</strong>：我是採用 VS2013 社群版來編譯，將 ros_lib 與 ros_lib/vortex86/ 裡面兩個資料的 header file 夾都引入專案，而連結方面需要連結以下函式庫：<code class="highlighter-rouge">WinIo.lib</code>、<code class="highlighter-rouge">kernel32.lib</code>、<code class="highlighter-rouge">user32.lib</code>、<code class="highlighter-rouge">gdi32.lib</code>、<code class="highlighter-rouge">winspool.lib</code>、<code class="highlighter-rouge">comdlg32.lib</code>、<code class="highlighter-rouge">advapi32.lib</code>、<code class="highlighter-rouge">shell32.lib</code>、<code class="highlighter-rouge">ole32.lib</code>、<code class="highlighter-rouge">oleaut32.lib</code>、<code class="highlighter-rouge">uuid.lib</code>、<code class="highlighter-rouge">odbc32.lib</code>、<code class="highlighter-rouge">odbccp32.lib</code>。</li>
+  <li><strong>Windows</strong>：我是採用 VS2013 社群版來編譯，將 ros_lib 與 ros_lib/vortex86/ 裡面兩個資料的 header file 夾都引入專案，而連結方面需要連結以下函式庫：<code class="language-plaintext highlighter-rouge">WinIo.lib</code>、<code class="language-plaintext highlighter-rouge">kernel32.lib</code>、<code class="language-plaintext highlighter-rouge">user32.lib</code>、<code class="language-plaintext highlighter-rouge">gdi32.lib</code>、<code class="language-plaintext highlighter-rouge">winspool.lib</code>、<code class="language-plaintext highlighter-rouge">comdlg32.lib</code>、<code class="language-plaintext highlighter-rouge">advapi32.lib</code>、<code class="language-plaintext highlighter-rouge">shell32.lib</code>、<code class="language-plaintext highlighter-rouge">ole32.lib</code>、<code class="language-plaintext highlighter-rouge">oleaut32.lib</code>、<code class="language-plaintext highlighter-rouge">uuid.lib</code>、<code class="language-plaintext highlighter-rouge">odbc32.lib</code>、<code class="language-plaintext highlighter-rouge">odbccp32.lib</code>。</li>
   <li><strong>Linux</strong>：與 DOS 較為類似，不過 compiler 為 GCC。一樣附上 Makefile：</li>
 </ul>
 
@@ -372,7 +372,7 @@
 <span class="nl">all </span><span class="o">:</span> <span class="nf">clean everything</span>
 
 <span class="nl">clean </span><span class="o">:</span>
-	<span class="p">-</span>rm <span class="nt">-f</span> <span class="nv">$(EXEFILES)</span> <span class="nv">$(OBJFILES)</span>
+	<span class="p">-</span><span class="nb">rm</span> <span class="nt">-f</span> <span class="nv">$(EXEFILES)</span> <span class="nv">$(OBJFILES)</span>
 
 <span class="nl">%.o</span><span class="o">:</span> <span class="nf">%.cpp</span>
 	<span class="nv">$(CXX)</span> <span class="nt">-c</span> <span class="nv">$&lt;</span> <span class="nv">$(IFLAGS)</span> <span class="nv">$(OPTIONS)</span>
@@ -386,7 +386,7 @@
 <span class="nl">HelloROS.exe </span><span class="o">:</span> <span class="nf">$(OBJFILES)</span>
 	<span class="nv">$(CXX)</span> <span class="nt">-o</span> <span class="nv">$@</span> <span class="nv">$(OBJFILES)</span> <span class="nv">$(LIBFILES)</span> <span class="nv">$(OPTIONS)</span>
 </code></pre></div></div>
-<p>除此之外，還在 DOS 平台提供<strong>網路連線</strong>的連線方式，用法會與 Linux/Windows 上用網路有些差別，一般的網路連接是在 <code class="highlighter-rouge">init NodeHandle</code> 時給 server 的 ip 當作參數，而 DOS　下則是要先用 <code class="highlighter-rouge">NodeHandleX.getHardware()-&gt;setEthernet(ip)</code> 來設定自己的 IP，再用 <code class="highlighter-rouge">NodeHandleX.initNode(srvIp)</code> 來初始化。</p>
+<p>除此之外，還在 DOS 平台提供<strong>網路連線</strong>的連線方式，用法會與 Linux/Windows 上用網路有些差別，一般的網路連接是在 <code class="language-plaintext highlighter-rouge">init NodeHandle</code> 時給 server 的 ip 當作參數，而 DOS　下則是要先用 <code class="language-plaintext highlighter-rouge">NodeHandleX.getHardware()-&gt;setEthernet(ip)</code> 來設定自己的 IP，再用 <code class="language-plaintext highlighter-rouge">NodeHandleX.initNode(srvIp)</code> 來初始化。</p>
 
 <p>程式的部分，<strong>86Duino</strong> 裡頭有 <em>Rosserial86</em> 範例可參考；<strong>DOS</strong>、<strong>Windows</strong>、<strong>Linux</strong> 基本上程式可以是同一份，並不需要修改，我就在此附上我用 RoBoIo 來控制 AX-12 馬達的程式，這支程式會去聽取 chatter 話題，並且依據收到的訊息來決定要怎麼讓輪子移動：</p>
 
@@ -398,12 +398,12 @@
 #include &lt;stdlib.h&gt;
 #include &lt;roboard.h&gt;
 </span>
-<span class="c1">// AX-12 commands
-</span><span class="cp">#define READ_DATA       0x02
+<span class="c1">// AX-12 commands</span>
+<span class="cp">#define READ_DATA       0x02
 #define WRITE_DATA      0x03
 </span>
-<span class="c1">// AX-12 registers
-</span><span class="cp">#define ID_ADDR         0x03
+<span class="c1">// AX-12 registers</span>
+<span class="cp">#define ID_ADDR         0x03
 #define CW_ANG_LIMIT_L  0x06
 #define CCW_ANG_LIMIT_L 0x08
 #define GOAL_POSITION   0x1e
@@ -420,8 +420,8 @@
 
     <span class="k">if</span> <span class="p">(</span><span class="n">com_Send</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="n">cmd</span><span class="p">,</span> <span class="n">csize</span><span class="p">)</span> <span class="o">==</span> <span class="nb">false</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">port</span><span class="o">-&gt;</span><span class="n">EnableHalfDuplex</span> <span class="o">==</span> <span class="n">uart_EnableHalfDuplex</span><span class="p">)</span>  <span class="c1">// discard the first-received csize bytes in case of TX/RX-short
-</span>    <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">port</span><span class="o">-&gt;</span><span class="n">EnableHalfDuplex</span> <span class="o">==</span> <span class="n">uart_EnableHalfDuplex</span><span class="p">)</span>  <span class="c1">// discard the first-received csize bytes in case of TX/RX-short</span>
+    <span class="p">{</span>
         <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
         <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">tmpbyte</span><span class="p">;</span>
         <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">csize</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
@@ -486,11 +486,11 @@
     <span class="n">comd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0xff</span><span class="p">;</span>
     <span class="n">comd</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0xff</span><span class="p">;</span>
     <span class="n">comd</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">ID</span><span class="p">;</span>
-    <span class="n">comd</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span><span class="c1">// LENGTH : LENGTH INSTRUCTION PARAMETER1 PARAMETER2 PARAMETER3
-</span>    <span class="n">comd</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">WRITE_DATA</span><span class="p">;</span><span class="c1">// INSTRUCTION
-</span>    <span class="n">comd</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">ax12_reg</span><span class="p">;</span><span class="c1">// register
-</span>    <span class="n">comd</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">chk_sum</span><span class="p">(</span><span class="n">comd</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span><span class="c1">// Calculate the checksum.
-</span><span class="p">}</span>
+    <span class="n">comd</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span><span class="c1">// LENGTH : LENGTH INSTRUCTION PARAMETER1 PARAMETER2 PARAMETER3</span>
+    <span class="n">comd</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">WRITE_DATA</span><span class="p">;</span><span class="c1">// INSTRUCTION</span>
+    <span class="n">comd</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">ax12_reg</span><span class="p">;</span><span class="c1">// register</span>
+    <span class="n">comd</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">chk_sum</span><span class="p">(</span><span class="n">comd</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span><span class="c1">// Calculate the checksum.</span>
+<span class="p">}</span>
 
 <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
 
@@ -570,8 +570,8 @@
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
-    <span class="n">roboio_SetRBVer</span><span class="p">(</span><span class="n">RB_100RD</span><span class="p">);</span>  <span class="c1">// set the RoBoard version
-</span>
+    <span class="n">roboio_SetRBVer</span><span class="p">(</span><span class="n">RB_100RD</span><span class="p">);</span>  <span class="c1">// set the RoBoard version</span>
+
     <span class="n">ax12_com</span> <span class="o">=</span> <span class="n">com_Init</span><span class="p">(</span><span class="n">COM3</span><span class="p">);</span>
     <span class="n">com_SetFormat</span><span class="p">(</span><span class="n">ax12_com</span><span class="p">,</span> <span class="n">BYTESIZE8</span> <span class="o">|</span> <span class="n">STOPBIT1</span> <span class="o">|</span> <span class="n">NOPARITY</span><span class="p">);</span>
     <span class="n">com_SetBPS</span><span class="p">(</span><span class="n">ax12_com</span><span class="p">,</span> <span class="n">COM_UARTBAUD_115200BPS</span><span class="p">);</span>
@@ -602,7 +602,7 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-08-16T00:00:00-06:00">August 16, 2015</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-08-16T00:00:00-07:00">August 16, 2015</time></p>
         
       </footer>
 

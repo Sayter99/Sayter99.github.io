@@ -31,7 +31,7 @@
 
 
 
-  <meta property="article:published_time" content="2015-10-30T00:00:00-06:00">
+  <meta property="article:published_time" content="2015-10-30T00:00:00-07:00">
 
 
 
@@ -189,7 +189,7 @@
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Boulder, CO</span>
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Mateo, CA</span>
         </li>
       
 
@@ -326,7 +326,7 @@
 <p>簡單介紹之後，就來談談 Rosserial86/rosserial 是如何運作的，首先，ROS 端（通常為 PC）上要開啟一個 node 來當作與嵌入式裝置溝通的伺服端，<strong>ROS Hydro</strong> 後可以選擇 rosserial_python 或 rosserial_server，這個 node 與嵌入式裝置（86Duino/Arduino）會透過自定義的 protocol 進行溝通。而 rosserial_arduino、rosserial_embeddedlinux、rosserial_86duino 則都隸屬於 rosserial_client，由上面的架構圖可見。</p>
 
 <h2 id="ros-side">ROS-side</h2>
-<p>總結上一段來說，ROS 端要先安裝 rosserial 這個 package，要建立連線時先開啟 roscore 和 <a href="http://wiki.ros.org/rosserial_python">rosserial_python</a> 或 <a href="http://wiki.ros.org/rosserial_server">rosserial_server</a>，視連線方式來決定指定如何下，舉 rosserial_python 為例，用 <em>serial port</em> 時為 <code class="highlighter-rouge">rosrun rosserial_python serial_node.py /dev/ttyXXX</code>，用 <em>ehternet/wifi</em> 時為 <code class="highlighter-rouge">rosrun rosserial_python serial_node.py tcp</code>，預設的 port 為 <code class="highlighter-rouge">11411</code>，有需要變更可在下參數調整。而 rosserial_server 則分為 serial_node 與 socket_node。這次進行多台連線我是採用 rosserial_server socket_node 走預設的 port。</p>
+<p>總結上一段來說，ROS 端要先安裝 rosserial 這個 package，要建立連線時先開啟 roscore 和 <a href="http://wiki.ros.org/rosserial_python">rosserial_python</a> 或 <a href="http://wiki.ros.org/rosserial_server">rosserial_server</a>，視連線方式來決定指定如何下，舉 rosserial_python 為例，用 <em>serial port</em> 時為 <code class="language-plaintext highlighter-rouge">rosrun rosserial_python serial_node.py /dev/ttyXXX</code>，用 <em>ehternet/wifi</em> 時為 <code class="language-plaintext highlighter-rouge">rosrun rosserial_python serial_node.py tcp</code>，預設的 port 為 <code class="language-plaintext highlighter-rouge">11411</code>，有需要變更可在下參數調整。而 rosserial_server 則分為 serial_node 與 socket_node。這次進行多台連線我是採用 rosserial_server socket_node 走預設的 port。</p>
 
 <h2 id="connect-with-ros">Connect with ROS</h2>
 <p>搞定無線網路與 ROS 段設定之後，就可以利用新改好的 <a href="https://github.com/Sayter99/rosserial">Rosserial86</a> 與 ROS 連線囉！範例程式：</p>
@@ -336,12 +336,12 @@
 </span>
 <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">;</span>
 
-<span class="kt">void</span> <span class="n">messageCb</span><span class="p">(</span> <span class="k">const</span> <span class="n">std_msgs</span><span class="o">::</span><span class="n">String</span><span class="o">&amp;</span> <span class="n">cmsg</span><span class="p">){</span>
+<span class="kt">void</span> <span class="nf">messageCb</span><span class="p">(</span> <span class="k">const</span> <span class="n">std_msgs</span><span class="o">::</span><span class="n">String</span><span class="o">&amp;</span> <span class="n">cmsg</span><span class="p">){</span>
   <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">cmsg</span><span class="p">.</span><span class="n">data</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="n">geometry_msgs</span><span class="o">::</span><span class="n">Pose2D</span> <span class="n">msg</span><span class="p">;</span>
-<span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span> <span class="n">chatter</span><span class="p">(</span><span class="s">"chatter2"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">msg</span><span class="p">);</span>
+<span class="n">ros</span><span class="o">::</span><span class="n">Publisher</span> <span class="nf">chatter</span><span class="p">(</span><span class="s">"chatter2"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">msg</span><span class="p">);</span>
 
 <span class="n">ros</span><span class="o">::</span><span class="n">Subscriber</span><span class="o">&lt;</span><span class="n">std_msgs</span><span class="o">::</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">sub</span><span class="p">(</span><span class="s">"chatter"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">messageCb</span> <span class="p">);</span>
 <span class="kt">double</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
@@ -392,7 +392,7 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-10-30T00:00:00-06:00">October 30, 2015</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-10-30T00:00:00-07:00">October 30, 2015</time></p>
         
       </footer>
 

@@ -31,7 +31,7 @@
 
 
 
-  <meta property="article:published_time" content="2015-08-17T00:00:00-06:00">
+  <meta property="article:published_time" content="2015-08-17T00:00:00-07:00">
 
 
 
@@ -189,7 +189,7 @@
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Boulder, CO</span>
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Mateo, CA</span>
         </li>
       
 
@@ -323,7 +323,7 @@
 <p>開啟 <a href="http://wiki.ros.org/robot_state_publisher">robot_state_publisher</a> 與 <a href="http://wiki.ros.org/joint_state_publisher">joint_state_publisher</a>，並將 robot_description 參數設為編輯好的 urdf 檔（xacro 檔可以用 xacro package 的 xacro.py 轉換成 urdf），就可以在 Rviz 中加入機器人模型，包含各個 link、joint　的 <a href="http://wiki.ros.org/tf">tf</a> 與外觀，更可以藉由操作 joint_state_publisher 控制視窗來轉動關節，測試看看 urdf 的編寫是否正確。</p>
 
 <h3 id="2-使用-moveit-來控制機器人">2. 使用 MoveIt! 來控制機器人</h3>
-<p><a href="http://moveit.ros.org/">MoveIt!</a> 是一個結合路徑歸化、運動學、3D 感測的套件，通常用來控制機器手臂。只要擁有機器人的 urdf 檔，配合 <a href="http://moveit.ros.org/wiki/MoveIt!_Setup_Assistant">MoveIt! Setup Assistant</a> 就可以產生出一個屬於自己機器人的 MoveIt! 套件，基本上是不需要自己去算運動學的，前提是要將自己的 urdf 檔案描述得到位。接著可以在產生出來的目錄找到 <em>demo.launch</em>，執行這個 launch file 就可以開始試試路徑規劃、障礙避碰等等功能。 3D 環境的產生則是需要額外設定，在 config 資料夾加入 <em>sensors_rgbd.yaml</em>，並設定 3D sensor 的相關資訊即可。都完成後，我會將 MoveIt! 在運動過程中產生的 <code class="highlighter-rouge">/move_group/display_planned_path</code> 傳到 RoBoard 上，讓馬達跟著算出來的結果一起移動。機器人基本上是應該要有反饋的，不過這邊就算是一個雛形，我沒有選擇本身能反饋訊息的馬達，也沒有利用其他的 sensor 來解決，且我的 urdf 基本上也是有點粗糙，要如何精進就看個人的發揮了！</p>
+<p><a href="http://moveit.ros.org/">MoveIt!</a> 是一個結合路徑歸化、運動學、3D 感測的套件，通常用來控制機器手臂。只要擁有機器人的 urdf 檔，配合 <a href="http://moveit.ros.org/wiki/MoveIt!_Setup_Assistant">MoveIt! Setup Assistant</a> 就可以產生出一個屬於自己機器人的 MoveIt! 套件，基本上是不需要自己去算運動學的，前提是要將自己的 urdf 檔案描述得到位。接著可以在產生出來的目錄找到 <em>demo.launch</em>，執行這個 launch file 就可以開始試試路徑規劃、障礙避碰等等功能。 3D 環境的產生則是需要額外設定，在 config 資料夾加入 <em>sensors_rgbd.yaml</em>，並設定 3D sensor 的相關資訊即可。都完成後，我會將 MoveIt! 在運動過程中產生的 <code class="language-plaintext highlighter-rouge">/move_group/display_planned_path</code> 傳到 RoBoard 上，讓馬達跟著算出來的結果一起移動。機器人基本上是應該要有反饋的，不過這邊就算是一個雛形，我沒有選擇本身能反饋訊息的馬達，也沒有利用其他的 sensor 來解決，且我的 urdf 基本上也是有點粗糙，要如何精進就看個人的發揮了！</p>
 
 <p>下面的影片是示範一下 MoveIt! 的反運動學，接著我在模擬器中加入一個物件展示一下避碰，這邊不是用 Xtion 照的喔！因為我得手不夠長 XD，所以 Xtion 的 Demo 就先免了吧，以後有機會再拍拍加入 3D camera 之後環境會變得怎麼樣吧！</p>
 
@@ -346,7 +346,7 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-08-17T00:00:00-06:00">August 17, 2015</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-08-17T00:00:00-07:00">August 17, 2015</time></p>
         
       </footer>
 

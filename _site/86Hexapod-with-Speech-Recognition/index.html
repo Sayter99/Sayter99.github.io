@@ -31,7 +31,7 @@
 
 
 
-  <meta property="article:published_time" content="2016-08-08T00:00:00-06:00">
+  <meta property="article:published_time" content="2016-08-08T00:00:00-07:00">
 
 
 
@@ -189,7 +189,7 @@
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Boulder, CO</span>
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Mateo, CA</span>
         </li>
       
 
@@ -314,10 +314,10 @@
 <h2 id="speech-recognition-by-ros-pocketsphinx-package">Speech Recognition by ROS pocketsphinx package</h2>
 <p>這次我使用的 package 為 pocketsphinx，首先我們要把這個 package 裝在 ROS-side PC or laptop，讓電腦能夠完成語音辨識，並把結果透過字串傳給小六足，小六足再藉由此字串決定要做甚麼樣的動作。小弟的筆電安裝的為 ROS hydro，以下為安裝 pocketsphinx 的步驟：</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get install gstreamer0.10-pocketsphinx
-<span class="nb">sudo </span>apt-get install ros-hydro-pocketsphinx
-<span class="nb">sudo </span>apt-get install ros-hydro-audio-common
-<span class="nb">sudo </span>apt-get install libasound2
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>gstreamer0.10-pocketsphinx
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>ros-hydro-pocketsphinx
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>ros-hydro-audio-common
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>libasound2
 </code></pre></div></div>
 
 <p>除了 pocketsphinx 本身之外，還有一些相依的涵式庫與套件，千萬別忽略囉。安裝完之後就完成 87% 了，pocketsphinx package 中含有一個 node <strong>recognizer.py</strong>，可以處理音訊接收與辨識，並把辨識到的結果以 <strong>std_msgs/String</strong> 發布到 <strong>/recognizer/output</strong> 這個 topic。安裝完畢之後就先來做個簡單的測試，把電腦接上麥克風之後，執行：</p>
@@ -328,9 +328,9 @@
 <p>接著嘗試說一些 robocup 中設定的字詞，例如 <strong>bring me the glass, go to the kitchen, come with me</strong> 等等，順利的話就能在視窗中看到結果了。</p>
 
 <h2 id="creating-a-vocabulary">Creating a Vocabulary</h2>
-<p>因為 recognizer.py 是把音訊分析之後的結果拿去與一個字庫做比對，然後從字庫裡選出一個最接近的結果當作辨識結果，例如上面的例子，用到的字即是別人為了 robocup 設計的。所以自定義字庫是非常必要的，畢竟如果只需要幾條簡單的命令，用太大範圍的字庫反而會降低辨識的成功率，依照自己的需求來制定字庫才能達到最佳的效果。製作方式非常簡單，先新增一個文字檔，例如 <code class="highlighter-rouge">hexapod_command.txt</code>，產生之後輸入自己需要的字詞，例如：</p>
+<p>因為 recognizer.py 是把音訊分析之後的結果拿去與一個字庫做比對，然後從字庫裡選出一個最接近的結果當作辨識結果，例如上面的例子，用到的字即是別人為了 robocup 設計的。所以自定義字庫是非常必要的，畢竟如果只需要幾條簡單的命令，用太大範圍的字庫反而會降低辨識的成功率，依照自己的需求來制定字庫才能達到最佳的效果。製作方式非常簡單，先新增一個文字檔，例如 <code class="language-plaintext highlighter-rouge">hexapod_command.txt</code>，產生之後輸入自己需要的字詞，例如：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stop
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stop
 move forward
 move backward
 move left
@@ -339,7 +339,7 @@ half speed
 full speed
 </code></pre></div></div>
 
-<p>完成之後要使用 <a href="http://www.speech.cs.cmu.edu/tools/lmtool-new.html">online CMU language model(lm) tool</a> 來將 <code class="highlighter-rouge">hexapod_command.txt</code> 轉成 .dic 與 .lm 檔，以提供給 recognizer.py 當作參數使用。下載網頁產生出來的檔案之後，放到一個自己心儀的資料夾裡，接著在 <strong>pocketsphinx</strong> package 裡面新增一個 launch file：</p>
+<p>完成之後要使用 <a href="http://www.speech.cs.cmu.edu/tools/lmtool-new.html">online CMU language model(lm) tool</a> 來將 <code class="language-plaintext highlighter-rouge">hexapod_command.txt</code> 轉成 .dic 與 .lm 檔，以提供給 recognizer.py 當作參數使用。下載網頁產生出來的檔案之後，放到一個自己心儀的資料夾裡，接著在 <strong>pocketsphinx</strong> package 裡面新增一個 launch file：</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;launch&gt;</span>
   <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">"recognizer"</span> <span class="na">pkg=</span><span class="s">"pocketsphinx"</span> <span class="na">type=</span><span class="s">"recognizer.py"</span> <span class="na">output=</span><span class="s">"screen"</span><span class="nt">&gt;</span>
@@ -352,7 +352,7 @@ full speed
 <p>之後執行這個 launch file，recognizer 就可以運用 hexapod_command.txt 的內容來辨識囉！</p>
 
 <h2 id="control-86hexapod">Control 86Hexapod</h2>
-<p>跟<a href="http://sayter99.github.io/2015/10/30/86Hexapod-with-ROS/">之前的文章</a>中的配置一樣，這次硬體方面依然是 86Hexapod + ESP8266，並透過 <a href="https://github.com/Sayter99/rosserial">Rosserial86</a> 來與 ROS 連線，控制程式是由 <a href="https://github.com/Sayter99/86ME">86ME</a> 產生出來的小六足控制程式下去修改的，利用一個 callback function 把 <strong>/recognizer/output</strong> 中的字串接出來，然後讓程式判斷要觸發哪個動作，這樣就完成聲控小六足了，來個<a href="https://gist.github.com/Sayter99/3525c7b0b5a9c055bdccb6fc71d930fc">範例程式傳送門</a>，記得 <code class="highlighter-rouge">setup()</code> 中 wifi 的相關設定要自行修改才能用唷。</p>
+<p>跟<a href="http://sayter99.github.io/2015/10/30/86Hexapod-with-ROS/">之前的文章</a>中的配置一樣，這次硬體方面依然是 86Hexapod + ESP8266，並透過 <a href="https://github.com/Sayter99/rosserial">Rosserial86</a> 來與 ROS 連線，控制程式是由 <a href="https://github.com/Sayter99/86ME">86ME</a> 產生出來的小六足控制程式下去修改的，利用一個 callback function 把 <strong>/recognizer/output</strong> 中的字串接出來，然後讓程式判斷要觸發哪個動作，這樣就完成聲控小六足了，來個<a href="https://gist.github.com/Sayter99/3525c7b0b5a9c055bdccb6fc71d930fc">範例程式傳送門</a>，記得 <code class="language-plaintext highlighter-rouge">setup()</code> 中 wifi 的相關設定要自行修改才能用唷。</p>
 
 <!-- Courtesy of embedresponsively.com //-->
 <div class="responsive-video-container">
@@ -375,7 +375,7 @@ full speed
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-08-08T00:00:00-06:00">August 08, 2016</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-08-08T00:00:00-07:00">August 08, 2016</time></p>
         
       </footer>
 

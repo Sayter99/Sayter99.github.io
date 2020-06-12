@@ -31,7 +31,7 @@
 
 
 
-  <meta property="article:published_time" content="2015-08-13T00:00:00-06:00">
+  <meta property="article:published_time" content="2015-08-13T00:00:00-07:00">
 
 
 
@@ -189,7 +189,7 @@
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Boulder, CO</span>
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Mateo, CA</span>
         </li>
       
 
@@ -366,33 +366,33 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update
 </code></pre></div></div>
 
-<p>接著，官網中提供了<code class="highlighter-rouge">Desktop-full、Desktop、ROS-Comm</code>這三種成套的選擇，但若要自己選擇所需的 stack 來安裝也是可以的。先來看看三種版本的差異：</p>
+<p>接著，官網中提供了<code class="language-plaintext highlighter-rouge">Desktop-full、Desktop、ROS-Comm</code>這三種成套的選擇，但若要自己選擇所需的 stack 來安裝也是可以的。先來看看三種版本的差異：</p>
 
 <ul>
   <li>Desktop-full：除了 ROS 核心之外還包含 2D/3D 的模擬器、巡航套件和一些常用的套件，非常完整，也是官方建議的選擇，但空間需求大，安裝好之後加上系統原來的檔案，一張 8G SD 卡可能就少了一半，因此我建議有 16GB 以上的 SD 卡再安裝此項。</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get install ros-fuerte-desktop-full
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>ros-fuerte-desktop-full
 </code></pre></div></div>
 
 <ul>
   <li>Desktop：除核心外還安裝有 RViz（ROS 中的一個模擬器）和一些機器人常用套件。</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get install ros-fuerte-desktop
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>ros-fuerte-desktop
 </code></pre></div></div>
 
 <ul>
   <li>ROS-Comm：ROS 建置與溝通的核心函式與套件，不包含 GUI 工具。</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get install ros-fuerte-ros-comm
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>ros-fuerte-ros-comm
 </code></pre></div></div>
 
-<p>小弟認為 RoBoard 擁有 1GHz 的時脈、256MB 的記憶體，可以選擇 <code class="highlighter-rouge">Desktop</code> 版本。86Duino 則因為記憶體僅有 128MB，要跑起圖形化介面有點太繁重，所以建議安裝 <code class="highlighter-rouge">ROS-Comm</code> ，若有其他需要在另行補上。</p>
+<p>小弟認為 RoBoard 擁有 1GHz 的時脈、256MB 的記憶體，可以選擇 <code class="language-plaintext highlighter-rouge">Desktop</code> 版本。86Duino 則因為記憶體僅有 128MB，要跑起圖形化介面有點太繁重，所以建議安裝 <code class="language-plaintext highlighter-rouge">ROS-Comm</code> ，若有其他需要在另行補上。</p>
 
 <h3 id="4-環境設置">4. 環境設置</h3>
-<p>為求方便起見，將 ROS 的環境變數加入家目錄底下的 <code class="highlighter-rouge">.bashrc</code> 檔案中。</p>
+<p>為求方便起見，將 ROS 的環境變數加入家目錄底下的 <code class="language-plaintext highlighter-rouge">.bashrc</code> 檔案中。</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"source /opt/ros/fuerte/setup.bash"</span> <span class="o">&gt;&gt;</span> ~/.bashrc
 <span class="nb">.</span> ~/.bashrc
@@ -400,7 +400,7 @@
 
 <h3 id="5-安裝-rosinstallrosdep-工具">5. 安裝 rosinstall、rosdep 工具</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get install python-rosinstall python-rosdep
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>python-rosinstall python-rosdep
 </code></pre></div></div>
 
 <h2 id="創建-ros-workspace-與-ros-package">創建 ROS Workspace 與 ROS Package</h2>
@@ -408,30 +408,30 @@
 
 <h3 id="1-建立-workspace">1. 建立 workspace</h3>
 <p>參考：<a href="http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment">Installing and Configuring Your ROS Environment</a>
-在家目錄建立 <code class="highlighter-rouge">fuerte_workspace</code> 資料夾，並將 /opt/ros/fuerte 裡的套件延伸至此資料夾。</p>
+在家目錄建立 <code class="language-plaintext highlighter-rouge">fuerte_workspace</code> 資料夾，並將 /opt/ros/fuerte 裡的套件延伸至此資料夾。</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir ~/fuerte_workspace
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> ~/fuerte_workspace
 rosws init ~/fuerte_workspace /opt/ros/fuerte
 </code></pre></div></div>
 
-<p>接著在 <code class="highlighter-rouge">fuerte_workspace</code> 裡頭建立資料夾 <code class="highlighter-rouge">sandbox</code>，並將 <code class="highlighter-rouge">sandbox</code> 設定為 ROS Workspace</p>
+<p>接著在 <code class="language-plaintext highlighter-rouge">fuerte_workspace</code> 裡頭建立資料夾 <code class="language-plaintext highlighter-rouge">sandbox</code>，並將 <code class="language-plaintext highlighter-rouge">sandbox</code> 設定為 ROS Workspace</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir ~/fuerte_workspace/sandbox
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> ~/fuerte_workspace/sandbox
 rosws <span class="nb">set</span> ~/fuerte_workspace/sandbox
 </code></pre></div></div>
 
-<p>與安裝 ROS 時的環境設置一樣，我習慣會把 <code class="highlighter-rouge">source ~/fuerte_workspace/setup.bash</code> 這行加入 <code class="highlighter-rouge">~/.bashrc</code> 的底部，這樣就不用每次開啟終端機都要重新輸入指令。最後可以輸入 <code class="highlighter-rouge">echo $ROS_PACKAGE_PATH</code> 來確認是否設定完成，如果完成的話輸出應該會是 <code class="highlighter-rouge">/home/your_user_name/fuerte_workspace/sandbox:/opt/ros/fuerte/share:/opt/ros/fuerte/stacks</code></p>
+<p>與安裝 ROS 時的環境設置一樣，我習慣會把 <code class="language-plaintext highlighter-rouge">source ~/fuerte_workspace/setup.bash</code> 這行加入 <code class="language-plaintext highlighter-rouge">~/.bashrc</code> 的底部，這樣就不用每次開啟終端機都要重新輸入指令。最後可以輸入 <code class="language-plaintext highlighter-rouge">echo $ROS_PACKAGE_PATH</code> 來確認是否設定完成，如果完成的話輸出應該會是 <code class="language-plaintext highlighter-rouge">/home/your_user_name/fuerte_workspace/sandbox:/opt/ros/fuerte/share:/opt/ros/fuerte/stacks</code></p>
 
 <h3 id="2-建立-ros-package">2. 建立 ROS Package</h3>
 <p>參考：<a href="http://wiki.ros.org/ROS/Tutorials/CreatingPackage">Creating a ROS Package</a></p>
 
-<p>先切換到 <code class="highlighter-rouge">sandbox</code> 資料夾中，再利用 <code class="highlighter-rouge">roscreate-pkg</code> 指令創建一個 ROS Package</p>
+<p>先切換到 <code class="language-plaintext highlighter-rouge">sandbox</code> 資料夾中，再利用 <code class="language-plaintext highlighter-rouge">roscreate-pkg</code> 指令創建一個 ROS Package</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/fuerte_workspace/sandbox
 roscreate-pkg beginner_tutorials std_msgs rospy roscpp
 </code></pre></div></div>
 
-<p>第二行所代表的意思可以這樣理解 <code class="highlighter-rouge">roscreate_pkg [package_name] [depend1] [depend2] [depend3]</code>，也就是 <em>beginner_tutorial</em> 為所創建套件的名字， <em>std_msgs、rospy、roscpp</em> 則是相依的套件。建立成功後，可以在 <strong>beginner_tutorial/manifest.xml</strong> 此檔案中看到相依的套件像這樣被加入：</p>
+<p>第二行所代表的意思可以這樣理解 <code class="language-plaintext highlighter-rouge">roscreate_pkg [package_name] [depend1] [depend2] [depend3]</code>，也就是 <em>beginner_tutorial</em> 為所創建套件的名字， <em>std_msgs、rospy、roscpp</em> 則是相依的套件。建立成功後，可以在 <strong>beginner_tutorial/manifest.xml</strong> 此檔案中看到相依的套件像這樣被加入：</p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;package&gt;</span>
 
@@ -448,14 +448,14 @@ roscreate-pkg beginner_tutorials std_msgs rospy roscpp
 <p>參考：<a href="http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28c%2B%2B%29">Writing a Simple Publisher and Subscriber (C++)</a>、<a href="http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29">Writing a Simple Publisher and Subscriber (Python)</a>。這邊可以照著教程寫出 ROS 經典的 publisher 和 subscriber。因為官網解說甚是詳盡，我僅說明一下常用的 package 建立方式。</p>
 
 <ul>
-  <li><strong>C++</strong>：創建一資料夾 <code class="highlighter-rouge">src</code> 在 package 目錄底下，並將程式撰寫在此資料夾下，接著修改 <code class="highlighter-rouge">CMakeLists.txt</code> 這個檔案，若是要用程式 A.cpp 編出 A 這個可執行檔，可藉由在最底下加入 <code class="highlighter-rouge">rosbuild_add_executable(A src/A.cpp)</code> 來告訴編譯器該怎麼編譯。若是有要連結的函式庫，則是藉由 <code class="highlighter-rouge">target_link_libraries(A ${PROJECT_NAME})</code> 來加入。</li>
-  <li><strong>Python</strong>：創建資料夾，常見的名稱有 <code class="highlighter-rouge">script</code> 和 <code class="highlighter-rouge">node</code>，在裡頭寫好 Python 程式即可。</li>
+  <li><strong>C++</strong>：創建一資料夾 <code class="language-plaintext highlighter-rouge">src</code> 在 package 目錄底下，並將程式撰寫在此資料夾下，接著修改 <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> 這個檔案，若是要用程式 A.cpp 編出 A 這個可執行檔，可藉由在最底下加入 <code class="language-plaintext highlighter-rouge">rosbuild_add_executable(A src/A.cpp)</code> 來告訴編譯器該怎麼編譯。若是有要連結的函式庫，則是藉由 <code class="language-plaintext highlighter-rouge">target_link_libraries(A ${PROJECT_NAME})</code> 來加入。</li>
+  <li><strong>Python</strong>：創建資料夾，常見的名稱有 <code class="language-plaintext highlighter-rouge">script</code> 和 <code class="language-plaintext highlighter-rouge">node</code>，在裡頭寫好 Python 程式即可。</li>
 </ul>
 
 <h3 id="4-建置-ros-package">4. 建置 ROS Package</h3>
 <p>參考：<a href="http://wiki.ros.org/ROS/Tutorials/BuildingPackages">Building a ROS Package</a></p>
 
-<p>移動至 package 的目錄下，使用 <code class="highlighter-rouge">rosmake</code> 建置。建置完成後 <code class="highlighter-rouge">rosrun PACKAGE_NAME EXECUTABLE_NAME</code> 就可以執行程式了，這樣的程式稱為 ROS node。執行時特別注意 ROS node 通常都需要先另外開一個終端機跑 <code class="highlighter-rouge">roscore</code>，一個控制各個 node 的 master node，之後才能正確的讓 node 與 node 間做訊息的交換。</p>
+<p>移動至 package 的目錄下，使用 <code class="language-plaintext highlighter-rouge">rosmake</code> 建置。建置完成後 <code class="language-plaintext highlighter-rouge">rosrun PACKAGE_NAME EXECUTABLE_NAME</code> 就可以執行程式了，這樣的程式稱為 ROS node。執行時特別注意 ROS node 通常都需要先另外開一個終端機跑 <code class="language-plaintext highlighter-rouge">roscore</code>，一個控制各個 node 的 master node，之後才能正確的讓 node 與 node 間做訊息的交換。</p>
 
         
       </section>
@@ -466,7 +466,7 @@ roscreate-pkg beginner_tutorials std_msgs rospy roscpp
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-08-13T00:00:00-06:00">August 13, 2015</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-08-13T00:00:00-07:00">August 13, 2015</time></p>
         
       </footer>
 
